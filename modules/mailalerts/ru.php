@@ -1,0 +1,34 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{mailalerts}prestashop>mailalerts_fd30254803e8db32521d3390131a44da'] = 'Почтовые предупреждения';
+$_MODULE['<{mailalerts}prestashop>mailalerts_c6ba5355c465de317197693762c97e74'] = 'Отправляет e-mail уведомления клиенту и продавцу';
+$_MODULE['<{mailalerts}prestashop>mailalerts_c5a847354ae407403ec0b589e5bcc89e'] = 'Вы уверены что хотите удалить модуль почтовые предупреждения?';
+$_MODULE['<{mailalerts}prestashop>mailalerts_7cb9a154f101c674c945f88dad5c5e28'] = 'Сообщений нет';
+$_MODULE['<{mailalerts}prestashop>mailalerts_9137796c15dd92e5553c3f29574d0968'] = 'Код купона:';
+$_MODULE['<{mailalerts}prestashop>mailalerts_4c9120f1a5947445c0e9620254ceb30b'] = 'Новый заказ';
+$_MODULE['<{mailalerts}prestashop>mailalerts_644f9c907ef5a8315916bd1e2f61f783'] = 'Товара на складе нет';
+$_MODULE['<{mailalerts}prestashop>mailalerts_923524e0ff0364df2987d3b8269f03d1'] = 'Товар доступен';
+$_MODULE['<{mailalerts}prestashop>mailalerts_7a608706e248c21437882f5d1a8ece3a'] = 'Уведомление клиента';
+$_MODULE['<{mailalerts}prestashop>mailalerts_ea379dd90c33c1345f40aa0afa6688d8'] = 'Товары доступны';
+$_MODULE['<{mailalerts}prestashop>mailalerts_0fe15591b4ee3412815c9aa0128af02f'] = 'Дать клиенту возможность получать уведомление о товарах со скидками';
+$_MODULE['<{mailalerts}prestashop>mailalerts_38fb7d24e0d60a048f540ecb18e13376'] = 'Сохранить';
+$_MODULE['<{mailalerts}prestashop>mailalerts_d9b64868bb5b490c5c0627abe835acf6'] = 'Уведомление';
+$_MODULE['<{mailalerts}prestashop>mailalerts_9204d21640382a89a95ec42f44f9051c'] = 'Новый заказ';
+$_MODULE['<{mailalerts}prestashop>mailalerts_fd5dc19a70d21e130f2e4ab5eb205e66'] = 'Отправлять уведомление при получении нового заказа';
+$_MODULE['<{mailalerts}prestashop>mailalerts_ebc3ccf8441dba3c1615afa6acb3282a'] = 'Со скидками';
+$_MODULE['<{mailalerts}prestashop>mailalerts_43c1063924fd0d29b5945682013c14a9'] = 'Отправлять уведомление если товар со скидками';
+$_MODULE['<{mailalerts}prestashop>mailalerts_95ba1239ebac05e1d10d5dae049e32f5'] = 'Отправлять e-mail от';
+$_MODULE['<{mailalerts}prestashop>mailalerts_16a0cf0a0304df1b8ce3cb363eff0847'] = 'Один адрес e-mail на линию';
+$_MODULE['<{mailalerts}prestashop>mailalerts_f77ed609e48d550f0166dfbafc102710'] = ' ';
+$_MODULE['<{mailalerts}prestashop>mailalerts_c1ee76f076a5b97e3b4b0c0e5703246e'] = 'Настройки не обновлены';
+$_MODULE['<{mailalerts}prestashop>mailalerts_f4d1ea475eaa85102e2b4e6d95da84bd'] = 'Подтверждение';
+$_MODULE['<{mailalerts}prestashop>mailalerts_c888438d14855d7d96a2724ee9c306bd'] = 'Настройки обновлены';
+$_MODULE['<{mailalerts}prestashop>mailalerts_2554b39ea61245301ddb2b8305d7e6fa'] = 'Пожалуйста введите хотябы один e-mail адрес';
+$_MODULE['<{mailalerts}prestashop>mailalerts_29aae9c646337554f4de7ae29050c39f'] = 'e-mail адрес заполнен неверно';
+$_MODULE['<{mailalerts}prestashop>my-account_4edfd10d0bb5f51e0fd2327df608b5a8'] = 'Уведомления';
+$_MODULE['<{mailalerts}prestashop>my-account_abca7cba75e5a9ff86b1490f32891f82'] = 'Уведомления';
+$_MODULE['<{mailalerts}prestashop>myalerts_d95cf4ab2cbf1dfb63f066b50558b07d'] = 'Мой аккаунт';
+$_MODULE['<{mailalerts}prestashop>myalerts_4edfd10d0bb5f51e0fd2327df608b5a8'] = 'Уведомления о поступлении на склад';
+$_MODULE['<{mailalerts}prestashop>myalerts_074c07016d3e5a9f011aa8e62abe4517'] = 'Если какого-то ништяка нет в наличии, нажми на его странице кнопку \"Напишите!\". Когда он появится, тебе придет письмо.';

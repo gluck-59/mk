@@ -1,0 +1,103 @@
+#vtemslideshow_wapper,#vtemnav{
+position:relative;
+}
+#vtemslideshow_wapper #nav{
+position:absolute;
+z-index:7;
+}
+.clr{clear:both; overflow:hidden; height:0px;}
+#vtemslideshow_wapper #nav a{ margin:2px; display:block; float:left; text-decoration:none !important;}
+#vtemslideshow_wapper #nav a span{font-weight:bold;color:#333; text-decoration:none; display:block;}
+#vtemslideshow_wapper #nav a.activeSlide span,#vtemslideshow_wapper #nav a:hover span{color:#c00;}
+.vtem_button{
+background:#690;
+background: -moz-linear-gradient(top, #8fc800 0%, #690 100%); /* firefox */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8fc800), color-stop(100%,#690)); /* webkit */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fc800', endColorstr='#690',GradientType=0 ); /* ie */
+color:#fff;
+text-transform:uppercase;
+font-weight:bold;
+border:none;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+padding:5px 25px;
+font-size:120%;
+border:1px solid #690;
+cursor:pointer;
+}
+.vtem_button:hover{
+background:#8fc800;
+background: -moz-linear-gradient(top, #690 0%, #8fc800 100%); /* firefox */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#690), color-stop(100%,#8fc800)); /* webkit */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#690', endColorstr='#8fc800',GradientType=0 ); /* ie */
+color:#ddd;
+}
+#uploadImage{
+background: #eeeeee; /* old browsers */
+background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* firefox */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* webkit */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* ie */
+border:1px solid #ddd;
+padding:5px 10px;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+}
+#uploadImage.hover,#uploadImage:hover{
+background: #ccc; /* old browsers */
+background: -moz-linear-gradient(top, #cccccc 0%, #eeeeee 100%); /* firefox */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cccccc), color-stop(100%,#eeeeee)); /* webkit */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#eeeeee',GradientType=0 ); /* ie */
+cursor:pointer !important;
+}
+
+/*///////////////// Navigation Styles /////////////////////////////*/
+#cycle_prev{
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:35px;
+background:url(images/go.png) right no-repeat;
+z-index:9999999999;
+opacity: 0.1;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+}
+#cycle_next{
+position:absolute;
+top:0;
+right:0;
+height:100%;
+width:35px;
+background:url(images/go.png) left no-repeat;
+z-index:9999999999;
+opacity: 0.1;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+}
+#cycle_prev:hover {
+/* background-position:right bottom; */
+opacity: 0.6;
+}
+#cycle_next:hover {
+/* background-position:left bottom;*/
+opacity: 0.6;
+}
+.vt_false{display:none !important; visibility:hidden;}
+.Top-Left{top:10px; left:10px;}
+.Top-Right{top:10px; right:10px;}
+.Bottom-Left{bottom:10px; left:10px;}
+.Bottom-Right{bottom:-50px; right:0px;}
+.Navigation-style1{background:url(images/style1_right.png) right center no-repeat;padding:0 15px 0 0;}
+.Navigation-style1 div{background:url(images/style1_left.png) left center no-repeat;padding:0 0 0 15px;}
+.Navigation-style1 div a,.Navigation-style2 div a{padding:6px 3px;}
+.Navigation-style2{background:url(images/style2_right.png) right center no-repeat;padding:0 15px 0 0;}
+.Navigation-style2 div{background:url(images/style2_left.png) left center no-repeat;padding:0 0 0 15px;}
+.Navigation-style3 div a{background:url(images/style3.png) left center no-repeat; height:24px;width:24px;text-align:center;line-height:24px;}
+.Navigation-style4 div a{background:url(images/style4.png) left center no-repeat; height:24px;width:24px;text-align:center;line-height:23px;}
+.Navigation-style5 div a{background:url(images/style5.png) left top no-repeat; height:19px;width:19px;text-indent:-9999999px;}
+.Navigation-style5 div a.activeSlide{background-position:left bottom;}

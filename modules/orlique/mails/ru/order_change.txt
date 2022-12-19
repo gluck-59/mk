@@ -1,0 +1,43 @@
+Здравствуйте, {firstname} {lastname},
+
+Благодарим Вас за покупки в {shop_name}!
+
+Состав Вашего заказа {order_name} добавленного {date} был изменен, пожалуйста, ознакомьтесь с деталями обновленного заказа.
+
+Заказ: {order_name} добавлен {date}
+Способ оплаты: {payment}
+
+Итого: {total_products}
+Скидки: {total_discounts}
+Подарочная упаковка: {total_wrapping}
+Доставка: {total_shipping}
+Итого к оплате: {total_paid}
+
+Способ доставки: {carrier}
+
+АДРЕС ДОСТАВКИ:
+
+	{delivery_company}
+	{delivery_firstname} {delivery_lastname}
+	{delivery_address1}
+	{delivery_address2}
+	{delivery_postal_code} {delivery_city}
+	{delivery_country} {delivery_state}
+	{delivery_other}
+
+АДРЕС ПЛАТЕЛЬЩИКА:
+
+	{invoice_company}
+	{invoice_vat_number}
+	{invoice_firstname} {invoice_lastname}
+	{invoice_address1}
+	{invoice_address2}
+	{invoice_postal_code} {invoice_city}
+	{invoice_country} {invoice_state}
+	{invoice_other}
+
+Вы можете просмотреть заказ и скачать счет в разделе "Заказы товаров" в Вашем личном кабинете "Личный кабинет" на нашем сайте.
+
+Если у Вас гостевая учетная запись, Вы можете отследить статус заказа, перейдя по ссылке: {shop_url}guest-tracking.php
+
+{shop_url}

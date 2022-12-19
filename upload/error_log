@@ -1,0 +1,17 @@
+[18-Apr-2015 13:53:50 Europe/Moscow] PHP Warning:  require_once(/home/motokofr/public_html/upload/composer/vendor/autoload.php): failed to open stream: No such file or directory in /home/motokofr/public_html/upload/_gdep.php on line 3
+[18-Apr-2015 13:53:50 Europe/Moscow] PHP Fatal error:  require_once(): Failed opening required '/home/motokofr/public_html/upload/composer/vendor/autoload.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/motokofr/public_html/upload/_gdep.php on line 3
+[18-Apr-2015 13:54:22 Europe/Moscow] PHP Warning:  require_once(/home/motokofr/public_html/upload/composer/vendor/gdeposylka/api-client/src/apikey.php): failed to open stream: No such file or directory in /home/motokofr/public_html/upload/_gdep.php on line 4
+[18-Apr-2015 13:54:22 Europe/Moscow] PHP Fatal error:  require_once(): Failed opening required '/home/motokofr/public_html/upload/composer/vendor/gdeposylka/api-client/src/apikey.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/motokofr/public_html/upload/_gdep.php on line 4
+[18-Apr-2015 13:54:38 Europe/Moscow] PHP Warning:  require_once(/home/motokofr/public_html/upload../composer/vendor/autoload.php): failed to open stream: No such file or directory in /home/motokofr/public_html/upload/_gdep.php on line 3
+[18-Apr-2015 13:54:38 Europe/Moscow] PHP Fatal error:  require_once(): Failed opening required '/home/motokofr/public_html/upload../composer/vendor/autoload.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/motokofr/public_html/upload/_gdep.php on line 3
+[18-Apr-2015 13:55:17 Europe/Moscow] PHP Warning:  require_once(/home/motokofr/public_html/upload/composer/vendor/autoload.php): failed to open stream: No such file or directory in /home/motokofr/public_html/upload/_gdep.php on line 3
+[18-Apr-2015 13:55:17 Europe/Moscow] PHP Fatal error:  require_once(): Failed opening required '/home/motokofr/public_html/upload/composer/vendor/autoload.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/motokofr/public_html/upload/_gdep.php on line 3
+[18-Apr-2015 13:55:33 Europe/Moscow] PHP Warning:  require_once(/home/motokofr/public_html/upload/composer/vendor/gdeposylka/api-client/src/apikey.php): failed to open stream: No such file or directory in /home/motokofr/public_html/upload/_gdep.php on line 4
+[18-Apr-2015 13:55:33 Europe/Moscow] PHP Fatal error:  require_once(): Failed opening required '/home/motokofr/public_html/upload/composer/vendor/gdeposylka/api-client/src/apikey.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/motokofr/public_html/upload/_gdep.php on line 4
+[18-Apr-2015 13:55:51 Europe/Moscow] PHP Notice:  Undefined variable: apikey in /home/motokofr/public_html/upload/_gdep.php on line 7
+[18-Apr-2015 13:55:51 Europe/Moscow] PHP Fatal error:  Uncaught exception 'GdePosylka\Client\Exception\EmptyApiKey' with message 'API key cannot be empty' in /home/motokofr/public_html/composer/vendor/gdeposylka/api-client/src/Request.php:25
+Stack trace:
+#0 /home/motokofr/public_html/composer/vendor/gdeposylka/api-client/src/Client.php(15): GdePosylka\Client\Request->__construct(NULL, '', Array)
+#1 /home/motokofr/public_html/upload/_gdep.php(7): GdePosylka\Client\Client->__construct(NULL)
+#2 {main}
+  thrown in /home/motokofr/public_html/composer/vendor/gdeposylka/api-client/src/Request.php on line 25

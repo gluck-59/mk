@@ -1,0 +1,41 @@
+CACHE MANIFEST
+# 31 мар 2016
+
+# ускоримся
+CACHE:
+http://cdn.motokofr.com/themes/Earth/img/back/winter.jpg
+http://cdn.motokofr.com/themes/Earth/img/back/autumn.jpg
+http://cdn.motokofr.com/themes/Earth/img/back/spring.jpg
+http://cdn.motokofr.com/themes/Earth/img/back/summer.jpg
+http://cdn.motokofr.com/img/logo/logo_paypal.png
+http://cdn.motokofr.com/img/logo/logo.png
+http://cdn.motokofr.com/themes/Earth/img/pattern1.png
+http://cdn.motokofr.com/themes/Earth/img/img15.jpg
+http://cdn.motokofr.com/themes/Earth/css/global.css
+http://cdn.motokofr.com/themes/Earth/css/print.css
+http://cdn.motokofr.com/themes/Earth/css/tablet.css
+http://motokofr.com/modules/prettyphoto/css/prettyphoto.css
+http://cdn.motokofr.com/js/jquery191.min.js
+http://motokofr.com/js/jquery/jquery.scrollto.js
+http://cdn.motokofr.com/themes/Earth/js/tools.js
+http://cdn.motokofr.com/themes/Earth/js/product.js
+http://motokofr.com/modules/blockadvancesearch_3/js/advancesearch.js
+http://motokofr.com/modules/prettyphoto/js/jquery.prettyPhoto.js
+http://motokofr.com/modules/prettyphoto/js/prettyphoto.js
+http://motokofr.com/fonts/PTSansCaptionBold/PTSansCaptionBold.eot
+http://motokofr.com/fonts/PTSansCaptionBold/PTSansCaptionBold.ttf
+http://motokofr.com/fonts/PTSansCaptionBold/PTSansCaptionBold.woff
+http://motokofr.com/fonts/PTSansCaptionRegular/PTSansCaptionRegular.eot
+http://motokofr.com/fonts/PTSansCaptionRegular/PTSansCaptionRegular.ttf
+http://motokofr.com/fonts/PTSansCaptionRegular/PTSansCaptionRegular.woff
+ 
+# все остальное грузить с CDN
+NETWORK:
+/order.php?ipa=
+/order.php?step=
+/order.php
+/history.php
+/new-products.php
+/modules/
+/authentication.php
+*

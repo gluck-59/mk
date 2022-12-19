@@ -1,0 +1,193 @@
+[28-Apr-2015 14:30:24 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] modifier 'truncate' is not implemented (core.load_plugins.php, line 118) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:27 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:30 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:33 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:38 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:40 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:43 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:46 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:30:49 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] modifier 'truncate' is not implemented (core.load_plugins.php, line 118) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:35:00 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] modifier 'truncate' is not implemented (core.load_plugins.php, line 118) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:35:03 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:35:04 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:35:05 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:35:08 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:35:11 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] function smarty_modifier_truncate() not found in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php (core.load_plugins.php, line 73) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:35:14 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] modifier 'truncate' is not implemented (core.load_plugins.php, line 118) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:36:44 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 11]: [plugin] modifier 'truncate' is not implemented (core.load_plugins.php, line 118) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 14:36:47 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:47 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:48 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:50 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:50 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:57 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:36:57 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:00 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:00 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:03 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:03 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:07 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:07 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:10 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:10 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:13 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:13 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:16 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:17 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:17 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:20 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:20 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:23 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:23 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:26 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:26 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:30 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:30 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:33 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:33 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:36 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:36 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:39 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:39 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:43 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:43 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:46 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:46 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:49 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:49 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:53 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:59 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:37:59 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:03 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:03 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:06 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:06 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:09 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:09 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:13 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:38:13 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:39:56 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:12 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:12 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:15 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:15 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:18 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:18 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:21 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:21 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:25 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:25 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:28 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 14:41:28 Europe/Moscow] PHP Warning:  mb_substr(): Unknown encoding &quot;1&quot; in /home/motokofr/public_html/tools/smarty/plugins/modifier.truncate.php on line 42
+[28-Apr-2015 15:53:06 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 23]: syntax error: unrecognized tag: recent_loader=new XMLHttpRequest();
+    recent_loader.onreadystatechange=function(){
+      if (recent_loader.readyState==4 && recent_loader.status==200)
+         document.getElementById('recentorders_ajaxx').innerHTML+=recent_loader.responseText; (Smarty_Compiler.class.php, line 446) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[28-Apr-2015 15:57:24 Europe/Moscow] PHP Fatal error:  Smarty error: [in /home/motokofr/public_html/modules//recentorders_ajax/recentorders_ajax.tpl line 24]: syntax error: unrecognized tag: {php (Smarty_Compiler.class.php, line 446) in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[23-May-2016 22:32:23 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:32:30 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:32:37 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:32:44 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:32:51 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:32:58 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:05 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:11 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:18 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:25 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:32 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:39 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:45 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:52 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:33:59 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:05 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:12 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:19 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:26 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:33 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:40 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:47 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:34:54 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:01 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:07 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:13 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:24 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:29 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:35 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:40 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:46 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:51 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:35:57 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:36:02 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:36:08 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:36:13 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:36:19 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:36:24 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:36:30 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[23-May-2016 22:36:35 Europe/Moscow] PHP Parse error:  syntax error, unexpected '[' in /home/motokofr/public_html/classes/Product.php on line 2051
+[20-Nov-2016 12:40:38 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[20-Nov-2016 12:40:38 Europe/Moscow] PHP Fatal error:  Smarty error: the $compile_dir '/home/motokofr/public_html/tools/smarty/compile' does not exist, or is not a directory. in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[20-Nov-2016 12:40:43 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[20-Nov-2016 12:40:43 Europe/Moscow] PHP Fatal error:  Smarty error: the $compile_dir '/home/motokofr/public_html/tools/smarty/compile' does not exist, or is not a directory. in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[20-Nov-2016 12:40:44 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[20-Nov-2016 12:40:44 Europe/Moscow] PHP Fatal error:  Smarty error: the $compile_dir '/home/motokofr/public_html/tools/smarty/compile' does not exist, or is not a directory. in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[20-Nov-2016 12:40:49 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[20-Nov-2016 12:40:49 Europe/Moscow] PHP Fatal error:  Smarty error: the $compile_dir '/home/motokofr/public_html/tools/smarty/compile' does not exist, or is not a directory. in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[20-Nov-2016 12:40:50 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[20-Nov-2016 12:40:50 Europe/Moscow] PHP Fatal error:  Smarty error: the $compile_dir '/home/motokofr/public_html/tools/smarty/compile' does not exist, or is not a directory. in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[20-Nov-2016 12:40:56 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[20-Nov-2016 12:40:56 Europe/Moscow] PHP Fatal error:  Smarty error: the $compile_dir '/home/motokofr/public_html/tools/smarty/compile' does not exist, or is not a directory. in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[20-Nov-2016 12:40:56 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[20-Nov-2016 12:40:56 Europe/Moscow] PHP Fatal error:  Smarty error: the $compile_dir '/home/motokofr/public_html/tools/smarty/compile' does not exist, or is not a directory. in /home/motokofr/public_html/tools/smarty/Smarty.class.php on line 1095
+[20-Nov-2016 12:41:01 Europe/Moscow] PHP Deprecated:  preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead in /home/motokofr/public_html/tools/smarty/Smarty_Compiler.class.php on line 270
+[11-Feb-2018 13:57:57 Europe/Moscow] PHP Fatal error:  Class 'Validate' not found in /home/motokofr/public_html/classes/Configuration.php on line 91
+[02-Apr-2018 10:30:36 Europe/Moscow] PHP Fatal error:  Directive 'allow_call_time_pass_reference' is no longer available in PHP in Unknown on line 0
+[02-Apr-2018 10:35:09 Europe/Moscow] PHP Fatal error:  Directive 'allow_call_time_pass_reference' is no longer available in PHP in Unknown on line 0
+[02-Apr-2018 10:35:12 Europe/Moscow] PHP Fatal error:  Directive 'allow_call_time_pass_reference' is no longer available in PHP in Unknown on line 0
+[02-Apr-2018 10:35:15 Europe/Moscow] PHP Fatal error:  Directive 'allow_call_time_pass_reference' is no longer available in PHP in Unknown on line 0
+[02-Apr-2018 10:35:21 Europe/Moscow] PHP Fatal error:  Directive 'allow_call_time_pass_reference' is no longer available in PHP in Unknown on line 0
+[02-Apr-2018 10:45:28 Europe/Moscow] PHP Fatal error:  Directive 'allow_call_time_pass_reference' is no longer available in PHP in Unknown on line 0
+[02-Apr-2018 10:46:09 Europe/Moscow] PHP Fatal error:  Directive 'allow_call_time_pass_reference' is no longer available in PHP in Unknown on line 0

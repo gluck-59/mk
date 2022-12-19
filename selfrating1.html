@@ -1,0 +1,120 @@
+           function start()
+            {
+                var 
+                gr1 = ( parseInt($('input[name="gr11"]:checked').val()) + parseInt($('input[name="gr12"]:checked').val()) + parseInt($('input[name="gr13"]:checked').val()) + parseInt($('input[name="gr14"]:checked').val()) ),
+                gr2 = ( parseInt($('input[name="gr21"]:checked').val()) + parseInt($('input[name="gr22"]:checked').val()) + parseInt($('input[name="gr23"]:checked').val()) + parseInt($('input[name="gr24"]:checked').val()) ),
+                gr3 = ( parseInt($('input[name="gr31"]:checked').val()) + parseInt($('input[name="gr32"]:checked').val()) + parseInt($('input[name="gr33"]:checked').val()) + parseInt($('input[name="gr34"]:checked').val()) ),
+                gr4 = ( parseInt($('input[name="gr41"]:checked').val()) + parseInt($('input[name="gr42"]:checked').val()) + parseInt($('input[name="gr43"]:checked').val()) + parseInt($('input[name="gr44"]:checked').val()) ),
+                gr5 = ( parseInt($('input[name="gr51"]:checked').val()) + parseInt($('input[name="gr52"]:checked').val()) + parseInt($('input[name="gr53"]:checked').val()) + parseInt($('input[name="gr54"]:checked').val()) ),
+                gr6 = ( parseInt($('input[name="gr61"]:checked').val()) + parseInt($('input[name="gr62"]:checked').val()) + parseInt($('input[name="gr63"]:checked').val()) + parseInt($('input[name="gr64"]:checked').val()) ),
+                tog = 500
+                weakly = 'rgba(220, 220, 220, 1)',
+                moderately = 'rgba(180, 200, 250, 1)',
+                strongly = 'rgba(255, 200, 200, 1)';
+                
+                if ( isNaN(gr1) || isNaN(gr2) || isNaN(gr3) || isNaN(gr4) || isNaN(gr5) || isNaN(gr6) )
+                {
+                    alert('Пожалуйста проставьте все галочки');
+                }
+                else
+                {
+                    $('.group').toggle(tog);
+                    $('#legend').toggle(tog);
+                    $('.gfr').toggle(tog);
+                    $('#chartdiv').toggle(tog);
+                    $('.flag').toggle(tog);
+                    
+                    if (gr1 <= 4) gr1_color = weakly;if (gr1 > 4) gr1_color = moderately;if (gr1 > 12) gr1_color = strongly;                  
+                    if (gr2 <= 4) gr2_color = weakly;if (gr2 > 4) gr2_color = moderately;if (gr2 > 12) gr2_color = strongly;                   
+                    if (gr3 <= 4) gr3_color = weakly;if (gr3 > 4) gr3_color = moderately;if (gr3 > 12) gr3_color = strongly;
+                    if (gr4 <= 4) gr4_color = weakly;if (gr4 > 4) gr4_color = moderately;if (gr4 > 12) gr4_color = strongly;
+                    if (gr5 <= 4) gr5_color = weakly;if (gr5 > 4) gr5_color = moderately;if (gr5 > 12) gr5_color = strongly;
+                    if (gr6 <= 4) gr6_color = weakly;if (gr6 > 4) gr6_color = moderately;if (gr6 > 12) gr6_color = strongly;
+                    
+                    if (Math.max(gr1,gr2,gr3,gr4,gr5,gr6) < 5) $('#rec1').toggle(tog);
+                    if (Math.max(gr1,gr2,gr3,gr4,gr5,gr6) > 5 && Math.max(gr1,gr2,gr3,gr4,gr5,gr6) < 13) $('#rec2').toggle(tog);                
+                    if (Math.max(gr1,gr2,gr3,gr4,gr5,gr6) > 12) $('#rec3').toggle(tog);           
+                }
+            
+                var chart = AmCharts.makeChart("chartdiv", {
+                    "theme": "none",
+                    "type": "serial",
+                	"startDuration": 2,
+                    "dataProvider": [{
+                        "country": "Образ жизни",
+                        "value": gr1,
+                        "color": gr1_color
+                    }, {
+                        "country": "Питание",
+                        "value": gr2,
+                        "color": gr2_color
+                    }, {
+                        "country": "Уход за собой",
+                        "value": gr3,
+                        "color": gr3_color
+                    }, {
+                        "country": "Психология",
+                        "value": gr4,
+                        "color": gr4_color
+                    }, {
+                        "country": "Экология",
+                        "value": gr5,
+                        "color": gr5_color
+                    }, {
+                        "country": "Генетика",
+                        "value": gr6,
+                        "color": gr6_color
+                    }, ],
+                    "valueAxes": [{
+                        "position": "left",
+                        "title": "Степень влияния",
+                        "axisAlpha":0,
+                        "gridAlpha":0,
+                		"color": "#fff"
+                    }],
+                    "graphs": [{
+                        "balloonText": "[[category]]: <b>[[value]]</b>",
+                        "fillColorsField": "color",
+                        "fillAlphas": 1,
+                        "lineAlpha": 0,
+                         "borderColor": "#ff0000",
+                         "type": "column",
+                        "valueField": "value"               
+                    }],
+                    "depth3D": 10,
+                	"angle": 30,
+                    "chartCursor": {
+                        "categoryBalloonEnabled": false,
+                        "cursorAlpha": 0,
+                        "zoomable": false,
+                        "axisAlpha":0,
+                        "gridAlpha":0   
+                    },    
+                    "categoryField": "country",
+                    "categoryAxis": {
+                        "gridPosition": "start",
+                        "labelRotation": 0,
+                        "axisAlpha":0,
+                        "gridAlpha":0   
+                    },
+                    "export": {
+                    	"enabled": true
+                     }
+                
+                });
+                jQuery('.chart-input').off().on('input change',function() {
+                	var property	= jQuery(this).data('property');
+                	var target		= chart;
+                	chart.startDuration = 0;
+                
+                	if ( property == 'topRadius') {
+                		target = chart.graphs[0];
+                      	if ( this.value == 0 ) {
+                          this.value = undefined;
+                      	}
+                	}
+                
+                	target[property] = this.value;
+                	chart.validateNow();
+                });
+            }  

@@ -1,0 +1,35 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<site title="Магазин кофров и прочей околобагажной мелочи" description="Мотокофр" img="../../img/logo.jpg">
+	<about title="Title about us">
+		<section title="Магазин кофров и прочей околобагажной мелочи" img="about.jpg" description="">
+			
+			<h1>Магазин кофров и прочей околобагажной мелочи</h1>
+			<br/>
+				<p>About us full desc</p>
+		<br/>
+		</section>
+	</about>
+	<clients title="Catalog"><section title="Боковые кофры" img="noimage.jpg" description=""><client img="../../img/p/1079-1006-prestabook.jpg" title="Боковые к..." description="K???? ? ?????????? ??????" link="/product.php?id_product=1079"/><client img="../../img/p/1080-1004-prestabook.jpg" title="Боковые к..." description="K???? ? ?????????? ??????" link="/product.php?id_product=1080"/><client img="../../img/p/2646-1334-prestabook.jpg" title="Сумка-поя..." description="" link="/product.php?id_product=2646"/><client img="../../img/p/2651-1338-prestabook.jpg" title="Боковые к..." description="K???? ? ?????????? ??????�" link="/product.php?id_product=2651"/>  	</section></clients>		
+	<contact title="CONTACT US" img="contact.jpg" description="">
+		<p align="center">
+		<h1>Motokofr.com</h1>
+			<h2>  </h2>
+			<h2>Бургас </h2>
+			<h2>Република България</h2>
+			<h2>Tel.:в Русия: +7 (342) 277-36-96, във България: +359 (89) 274-03-00</h2>
+		
+			<a href="mailto:support@motokofr.com">support@motokofr.com</a>
+		</p>
+	</contact>
+	<backgrounds>
+		<background img="bg01.jpg" bgImg="a2.jpg" bgType="pattern"/>
+		<background img="bg02.jpg" bgImg="bg02.gif" bgType="pattern"/>
+		<background img="bg03.jpg" bgImg="bg03.gif" bgType="pattern"/>
+
+
+	</backgrounds>
+	<music title="Music">
+		<track title="01 Track 001" link="tracks/track01.mp3"/>
+
+	</music>
+</site>

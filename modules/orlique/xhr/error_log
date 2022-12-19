@@ -1,0 +1,5 @@
+[16-Nov-2014 13:13:04 Europe/Moscow] PHP Warning:  Missing argument 2 for Tools::displayPrice(), called in /home/motokofr/public_html/modules/orlique/orlique.php on line 1248 and defined in /home/motokofr/public_html/classes/Tools.php on line 172
+[16-Nov-2014 13:31:55 Europe/Moscow] PHP Catchable fatal error:  Object of class Currency could not be converted to string in /home/motokofr/public_html/modules/orlique/orlique.php on line 1241
+[16-Nov-2014 13:43:03 Europe/Moscow] PHP Catchable fatal error:  Object of class Currency could not be converted to string in /home/motokofr/public_html/modules/orlique/orlique.php on line 1248
+[16-Nov-2014 13:43:18 Europe/Moscow] PHP Catchable fatal error:  Object of class Currency could not be converted to string in /home/motokofr/public_html/modules/orlique/orlique.php on line 1248
+[16-Nov-2014 13:45:24 Europe/Moscow] PHP Fatal error:  Cannot use object of type Currency as array in /home/motokofr/public_html/modules/orlique/orlique.php on line 1248

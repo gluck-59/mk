@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<title>&laquo;Пила&raquo;</title>
+		<meta charset="utf-8" />
+        <meta name="robots" content="noindex,nofollow" />
+        <meta http-equiv="Cache-Control" content="private">
+        
+        <!-- запускаемся в fullscreen, требуется добавление линка на десктоп планшета -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+		<!--link rel="stylesheet" type="text/css" href="reset.css" media="screen" /-->
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+        
+        <link rel="shortcut icon" href="favicon.png" />
+
+        <script type="text/javascript" src="jquery.min.js"></script>
+                
+        <link href="toastr/toastr.css" rel="stylesheet"/>
+        <script src="toastr/toastr.js"></script>
+        
+        <noscript><div style="width: 100%;  position: absolute;  background: #333;  color: whitesmoke;  font-size: 20pt;  padding: 15px;  text-align: center;  top: 10%;  z-index: 1;">Включите Javascript в установках браузера. Без Javascript панель работать не будет.</div></noscript>
+	</head>
+<body>
+
+    <div class="control">
+        <strong>&laquo;Пила&raquo;</strong>
+        |
+        <input type="button" onclick="init();" value="Запуск квеста">
+        |
+        <label for="ind">Вкл индикаторы</label>
+        <input name="ind" id="ind" type="checkbox" onclick="hide(':regex(id,indicator$)');">
+        |
+        <label for="openall">Открыть все двери</label>
+        <input name="openall" id="openall" type="checkbox" onclick="hide(':regex(id,door.*-indicator.*)');hide(':regex(id,door.*-lock-open-indicator.*)')">
+<!--        |
+        <span onclick="set_timer(':regex(id,global-timer.*)');">таймер0</span>
+        |
+        <span onclick="set_timer(':regex(id,r1-bomb-timer.*)');">таймер1</span>
+        |
+        <span onclick="set_timer(':regex(id,r2-bomb-timer.*)');">таймер2</span>
+        |        
+        <span onclick="set_timer(':regex(id,r3-bomb-timer.*)');">таймер3</span>
+        |        
+        <span onclick="set_timer(':regex(id,r4-bomb-timer.*)');">таймер4</span>
+-->             
+        <div class="toggler">
+        <span style="cursor: help;" onclick="javascript:showhelp()">Помощь&nbsp;&nbsp;<img src="help.png" style="vertical-align: bottom;">&nbsp;&nbsp;</span>
+        <!--|&nbsp;&nbsp;
+        Вид&nbsp;&nbsp;
+        <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox" value="on" onchange="toastr.warning('Это потом :)')">
+        <label for="cmn-toggle-1"></label>-->
+        </div>
+    </div>
+    
+    
+    <div id="help">
+        <div class="close" onclick="javascript:showhelp()">&times;</div>
+        <h1>Куда я попал и где мои вещи</h1>
+        <p>Вы находитесь в панели управления квестом &laquo;Пила&raquo;. Она состоит из элементов управления (<span style="color:#f73">оранжевые иконки</span>) и индикации (<span style="color:green">зеленые</span> и <span style="color:red">красные</span> лампочки).</p>
+        <p>Из панели вы можете управлять оранжевыми иконками. Клик или тап на иконке вызовет срабатывание соответствующего устройства.</p>
+        <h1>Как это работает</h1>
+        <ul>
+            <li>запустите квест кнопкой <input type="button" onclick="alert('Не сейчас пожалуйста. Только перед запуском игры :)')" value="Запуск квеста"></li>
+            <p style="color:red">Делайте это только перед началом игры. Не нажимайте эту кнопку в процессе игры — это сбросит все устройства в начальное состояние и квест начнется снова.</p>
+
+            <li>наблюдайте, как посетители проходят квест шаг за шагом</li>
+            <p>Вы будете контролировать его прохождение по индикаторам и таймерам. </p>
+            
+            <li>если они не могут пройти этап — помогите им</li>
+            <p> Нажмите на соответствующий оранжевый элемент управления. Это включит или выключит нужное устройство.</p>
+            
+            <li>после игры &laquo;взведите&raquo; все устройства в начальное положение</li>
+            <p>Проверьте положение креста, пилы, ванны, крюков и так далее. Попросите у руководителя полный чеклист.</p>
+        </ul>
+    </div>
+    
+    <div id="overlay">&nbsp;</div>
+    
+        
+<!-- http://habrahabr.ru/post/260645/  управление SVG -->    
+
+<script>
+$(document).ready(
+function loadmap(mini){
+{
+   mini = 0;
+   xhttp=new XMLHttpRequest();
+   xhttp.onreadystatechange=function()
+   {
+    if (xhttp.readyState==4 && xhttp.status==200)
+    {
+        $('body').append(xhttp.responseText);
+    }
+   }
+   
+   if (mini == 1) svg = 'miniplan.svg';
+   else svg = 'plan.svg';
+   
+   xhttp.open('GET', svg, true);
+   xhttp.send();
+  };
+}
+);
+</script>
+
+<script>
+    function showhelp()
+    {
+        $('#help').toggle(100);
+        $('#overlay').toggle(100);
+    }
+</script>
+
+
+
+<script>
+rasp_state = 0;
+
+
+/*        $(function()
+        {
+
+            function wsStart() {
+                ws = new WebSocket("ws://10.0.1.210:8181/");
+                ws.onopen = function() { toastr.info('Соединение установлено'); };
+                ws.onclose = function() { toastr.warning('Соединение потеряно, пробуем снова'); setTimeout(wsStart, 1000);};
+                //ws.onmessage = function(evt) { $("#log").append("<p>"+evt.data+"</p>"); $('#chat').scrollTop($('#log')[0].scrollHeight);   };
+            }
+
+            wsStart();
+
+            //$('#log').height($(window).height() - 80);
+
+            //$('#input').focus();
+        }
+*/
+
+function init()
+{
+    i = 0;
+    $(':regex(id,img.*$)').unbind();
+    $(':regex(id,img.*$)').bind('click', function(event) 
+    {
+        console.dir(event.currentTarget.id);
+        toastr.info(event.currentTarget.id);
+    });
+
+    $(':regex(id,^r[0-9]$)').hide(200);    
+    
+    $('#r1:hidden').show(200);
+    $(':regex(id,indicator$)').hide();    
+
+    $('#r2:hidden').delay(400).show(200);    
+    $(':regex(id,indicator$)').hide();        
+
+    $('#r3:hidden').delay(800).show(200);
+    $(':regex(id,indicator$)').hide();     
+    
+    $('#r4:hidden').delay(1200).show(200);        
+    $(':regex(id,indicator$)').hide();    
+        
+    setTimeout(function(){rasp(rasp_state);toastr.info('Ждем запуска контроллера');}, 2000);
+
+	var audio = new Audio();
+	audio.src = 'start.mp3';
+//	audio.autoplay = true; 
+    
+}
+
+function rasp(rasp_state)
+{
+    $.get("rasp_state.php", onAjaxSuccess);
+    function onAjaxSuccess(data)
+    {
+        rasp_state = (data);
+console.log('rasp_state = '+rasp_state);        
+    }
+    
+    i++;
+    console.log("i = "+i);
+
+    if (rasp_state != 1 && i <= 5) 
+    {
+        setTimeout(function(){rasp(rasp_state)}, 400);
+    }
+    
+    if (rasp_state == 1) // ждем сигнал ГОТОВ от распберри
+    {
+        toastr.success('Готово')
+        $(':regex(id,^r[0-9]$)').show(200);
+        $(':regex(id,indicator$)').show(200);
+        setTimeout(function(){$(':regex(id,indicator$)').hide(200)}, 1000);
+        return false;
+    }	
+
+    else
+    { 
+        $(':regex(id,indicator$)').show(200);
+        $(':regex(id,indicator$)').hide(200); 
+
+        if (i == 5) 
+        {
+            toastr.warning('Нет сигнала от контроллера, пробуем снова');
+            setTimeout(function(){init()}, 1000); 
+        }
+    }
+
+}
+
+    
+function hide(elem)
+{
+    $(elem).toggle(100);
+}
+
+
+
+function set_timer(elem)
+{
+$(elem).text(Math.floor(Math.random(1,1)*10000));
+console.log($(elem));
+}
+
+
+jQuery.expr[':'].regex = function(elem, index, match) {
+   var matchParams = match[3].split(','),
+   validLabels = /^(data|css):/,
+   attr = {
+      method: matchParams[0].match(validLabels) ? matchParams[0].split(':')[0] : 'attr',
+      property: matchParams.shift().replace(validLabels,'')
+   },
+   regexFlags = 'ig',
+   regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
+   return regex.test(jQuery(elem)[attr.method](attr.property));
+}
+
+</script>    
+</body>
+</html>

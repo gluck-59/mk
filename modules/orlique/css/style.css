@@ -1,0 +1,261 @@
+#content fieldset .alert{
+    width:auto;
+}
+
+div#preload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7) url('../images/preload.gif') 50% 50% no-repeat;
+    z-index: 9999;
+}
+
+div#orderAlwaysVisibleWrapper {
+    overflow: hidden;
+    border: 1px solid;
+    padding-top: .5em;
+}
+
+div#orderEditorContainer div.tab-page, div#orderAlwaysVisibleWrapper {
+    border-color: #EDEDED;
+}
+
+div#orderEditorContainer div.tab-pane {
+    width: 100%;
+}
+
+div#orderEditorContainer h4.tab {
+    text-shadow: none;
+    background: #F4F4F4 url('../images/tabs_bg.png') no-repeat;
+    background-position: left top;
+    text-decoration:none;  
+    font-weight:bold;
+    height: 32px;
+    padding: 12px;
+    padding-bottom: 0;
+}
+
+div#orderEditorContainer h4.tab a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #05C;
+}
+
+div#orderEditorContainer h4.tab:hover {
+    text-shadow: 1px 1px 3px #AFBDC9;
+    background-color:#fff;
+    background-position: left 2px;
+    border: 1px solid;
+    border-bottom: none;
+    border-top: none;
+    border-color:#EDEDED;
+}
+
+div#orderEditorContainer h4.tab:hover a {
+    color: #0464EA;
+}
+
+div#orderEditorContainer h4.selected {
+    background-position: left 4px;
+    text-shadow: none;
+    background-color:#ffffff;  
+    border:1px solid #EDEDED;
+    border-bottom: 1px solid #ffffff;  
+}
+
+div#orderEditorContainer h4.selected a {
+    color:#000;  
+}
+
+div.discountsRow div.duplicatedRow {
+    overflow: hidden;
+    margin-bottom: .5em;
+}
+
+div.discountsRow a.removeRow, div.discountsRow input.discountInput {
+    float: left;
+}
+
+div.discountsRow a.removeRow {
+    margin: 2px 0 0 12px;
+}
+
+.margin-form {
+    font-size: 1em;
+}
+
+a.duplicator, a.removeRow{
+    display:block;
+    cursor:pointer;
+    padding-left:20px;
+}
+a.duplicator{
+    background:no-repeat center left url('../images/add.png');
+}
+a.removeRow{
+    background:no-repeat center left url('../images/delete.png');
+}img#orliqueLogo{
+    margin-bottom:1em;
+}
+tr.advancedFilter td:first-child{
+    padding:0;margin:0;
+}
+tr.advancedFilter table{
+    border:0;
+}
+tr.advancedFilter table td.filterDesc{
+    width:200px;text-align:right;padding:.5em;
+}
+div#orderEditorContainer{
+    overflow:hidden;
+    position: relative;
+}
+div#halfBoxWrapper{
+    overflow:hidden;
+    zoom:1;
+    min-width:170px;
+    padding:5px;
+}
+div#hafBoxContainer{
+    margin-left:-8px;
+    margin-bottom:-8px;
+    zoom:1;
+    word-spacing:-.25em;
+}
+div#orderEditorContainer fieldset{
+    zoom:1;
+    display:inline;
+    word-spacing:normal;
+    vertical-align:top;
+    width:420px;
+    margin-left:8px;
+    margin-bottom:8px;
+    background: #fff;
+}
+div#orderEditorContainer fieldset#orderCurrencies, div#orderEditorContainer fieldset#orderDate {
+    width: 190px;
+}
+div#orderEditorContainer fieldset#orderWrapping, div#orderEditorContainer fieldset#orderLanguage{
+    width:191px;
+}
+div.tab-page {
+    padding: 8px 0 0 0;
+}
+div#orderEditorContainer fieldset.full{
+    display:block;
+    width:882px;
+    margin-right:0;
+}
+div#customer,div#productToAdd{overflow:hidden;background-color:#fff;border:1px solid #dfd5c3;display:none;margin-top:1em;padding:.5em;}fieldset#orderTotalsWrapper table{background:#fff;}fieldset#orderedProductsWrapper table#orderContents{width:100%;}dl.productShortInfo{overflow:hidden;margin-bottom:2em;}dl.productShortInfo dt,dl.productShortInfo dd{float:left;}dl.productShortInfo dt{clear:left;width:150px;text-align:right;margin-right:1em;font-weight:700;}fieldset .formMargin{padding:0 0 1em;}div#orderEditorContainer fieldset.halfBox label{text-align:left;float:none!important;}span.publicView{/*padding-left:20px; color:#05C;*/ text-decoration: underline;}span.customValue{padding-left:20px;}span.customValue{background:transparent url(../images/custom_value.png) top left no-repeat;display:block;color:#008c00;position:relative;}fieldset#orderTotalsWrapper span.customValue{display:inline;background:none;color:#963;}span.publicView{cursor:pointer;}span.realValue{display:none;}span.control{display:block;cursor:pointer;}span.control.addProduct,span.control.deleteProduct{background-image:url(../images/add.png);background-repeat:no-repeat;background-position:top left;width:16px;height:16px;}span.control.deleteProduct{background-image:url(../images/delete.png);}span.control.withLabel{padding-left:20px;width:auto;}.addressItem{width:419px;float:left;border:1px solid #dfd5c3;background-color:#f9f7ed;margin:0 20px 20px 0;padding:.5em;}div.addressItem div.address{min-height:100px;}
+
+div#messagesWrapper ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul#messagesContainer h4 {
+    padding: 0;
+    margin: 0;
+}
+
+span.showMessages {
+    display: inline-block;
+    padding-left: 22px;
+    background: url('../images/custom_value.png') no-repeat top left;
+}
+
+span.msgOpened {
+    background: url('../images/discount.png') no-repeat top left;
+}
+
+span.markMsgRead {
+    display: inline-block;
+    text-decoration: underline;
+    color: #05C;
+    padding-left: 22px;
+    background: url('../images/accept.png') no-repeat top left;
+    clear: left;
+}
+
+span.msgPrivate {
+    color: red;
+}
+
+ul#messagesContainer li div.message {
+    border: 1px solid #DEDEDE;
+    padding: .5em;
+    margin-top: 1em;
+}
+
+ul#messagesContainer li div.customer {
+    margin-left: 1em;
+}
+
+ul#messagesContainer li div.admin {
+    background: #f7ffee;
+}
+
+ul#messagesContainer li div.admin h4 {
+    color: #3d3726;
+}
+
+ul#messagesContainer li div.private {
+    background: #fff6ee;
+}
+
+ul#messagesContainer li span.msgDate {
+    font-weight: normal;
+    font-style: italic;
+}
+
+form#messageSend {
+    border: 1px solid #DEDEDE;
+    background: #fff;
+    margin-top: 1em;
+    padding: .5em;
+}
+
+form#messageSend h4 {
+    padding: 0;
+    margin: 0;
+}
+
+div#orderMessages {
+    padding: 8px;
+}
+
+div#orderMessages div.margin-form {
+    padding-left: 0px;
+}
+
+textarea#txt_msg {
+    width: 400px;
+    height: 200px;
+}
+
+div#ui-datepicker-div {z-index: 3!important;}
+.ui-slider { position: relative; text-align: left; }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 5!important; width: 1.2em; height: 1.2em; cursor: default; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 4!important; font-size: .7em; display: block; border: 0; background-position: 0 0; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.3em; margin-left: -.6em; }
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
+.ui-slider-horizontal .ui-slider-range-min { left: 0; }
+.ui-slider-horizontal .ui-slider-range-max { right: 0; }
+
+.ui-slider-vertical { width: .8em; height: 100px; }
+.ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
+.ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
+.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.ui-slider-vertical .ui-slider-range-max { top: 0; }
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div .ui-widget-content {display: block;}
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }

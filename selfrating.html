@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Шкала самооценки</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+        <script type="text/javascript" src="http://www.ime-istituto.ru/js/jquery.js"></script>
+        
+
+<! Начало нужного кода head >
+        <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="http://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+<! Конец нужного кода head >
+   		
+        <style>
+            *
+            {
+                font: normal 15px/18px Arial, Helvetica, sans-serif;
+                color: #424242;
+            }
+            .main
+            {
+                width: 580px;
+                margin: 0 auto;
+            }
+/* Начало нужного кода style */
+            .gfr
+            {
+                font: normal 19px/23px "PT Sans", "Trebuchet MS", Arial, Helvetica, sans-serif;
+                text-transform: uppercase;
+            }
+            .nfr
+            {
+                border-bottom: dotted 1px #aaa;
+                margin: 2em;
+                padding-bottom: 1em;
+            }
+            .vote
+            {
+                margin-left: -0.2em;
+            }
+            label
+            {
+                font-size: 0.6em;
+                text-transform: uppercase;
+                margin-right: 1em;
+            }
+            footer
+            {
+                font-size: 0.7em;
+                line-height: 120%;
+                margin-top: 2em;
+            }
+            .weakly
+            {
+                background-color: rgba(0, 0, 0, 0.1);
+                padding: 0 0.4em;
+                line-height: 160%;
+            }
+            .moderately
+            {
+                background-color: rgba(180, 200, 250, 1);
+                padding: 0 0.4em;
+                line-height: 160%;
+            }
+            .strongly
+            {
+                background-color: rgba(255, 0, 0, 0.3);
+                padding: 0 0.4em;
+                line-height: 160%;
+            }
+            #rec1, #rec2, #rec3, #legend
+            {
+                display: none;
+                margin-left: 50px;
+            }
+            #legend
+            {
+                margin-top: 1em;
+                font-size: 1.2em;                
+            }
+            #legend span
+            {
+                font-size: 1em;                
+            }
+            .button
+            {
+                background-color: green;
+                padding: 0.7em 0;
+                text-align: center;
+                border-radius: 6px;
+                color: white;
+                width: 60%;
+                cursor: pointer;
+            }
+            #chartdiv {
+                width: 100%;
+                height: 400px;
+                margin-top: -40px;
+                display: none;
+            }							            
+            tspan
+            {
+                font-size: 0.8em;
+            }
+            .flag:after {
+                border-bottom: 0.5em solid transparent;
+                border-left: 0.8em solid #EEEEEE;
+                border-top: 0.5em solid transparent;
+                content: "";
+                left: 1.6em;
+                position: absolute;
+                top: 0.48em;
+            }
+            .flag:before {
+                border-left: 0.3em solid #EEEEEE;
+                content: "";
+                height: 2em;
+                left: 1.3em;
+                position: absolute;
+                top: 0.5em;
+            }
+            .flag {
+                border: 1px solid #ffc800;
+            	background: none repeat scroll 0 0 #ffc800;
+                border-radius: 0.2em 0.2em 0.2em 0.2em;
+                font-size: 10px;
+                height: 3em;
+                position: relative;
+                width: 3em;
+                float: left;
+                display: none;
+            }            
+/* Конец нужного кода style */            
+        </style>
+            
+    </head>
+    <body>
+        <center><img src="ime-header.jpg"></center>
+
+<! Начало нужного кода html >
+        <div class="main">
+            <center><h1>ШКАЛА  САМООЦЕНКИ</h1>
+            <h2>влияния факторов риска на процессы старения организма человека (Шкала IME)</h2></center>
+            <hr>
+            <p class="group">Вам кажется, что Вы стареете быстрее своих друзей? Вы стали чувствовать себя не так молодо как раньше?  Что заставляет Ваш организм стареть быстрее? Можно ли «притормозить» старение?</p>
+            <p class="group">Шкала ИМЕ — тест для определения факторов, влияющих на старение. В тесте учитываются 24 фактора, каждый из которых может воздействовать на процессы старения с разной степенью интенсивности: не влияет, влияет незначительно, влияет умеренно, влияет сильно.</p>
+            <p class="group">При ответе на вопросы теста оцените степень влияния каждого фактора риска на скорость старения Вашего организма и отметьте ответы, наиболее соответствующие Вашему мнению.</p>            
+
+            <div class="flag"></div>
+            <div id="rec1">
+                Влияние факторов риска на процессы старения Вашего организма слабое. Вы ведёте здоровый образ жизни, соблюдая основные правила гигиены и рационального питания. Вы слабо подвержены негативному влиянию вредных факторов окружающей среды. Процессы старения Вашего организма протекают естественным образом.
+            </div>
+            
+            <div id="rec2">
+                Влияние факторов риска на процессы старения Вашего организма умеренное. Вы подвержены влиянию отдельных факторов риска, ускоряющих процессы старения Вашего организма. Необходимо изменить свой образ жизни с целью устранения вредных привычек в образе жизни и питании, проводить комплекс мероприятий, направленных на профилактику здоровья, повышение физической активности и качества жизни. Эффективность указанных мероприятий может быть выше, если их проводить под контролем специалиста по антивозрастной медицины.
+            </div>            
+            <div id="rec3">
+                Вы подвержены сильному влиянию отдельных факторов риска на процессы старения Вашего организма. Необходимо обратиться к специалисту по антивозрастной медицине.
+            </div>
+
+            <hr>
+            
+            <span class="gfr" id="gr1">Образ жизни</span>
+            <div class="group">
+                <div class="nfr">Вредные привычки (курение, алкоголь и др.)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr11" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr11" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr11" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr11" value="5">Сильно<br></label>
+                    </div>
+                </div>
+
+                <div class="nfr">Низкая физическая активность (ходьба менее 30 мин в день)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr12" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr12" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr12" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr12" value="5">Сильно<br></label>
+                    </div>
+                </div>
+
+                <div class="nfr">Низкая медицинская активность (профилактика здоровья, использование возможностей медицины)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr13" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr13" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr13" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr13" value="5">Сильно<br></label>
+                    </div>
+                </div>
+                
+                <div class="nfr">Низкий уровень и качество жизни (жилищные условия, качество питания, качество медицинской помощи, качество отдыха, уровень образования)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr14" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr14" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr14" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr14" value="5">Сильно<br></label>
+                    </div>
+                </div>
+            </div>
+            
+            <span class="gfr" id="gr2">Питание</span>
+            <div class="group">
+                <div class="nfr">Переедание и излишняя калорийность продуктов
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr21" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr21" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr21" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr21" value="5">Сильно<br></label>
+                    </div>
+                </div>                    
+
+                <div class="nfr">Неправильный (нерегулярный) режим питания
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr22" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr22" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr22" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr22" value="5">Сильно<br></label>
+                    </div>
+                </div>
+
+                <div class="nfr">Неправильный рацион питания (соотношение полезных и вредных продуктов)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr23" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr23" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr23" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr23" value="5">Сильно<br></label>
+                    </div>
+                </div>
+                
+                <div class="nfr">Неправильный способ приготовления пищи (жарка, гриль, копчение)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr24" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr24" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr24" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr24" value="5">Сильно<br></label>
+                    </div>                
+                </div>
+            </div>            
+            
+            <span class="gfr" id="gr3">Уход за собой</span>
+            <div class="group">
+                <div class="nfr">Нерегулярное использование косметики в домашних условиях
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr31" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr31" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr31" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr31" value="5">Сильно<br></label>
+                    </div>
+                </div>                    
+
+                <div class="nfr">Нерегулярное посещение профессионального косметолога
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr32" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr32" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr32" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr32" value="5">Сильно<br></label>
+                    </div>
+                </div>
+
+                <div class="nfr">Некачественный отпуск (менее 1 раза в год, менее 14 дн. в год и т.д.)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr33" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr33" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr33" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr33" value="5">Сильно<br></label>
+                    </div>
+                </div>
+                
+                <div class="nfr">Несоблюдение санитарных и гигиенических правил в быту
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr34" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr34" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr34" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr34" value="5">Сильно<br></label>
+                    </div>                
+                </div>
+            </div>            
+
+            <span class="gfr" id="gr4">Психология</span>
+            <div class="group">
+                <div class="nfr">Неблагоприятный моральный климат в семье
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr41" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr41" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr41" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr41" value="5">Сильно<br></label>
+                    </div>
+                </div>                    
+
+                <div class="nfr">Неблагоприятный моральный климат на работе
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr42" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr42" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr42" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr42" value="5">Сильно<br></label>
+                    </div>
+                </div>
+
+                <div class="nfr">Пассивная жизненная позиция
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr43" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr43" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr43" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr43" value="5">Сильно<br></label>
+                    </div>
+                </div>
+                
+                <div class="nfr">Несоблюдение режима труда и отдыха
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr44" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr44" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr44" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr44" value="5">Сильно<br></label>
+                    </div>                
+                </div>
+            </div>            
+
+            <span class="gfr" id="gr5">Экология</span>
+            <div class="group">
+                <div class="nfr">Загрязнение окружающего воздуха
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr51" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr51" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr51" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr51" value="5">Сильно<br></label>
+                    </div>
+                </div>                    
+
+                <div class="nfr">Загрязнение воды, используемой для бытовых нужд, питья
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr52" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr52" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr52" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr52" value="5">Сильно<br></label>
+                    </div>
+                </div>
+
+                <div class="nfr">Загрязнение продуктов питания (минеральные и органические удобрения, пестициды)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr53" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr53" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr53" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr53" value="5">Сильно<br></label>
+                    </div>
+                </div>
+                
+                <div class="nfr">Неблагоприятный климат (резкое изменение атмосферного давления и температуры, холод, жара и пр.)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr54" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr54" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr54" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr54" value="5">Сильно<br></label>
+                    </div>                
+                </div>
+            </div>                        
+            
+            <span class="gfr" id="gr6">Генетика</span>
+            <div class="group">
+                <div class="nfr">Наследственные заболевания
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr61" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr61" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr61" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr61" value="5">Сильно<br></label>
+                    </div>
+                </div>                    
+
+                <div class="nfr">Индивидуальные наследственные особенности организма (полнота, состояние кожи и волос, скорость процессов старения и пр.)
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr62" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr62" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr62" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr62" value="5">Сильно<br></label>
+                    </div>
+                </div>
+
+                <div class="nfr">Заболевания опорно-двигательного аппарата и органов пищеварения
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr63" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr63" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr63" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr63" value="5">Сильно<br></label>
+                    </div>
+                </div>
+                
+                <div class="nfr">Заболевания сердечно-сосудистой системы и неврологические заболевания
+                    <div class="vote" id="">
+                        <label><input type="radio" name="gr64" value="0">Не влияет</label>
+                        <label><input type="radio" name="gr64" value="1">Незначительно</label>
+                        <label><input type="radio" name="gr64" value="3">Умеренно</label>
+                        <label><input type="radio" name="gr64" value="5">Сильно<br></label>
+                    </div>                
+                </div>
+            </div>                                    
+            
+            <center><p class="group button"  onclick="start()">Пройти тест</p></center>
+           
+            <footer>
+                <div id="chartdiv"></div>
+                <div id="legend">
+                    Воздействие факторов риска:
+                    <span class="weakly">слабое</span>
+                    <span class="moderately">умеренное</span>
+                    <span class="strongly">сильное</span>
+                </div>
+                <hr>
+                Шкала самооценки влияния факторов риска на процессы старения организма человека (Шкала IME) разработана клиникой медицины антиэйджинг «ИМЕ-Иституто Медичина Эстетика» и может быть рекомендована для её использования в общемедицинской практике для первичного выявления внешних и внутренних факторов, влияющих на процессы старения организма человека. Шкала IME является продуктом интеллектуальной собственности, права на который зарегистрированы в соответствии с законодательством РФ. Владельцем прав является ООО «ИМЕ-Иституто Медичина Эстетика». Ссылка на владельца прав при использовании Шкалы IME обязательна.
+            </footer>
+        </div>
+        <script>
+            function start(){var gr1=(parseInt($("input[name=\"gr11\"]:checked")["val"]())+parseInt($("input[name=\"gr12\"]:checked")["val"]())+parseInt($("input[name=\"gr13\"]:checked")["val"]())+parseInt($("input[name=\"gr14\"]:checked")["val"]())),gr2=(parseInt($("input[name=\"gr21\"]:checked")["val"]())+parseInt($("input[name=\"gr22\"]:checked")["val"]())+parseInt($("input[name=\"gr23\"]:checked")["val"]())+parseInt($("input[name=\"gr24\"]:checked")["val"]())),gr3=(parseInt($("input[name=\"gr31\"]:checked")["val"]())+parseInt($("input[name=\"gr32\"]:checked")["val"]())+parseInt($("input[name=\"gr33\"]:checked")["val"]())+parseInt($("input[name=\"gr34\"]:checked")["val"]())),gr4=(parseInt($("input[name=\"gr41\"]:checked")["val"]())+parseInt($("input[name=\"gr42\"]:checked")["val"]())+parseInt($("input[name=\"gr43\"]:checked")["val"]())+parseInt($("input[name=\"gr44\"]:checked")["val"]())),gr5=(parseInt($("input[name=\"gr51\"]:checked")["val"]())+parseInt($("input[name=\"gr52\"]:checked")["val"]())+parseInt($("input[name=\"gr53\"]:checked")["val"]())+parseInt($("input[name=\"gr54\"]:checked")["val"]())),gr6=(parseInt($("input[name=\"gr61\"]:checked")["val"]())+parseInt($("input[name=\"gr62\"]:checked")["val"]())+parseInt($("input[name=\"gr63\"]:checked")["val"]())+parseInt($("input[name=\"gr64\"]:checked")["val"]())),tog=500;weakly="rgba(220, 220, 220, 1)",moderately="rgba(180, 200, 250, 1)",strongly="rgba(255, 200, 200, 1)";if(isNaN(gr1)||isNaN(gr2)||isNaN(gr3)||isNaN(gr4)||isNaN(gr5)||isNaN(gr6)){alert("\u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430 \u043f\u0440\u043e\u0441\u0442\u0430\u0432\u044c\u0442\u0435 \u0432\u0441\u0435 \u0433\u0430\u043b\u043e\u0447\u043a\u0438")}else {$(".group")["toggle"](tog);$("#legend")["toggle"](tog);$(".gfr")["toggle"](tog);$("#chartdiv")["toggle"](tog);$(".flag")["toggle"](tog);if(gr1<=4){gr1_color=weakly};if(gr1>4){gr1_color=moderately};if(gr1>12){gr1_color=strongly};if(gr2<=4){gr2_color=weakly};if(gr2>4){gr2_color=moderately};if(gr2>12){gr2_color=strongly};if(gr3<=4){gr3_color=weakly};if(gr3>4){gr3_color=moderately};if(gr3>12){gr3_color=strongly};if(gr4<=4){gr4_color=weakly};if(gr4>4){gr4_color=moderately};if(gr4>12){gr4_color=strongly};if(gr5<=4){gr5_color=weakly};if(gr5>4){gr5_color=moderately};if(gr5>12){gr5_color=strongly};if(gr6<=4){gr6_color=weakly};if(gr6>4){gr6_color=moderately};if(gr6>12){gr6_color=strongly};if(Math["max"](gr1,gr2,gr3,gr4,gr5,gr6)<5){$("#rec1")["toggle"](tog)};if(Math["max"](gr1,gr2,gr3,gr4,gr5,gr6)>5&&Math["max"](gr1,gr2,gr3,gr4,gr5,gr6)<13){$("#rec2")["toggle"](tog)};if(Math["max"](gr1,gr2,gr3,gr4,gr5,gr6)>12){$("#rec3")["toggle"](tog)};};var chart=AmCharts["makeChart"]("chartdiv",{"theme":"none","type":"serial","startDuration":2,"dataProvider":[{"country":"\u041e\u0431\u0440\u0430\u0437 \u0436\u0438\u0437\u043d\u0438","value":gr1,"color":gr1_color},{"country":"\u041f\u0438\u0442\u0430\u043d\u0438\u0435","value":gr2,"color":gr2_color},{"country":"\u0423\u0445\u043e\u0434 \u0437\u0430 \u0441\u043e\u0431\u043e\u0439","value":gr3,"color":gr3_color},{"country":"\u041f\u0441\u0438\u0445\u043e\u043b\u043e\u0433\u0438\u044f","value":gr4,"color":gr4_color},{"country":"\u042d\u043a\u043e\u043b\u043e\u0433\u0438\u044f","value":gr5,"color":gr5_color},{"country":"\u0413\u0435\u043d\u0435\u0442\u0438\u043a\u0430","value":gr6,"color":gr6_color}],"valueAxes":[{"position":"left","title":"\u0421\u0442\u0435\u043f\u0435\u043d\u044c \u0432\u043b\u0438\u044f\u043d\u0438\u044f","axisAlpha":0,"gridAlpha":0,"color":"#fff"}],"graphs":[{"balloonText":"[[category]]: <b>[[value]]</b>","fillColorsField":"color","fillAlphas":1,"lineAlpha":0,"borderColor":"#ff0000","type":"column","valueField":"value"}],"depth3D":10,"angle":30,"chartCursor":{"categoryBalloonEnabled":false,"cursorAlpha":0,"zoomable":false,"axisAlpha":0,"gridAlpha":0},"categoryField":"country","categoryAxis":{"gridPosition":"start","labelRotation":0,"axisAlpha":0,"gridAlpha":0},"export":{"enabled":true}});jQuery(".chart-input")["off"]()["on"]("input change",function(){var property=jQuery(this)["data"]("property");var target=chart;chart["startDuration"]=0;if(property=="topRadius"){target=chart["graphs"][0];if(this["value"]==0){this["value"]=undefined};};target[property]=this["value"];chart["validateNow"]();});}
+        </script>
+<! Конец нужного кода html >
+
+    </body>
+</html>

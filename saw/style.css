@@ -1,0 +1,204 @@
+*
+{
+    font-family: PT Sans Caption, Arial, Helvetica, Sans-Serif;
+/*    transition: all 0.5s ease; */
+
+}
+
+body
+{
+    position: relative;
+}
+
+h1
+{
+    font-weight: normal;
+    font-size: 3vh;
+    color: cadetblue;
+}
+
+.center
+{
+    text-align: center;
+}
+.left
+{
+    text-align: left;
+}
+.right
+{
+    text-align: right;
+}
+
+.hidden
+{
+    display: none;
+}
+
+
+svg
+{
+    width: 100vw;
+    max-height: 100vh;
+    height: calc(100vh - 20px); 
+}
+
+
+
+.control
+{
+  position: relative;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  padding: 1vh;
+  margin: 1vw;
+}
+
+.indicator
+{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+}
+.on
+{
+    background-color: #007000;
+}
+.off
+{
+    background-color: red;
+}
+
+
+#mainlight_ind_1
+{
+    top: 10%;
+    left: 15%;
+}
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ============================================================
+  SWITCH 1 - ROUND
+============================================================ */
+input.cmn-toggle-round + label {
+  width: 35px;
+  height: 19px;
+  background-color: #dddddd;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+}
+input.cmn-toggle-round + label:before, input.cmn-toggle-round + label:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: "";
+}
+input.cmn-toggle-round + label:before {
+right: 1px;
+  background-color: #ffc800;
+  -webkit-border-radius: 60px; 
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  -webkit-transition: background 0.1s;
+  -moz-transition: background 0.1s;
+  -o-transition: background 0.1s;
+  transition: background 0.1s;
+}
+input.cmn-toggle-round + label:after {
+  width: 17px;
+  background-color: #fff;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  -webkit-transition: margin 0.1s;
+  -moz-transition: margin 0.1s;
+  -o-transition: margin 0.1s;
+  transition: margin 0.1s;
+}
+input.cmn-toggle-round:checked + label:before {
+  background-color: #8ce196;
+}
+input.cmn-toggle-round:checked + label:after {
+  margin-left: 16px;
+}
+
+div.toggler
+{
+position: absolute;
+padding: 10px;
+right: 0;
+top: 0;
+display: flex;
+}
+
+div#help
+{
+    width: 60vw;
+    position: absolute;
+    margin: 5% auto auto 5%;
+    top: 10%;
+    left: 10%;
+    background-color: white;
+    opacity: 0.97;
+    padding: 5vh 5vw;
+    display: none;
+    z-index: 1;
+    box-shadow: gray 0px 0px 300px;    
+}
+
+div#help p, div#help li
+{
+    font-size: 2.5vh;
+}
+
+div#help ul p
+{
+    font-size: 2vh;
+    margin: 0;
+}
+
+div#overlay
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.1;
+    display: none;
+}
+
+div.close
+{
+    cursor: pointer;
+    float: right;
+    font-size: 5vh;
+    color: red;
+}
+

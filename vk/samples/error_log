@@ -1,0 +1,7 @@
+[22-Dec-2014 11:34:13 Europe/Moscow] PHP Notice:  Array to string conversion in /home/motokofr/public_html/vk/samples/example-2.php on line 53
+[22-Dec-2014 18:38:37 Europe/Moscow] PHP Fatal error:  Class 'simple_html_dom' not found in /home/motokofr/public_html/vk/samples/example-2.php on line 41
+[22-Dec-2014 18:39:53 Europe/Moscow] PHP Warning:  include(0/simple_html_dom.php): failed to open stream: No such file or directory in /home/motokofr/public_html/vk/samples/example-2.php on line 18
+[22-Dec-2014 18:39:53 Europe/Moscow] PHP Warning:  include(0/simple_html_dom.php): failed to open stream: No such file or directory in /home/motokofr/public_html/vk/samples/example-2.php on line 18
+[22-Dec-2014 18:39:53 Europe/Moscow] PHP Warning:  include(): Failed opening '0/simple_html_dom.php' for inclusion (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/motokofr/public_html/vk/samples/example-2.php on line 18
+[22-Dec-2014 18:39:53 Europe/Moscow] PHP Fatal error:  Class 'simple_html_dom' not found in /home/motokofr/public_html/vk/samples/example-2.php on line 43
+[22-Dec-2014 18:41:16 Europe/Moscow] PHP Fatal error:  Call to undefined method VK\VK::load_file() in /home/motokofr/public_html/vk/samples/example-2.php on line 47

@@ -1,0 +1,200 @@
+<script>
+rasp_state = 0;
+
+
+/*        $(function()
+        {
+
+            function wsStart() {
+                ws = new WebSocket("ws://10.0.1.210:8181/");
+                ws.onopen = function() { toastr.info('Соединение установлено'); };
+                ws.onclose = function() { toastr.warning('Соединение потеряно, пробуем снова'); setTimeout(wsStart, 1000);};
+                //ws.onmessage = function(evt) { $("#log").append("<p>"+evt.data+"</p>"); $('#chat').scrollTop($('#log')[0].scrollHeight);   };
+            }
+
+            wsStart();
+
+            //$('#log').height($(window).height() - 80);
+
+            //$('#input').focus();
+        }
+*/
+
+function init()
+{
+    i = 0;
+    $(':regex(id,img.*$)').unbind();
+    $(':regex(id,img.*$)').bind('click', function(event) 
+    {
+        console.dir(event.currentTarget.id);
+        toastr.info(event.currentTarget.id);
+    });
+
+    $(':regex(id,^r[0-9]$)').hide(200);    
+    
+    $('#r1:hidden').show(200);
+    $(':regex(id,indicator$)').hide();    
+
+    $('#r2:hidden').delay(400).show(200);    
+    $(':regex(id,indicator$)').hide();        
+
+    $('#r3:hidden').delay(800).show(200);
+    $(':regex(id,indicator$)').hide();     
+    
+    $('#r4:hidden').delay(1200).show(200);        
+    $(':regex(id,indicator$)').hide();    
+        
+    setTimeout(function(){rasp(rasp_state);toastr.info('Ждем запуска контроллера');}, 2000);
+
+	var audio = new Audio();
+	audio.src = 'start.mp3';
+//	audio.autoplay = true; 
+    
+}
+
+function rasp(rasp_state)
+{
+    $.get("rasp_state.php", onAjaxSuccess);
+    function onAjaxSuccess(data)
+    {
+        rasp_state = (data);
+console.log('rasp_state = '+rasp_state);        
+    }
+    
+    i++;
+    console.log("i = "+i);
+
+    if (rasp_state != 1 && i <= 5) 
+    {
+        setTimeout(function(){rasp(rasp_state)}, 400);
+    }
+    
+    if (rasp_state == 1) // ждем сигнал ГОТОВ от распберри
+    {
+        toastr.success('Готово')
+        $(':regex(id,^r[0-9]$)').show(200);
+        $(':regex(id,indicator$)').show(200);
+        setTimeout(function(){$(':regex(id,indicator$)').hide(200)}, 1000);
+        return false;
+    }	
+
+    else
+    { 
+        $(':regex(id,indicator$)').show(200);
+        $(':regex(id,indicator$)').hide(200); 
+
+        if (i == 5) 
+        {
+            toastr.warning('Нет сигнала от контроллера, пробуем снова');
+            setTimeout(function(){init()}, 1000); 
+        }
+    }
+
+}
+
+    
+function hide(elem)
+{
+    $(elem).toggle(100);
+}
+
+
+function set_timer(elem)
+{
+$(elem).text('123');
+console.log($(elem));
+}
+
+
+
+
+
+jQuery.expr[':'].regex = function(elem, index, match) {
+   var matchParams = match[3].split(','),
+   validLabels = /^(data|css):/,
+   attr = {
+      method: matchParams[0].match(validLabels) ? matchParams[0].split(':')[0] : 'attr',
+      property: matchParams.shift().replace(validLabels,'')
+   },
+   regexFlags = 'ig',
+   regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
+   return regex.test(jQuery(elem)[attr.method](attr.property));
+}
+
+
+
+
+
+
+
+
+/*    
+jQuery(window).load(function () 
+{ // Нам нужно дождаться, пока вся графика (и наша карта тоже) загрузится, поэтому используем window.onload,
+   svgobject = document.getElementById('plan'); // Находим тег <object>
+   if ('contentDocument' in svgobject) {              // У нас действительно там что-то есть?
+   svgdom = jQuery(svgobject.contentDocument);  // Получаем доступ к объектной модели SVG-файла
+    // Теперь делаем свою работу, например:
+//    jQuery("#r1", svgdom).attr("display", "none");  // Находим тег с id="figure1" в SVG DOM и заливаем его красным
+  }	
+});
+
+function hide(elem)
+{
+$(elem, svgdom).toggle();
+//console.log( $([name $="door"]) );
+}
+
+function timer(elem)
+{
+$(elem, svgdom).html = '';
+console.log($(elem, svgdom).html);
+}
+//setTimeout(timer, 2000);
+*/
+
+
+
+
+
+
+
+/*
+// Определим свои функции добавления/удаления класса, так как те, что в jQuery не работают для SVG
+jQuery.fn.myAddClass = function (classTitle) {
+  return this.each(function() {
+    var oldClass = jQuery(this).attr("class");
+    oldClass = oldClass ? oldClass : '';
+    jQuery(this).attr("class", (oldClass+" "+classTitle).trim());
+  });
+}
+jQuery.fn.myRemoveClass = function (classTitle) {
+  return this.each(function() {
+      var oldClass = jQuery(this).attr("class");
+      var startpos = oldClass.indexOf(classTitle);
+      var endpos = startpos + classTitle.length;
+      var newClass = oldClass.substring(0, startpos).trim() + " " + oldClass.substring(endpos).trim();
+      if (!newClass.trim())
+        jQuery(this).removeAttr("class");
+      else
+        jQuery(this).attr("class", newClass.trim());
+  });
+}
+
+// Начинаем работу когда страница полностью загружена (включая графику)
+$(window).load(function () {
+  // Получаем доступ к SVG DOM
+  var svgobject = document.getElementById('imap'); 
+  if ('contentDocument' in svgobject)
+    var svgdom = svgobject.contentDocument;
+
+  // Хак для WebKit (чтобы правильно масштабировал нашу карту)
+  var viewBox = svgdom.rootElement.getAttribute("viewBox").split(" ");
+  var aspectRatio = viewBox[2] / viewBox[3];
+  svgobject.height = parseInt(svgobject.offsetWidth / aspectRatio);
+});
+*/
+
+</script>    
+</body>
+</html>

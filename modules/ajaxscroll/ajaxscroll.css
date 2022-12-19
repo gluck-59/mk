@@ -1,0 +1,9 @@
+/* отключен и управляется из global.css */
+#ajaxscroll_ajax_loader {
+	text-align: center;
+	width:556px;
+	position:fixed;
+	bottom:30px;
+	display:none;
+	z-index:9999999999;
+}
