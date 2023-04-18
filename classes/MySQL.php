@@ -158,7 +158,7 @@ class MySQL extends Db
 		if (_PS_DEBUG_ AND mysqli_errno($this->_link))
 		{
 			if ($query)
-				die(Tools::displayError(mysqli_error().'<br /><br /><pre>'.$query.'</pre>'));
+				die(Tools::displayError(mysqli_error($query).'<br /><br /><pre>'.$query.'</pre>'));
 			die(Tools::displayError((mysqli_error())));
 		}
 	}
