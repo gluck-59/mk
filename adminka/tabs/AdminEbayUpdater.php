@@ -35,7 +35,7 @@ if (!$fast) $fast = 5000; else $fast = 0;
     <script>
             jQuery.fn.sortElements=function(){var t=[].sort;return function(e,n){n=n||function(){return this};var r=this.map(function(){var t=n.call(this),e=t.parentNode,r=e.insertBefore(document.createTextNode(''),t.nextSibling);return function(){if(e===this)throw new Error;e.insertBefore(this,r),e.removeChild(r)}});return t.call(this,e).each(function(t){r[t].call(n.call(this))})}}();
     </script>
-<?     
+<?php     
 
 $sellerEbayPositive = Ebay_shopping::getsellerEbayPositive(); 		// процент положительных отзывов о продавце на Ebay. Если ниже - пропускаем
 
