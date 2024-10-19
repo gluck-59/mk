@@ -24,6 +24,7 @@
             'ridersaddiction',
             'hondaeasttoledo'
         );
+
         public static $banlist = [];
 
         public function __construct($lot)
@@ -63,6 +64,7 @@
 //            echo '<br>==================запрос getSingleItem, $request = ';
 //prettyDump($request);
             $auth = self::getAuthorization();
+            $ebaySettings = parse_ini_file(_PS_ROOT_DIR_."/config/ebay_config.php", true);
             if (empty($auth['access_token'])) return false;
 
             $endpoint = 'https://open.api.ebay.com/shopping?';
@@ -86,7 +88,7 @@
             $headers = array(
                 'X-EBAY-API-CALL-NAME: GetSingleItem',
                 'X-EBAY-API-SITE-ID: 0',                                 // Site 0 is for US
-                'X-EBAY-API-APP-ID: '.EBAY_CLIENT_ID,
+                'X-EBAY-SOA-SECURITY-APPNAME:'.$ebaySettings['production']['appId'],
                 'X-EBAY-API-VERSION: 889',
                 "X-EBAY-API-REQUEST-ENCODING: XML",    // for a POST request, the response by default is in the same format as the request
                 'X-EBAY-API-IAF-TOKEN:' . $auth['access_token'],
@@ -386,8 +388,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GetShippingCostsRequest xmlns='urn:ebay:apis:eBLBaseComponents'>
     <ItemID>{$request}</ItemID>
-    <DestinationCountryCode>US</DestinationCountryCode>
-    <DestinationPostalCode>19720</DestinationPostalCode>
+    <DestinationCountryCode>ES</DestinationCountryCode>
+    <DestinationPostalCode>03540</DestinationPostalCode>
     <QuantitySold>1</QuantitySold>
     <MessageID>{$request}</MessageID>
     <IncludeDetails>false</IncludeDetails>
@@ -434,30 +436,8 @@ xml;
         public static function findItemsAdvanced($request, $findpair = 0, $csv = 0) {
             $auth = self::getAuthorization();
             if (empty($auth['access_token'])) return false;
-
+            $ebaySettings = parse_ini_file(_PS_ROOT_DIR_."/config/ebay_config.php", true);
             $endpoint = 'https://svcs.ebay.com/services/search/FindingService/v1?';
-/*            $xmlRequest  = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";*/
-//            $xmlRequest .= "<findItemsAdvancedRequest xmlns='https://www.ebay.com/marketplace/search/v1/services'>";
-//            $xmlRequest .= "<categoryId>10063</categoryId>"; // 10063 - запчасти для мотоциклов // 6028 - запчасти вообще
-//            $xmlRequest .= "<descriptionSearch>false</descriptionSearch>"; // ИНОГДА может найти полную хуйню, отключено
-//            $xmlRequest .= "<keywords>".$request."</keywords>";
-//
-//            $xmlRequest .= "<itemFilter><name>Condition</name><value>New</value></itemFilter>";
-//            $xmlRequest .= "<itemFilter><name>FeedbackScoreMin</name><value>1000</value></itemFilter>";
-//            $xmlRequest .= "<itemFilter><name>ListingType</name><value>FixedPrice</value></itemFilter>";
-//            $xmlRequest .= "<itemFilter><name>AvailableTo</name><value>RU</value></itemFilter>";
-//            $xmlRequest .= "<itemFilter><name>PaymentMethod</name><value>PayPal</value></itemFilter>";
-//            $xmlRequest .= "<itemFilter><name>HideDuplicateItems</name><value>true</value></itemFilter>";
-//
-//            /* пока не работает
-//            $xmlRequest .= "<itemFilter><name>ExcludeSeller</name>
-//                            <value>".implode("|", $banlist)."</value></itemFilter>";
-//            */
-//            $xmlRequest .= "<outputSelector>SellerInfo</outputSelector>
-//		<paginationInput><entriesPerPage>10</entriesPerPage></paginationInput>
-//	    <sortOrder>PricePlusShippingLowest</sortOrder>";
-//            $xmlRequest .= "</findItemsAdvancedRequest>";
-
 
 $xmlRequest = "<?xml version='1.0' encoding='UTF-8'?>
 <findItemsAdvancedRequest xmlns='http://www.ebay.com/marketplace/search/v1/services'>
@@ -488,7 +468,7 @@ $xmlRequest = "<?xml version='1.0' encoding='UTF-8'?>
                 'X-EBAY-SOA-OPERATION-NAME:findItemsAdvanced',
                 'X-EBAY-SOA-SERVICE-VERSION:1.12.0',
                 'X-EBAY-SOA-GLOBAL-ID:EBAY-US',
-                'X-EBAY-SOA-SECURITY-APPNAME:'.EBAY_CLIENT_ID,
+                'X-EBAY-SOA-SECURITY-APPNAME:'.$ebaySettings['production']['appId'],
                 "X-EBAY-API-REQUEST-ENCODING: XML",
                 'X-EBAY-API-IAF-TOKEN:' . $auth['access_token'],
                 'Content-Type: text/xml;charset=utf-8',
@@ -500,7 +480,7 @@ $xmlRequest = "<?xml version='1.0' encoding='UTF-8'?>
             $responseXML = simplexml_load_string($responseXML);
 
 //        prettyDump('findItemsAdvanced');
-//        prettyDump($responseXML);
+        prettyDump($responseXML);
 
             if (!isset($responseXML->searchResult->item)) {
                 echo "<script>toastr.error('Не найдено ни одного лота для $request', 'Ответ findItemsAdvanced:');</script>";
@@ -638,6 +618,7 @@ html;
         public static function findItemsByEPID($request, $endpoint = 'https://svcs.ebay.com/services/search/FindingService/v1?')
         {
             $auth = self::getAuthorization();
+            $ebaySettings = parse_ini_file(_PS_ROOT_DIR_."/config/ebay_config.php", true);
             if (empty($auth['access_token'])) return false;
             $xmlRequest = <<<xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -654,7 +635,7 @@ xml;
                 'X-EBAY-SOA-SERVICE-NAME:FindingService',
                 'X-EBAY-SOA-OPERATION-NAME:findItemsByProduct',
                 'X-EBAY-SOA-SERVICE-VERSION:1.12.0',
-                'X-EBAY-SOA-SECURITY-APPNAME:'.EBAY_CLIENT_ID,
+                'X-EBAY-SOA-SECURITY-APPNAME:'.$ebaySettings['production']['appId'],
                 'X-EBAY-SOA-REQUEST-DATA-FORMAT:XML',
                 'X-EBAY-API-IAF-TOKEN:' . $auth['access_token']
             ));
@@ -685,6 +666,7 @@ xml;
         {
             die('die findItemsIneBayStores');
             $auth = self::getAuthorization();
+            $ebaySettings = parse_ini_file(_PS_ROOT_DIR_."/config/ebay_config.php", true);
             if (empty($auth['access_token'])) return false;
             $xmlTemplate = <<<xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -706,7 +688,7 @@ xml;
                 'X-EBAY-SOA-OPERATION-NAME:findItemsIneBayStores',
                 'X-EBAY-SOA-SERVICE-VERSION:1.13.0',
                 'X-EBAY-SOA-GLOBAL-ID:EBAY-US',
-                'X-EBAY-SOA-SECURITY-APPNAME:' . EBAY_CLIENT_ID,
+                'X-EBAY-SOA-SECURITY-APPNAME:'.$ebaySettings['production']['appId'],
                 'X-EBAY-SOA-REQUEST-DATA-FORMAT:XML',
                 'X-EBAY-API-IAF-TOKEN:' . $auth['access_token']
             );
@@ -777,6 +759,9 @@ xml;
          */
         public static function getAuthorization(array $scope = null, &$req = null, &$auth = null)
         {
+            $ebaySettings = parse_ini_file(_PS_ROOT_DIR_."/config/ebay_config.php", true);
+//prettyDump($ebaySettings);
+//die();
             if (empty($scope)) $scope = array('https://api.ebay.com/oauth/api_scope');
             $request = array(
                 'grant_type' => 'client_credentials',
@@ -785,7 +770,7 @@ xml;
             $req = http_build_query($request);
             $auth = array(
                 'Content-Type: application/x-www-form-urlencoded',
-                'Authorization: Basic ' . base64_encode(EBAY_CLIENT_ID . ':' . EBAY_CLIENT_SECRET)
+                'Authorization: Basic ' . base64_encode($ebaySettings['production']['appId'] . ':' . $ebaySettings['production']['certId'])
             );
             $ch = curl_init('https://api.ebay.com/identity/v1/oauth2/token');
             curl_setopt($ch, CURLOPT_POST, true);

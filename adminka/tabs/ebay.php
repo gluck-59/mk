@@ -19,13 +19,16 @@ $filename = "export.csv";
 
 if (empty($_POST['export'])) exit('empty($_POST[export])');
 
-$db = mysql_connect(_DB_SERVER_, _DB_USER_, _DB_PASSWD_);
+$db = mysqli_connect(_DB_SERVER_, _DB_USER_, _DB_PASSWD_);
 if (!$db)
 {
     die('No connection to database');
 }
-mysql_select_db(_DB_NAME_, $db);
-mysql_query("SET NAMES 'utf8'");
+$db_select = mysqli_select_db($db, "motokofr");
+if (!$db_select) {
+	die("Database selection failed: " . mysqli_connect_error());
+}
+
 
 // основные переменные
 $usd = Currency::getCurrency(3);
@@ -83,6 +86,7 @@ else
 
 //echo '<pre>	';
 //print_r($lots);
+//die();
 }
 
 $categories = "";
