@@ -81,8 +81,7 @@ div.home_categories div.item::first-letter
  transition: 3s filter linear;*/
  -webkit-transition: all 15s ease;
  transition: all 15s ease;
- */
-}  
+}
 
 img 
 {
@@ -479,10 +478,11 @@ h1#logo {
 	margin-left:20px;
 }
 #header {
-position: fixed;
+	position: fixed;
     width: 1000px;
     height: 325px;
-    background-size: cover!important;
+	background: url("/themes/Earth/img/back/current.jpg");
+	background-size: cover!important;
     top: 31px;
     z-index: -1;
 }
@@ -709,7 +709,7 @@ form.std fieldset legend {
 	font-weight: 100;
 	font-size: 1.6em;
 }
-form.std h4, form.std p, {
+form.std h4, form.std p {
 	clear: both;
 	padding: 0.3em 1em;
 }
@@ -1277,7 +1277,7 @@ ul#header_links {
 	background-color: transparent;
 	background-position: top center;
 	background-repeat: no-repeat;
-	color: color:#374853;
+	color: #374853;
 }
 
 
@@ -1931,7 +1931,7 @@ div.paiement_logo_block img { margin: -10px 0 10px 0; }
 .editorial_block {
 margin-top: -1em;
 margin-bottom: 0em;
--webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));}
+-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0,0,0,0.1)));
 }
 .editorial_block .rte{
 	background:transparent none repeat scroll 0 0;
@@ -2796,8 +2796,8 @@ div.categTree {
 	width:300px;
 	height:300px; 
 	border-radius: 11px;
-	cursor: -webkit-zoom-in;
-	cursor: -moz-zoom-in;
+	/*cursor: -webkit-zoom-in;*/
+	/*cursor: -moz-zoom-in;*/
 	object-fit: contain;
 }
 div#usefull_link_block{

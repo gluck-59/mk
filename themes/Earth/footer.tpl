@@ -192,24 +192,7 @@
             document.getElementsByTagName('head')[0].appendChild(script);
         })();
     </script><noindex><noscript><a href="https://reformal.ru">Отзывы и предложения</a><a href="//motokofr.reformal.ru">Oтзывы и предложения</a></noscript></noindex>
-    
-    
-    <script>
-    // грузим header background
-    if (document.getElementById('header'))
-    {
-       season=new XMLHttpRequest();
-       season.onreadystatechange=function()
-       {
-        if (season.readyState==4 && season.status==200)
-        {
-            document.getElementById('header').style.background = 'url(/themes/Earth/img/back/'+season.responseText+')';
-        }
-       }
-       season.open('GET','/themes/Earth/img/back/season.php', true);
-       season.send(season.responseText);
-    }
-    </script>
+
     {/literal}
     {/if}
 
