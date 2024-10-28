@@ -6,8 +6,8 @@ $smarty->template_dir 	= _PS_THEME_DIR_.'tpl';
 $smarty->compile_dir 	= _PS_SMARTY_DIR_.'compile';
 $smarty->cache_dir 		= _PS_SMARTY_DIR_.'cache';
 $smarty->config_dir 	= _PS_SMARTY_DIR_.'configs';
-$smarty->caching	= (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? false : true);
-$smarty->force_compile	= (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? true : false);
+$smarty_caching 	= (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? false : true);
+$smarty_force_compile 	= (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? true : false);
 //$smarty->debugging		= true;
 $smarty->debug_tpl		= _PS_ALL_THEMES_DIR_ . 'debug.tpl';
 //$smarty->load_filter('output','trimwhitespace'); // не включать, перестает работать JS 
