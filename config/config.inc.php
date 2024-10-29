@@ -216,4 +216,5 @@ if (function_exists('date_default_timezone_set'))
 /* Smarty */
 include(dirname(__FILE__).'/smarty.config.inc.php');
 
-setlocale(LC_ALL, "ru_RU.utf-8");
+setlocale(LC_ALL, "ru_RU.utf-8"); // это портит DECIMAL и использует десятичные с запятой (1,1) что не позволяет писать их в базу
+setlocale(LC_NUMERIC, "en_US.utf-8"); // это возвращает DECIMAL к правильному виду

@@ -1,9 +1,24 @@
 <?php
-
+error_reporting(E_ERROR);
 /* валюта магазина — доллары */
 
 include(dirname(__FILE__).'/../config/settings.inc.php');
 include(dirname(__FILE__).'/../config/config.inc.php');
+
+// внутри системы
+//Currency::refreshCurrencies();
+//die();
+
+const GENERAL_COEFF = 1.153;
+const USD_COEFF = 1.049;
+const EUR_COEFF = 1.017;
+
+//$curr = new Currency();
+//$cuurency['iso_code'] = 'code';
+//$cuurency['rate'] = 111;
+//$currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
+//prettyDump($curr->refreshCurrency($cuurency, '', new Currency(Configuration::get('PS_CURRENCY_DEFAULT'))), 1);
+
 
 // готовим мыло
 $headers = 'MIME-Version: 1.0' . "\r\n";
@@ -28,8 +43,6 @@ $gbp_old = round($usd_old / $gbp_old['conversion_rate'], 2);
 //получим новые курсы
 //  $usd = 0;
 //  $eur = 0;
-  error_reporting(0);
-
 
 // kovalut сейчас не нужен, берем с центробанка  $kov = simplexml_load_file('http://informer.kovalut.ru/webmaster/xml-table.php?kod=7701');
     //if ($kov == false)
@@ -52,19 +65,19 @@ echo '<pre>';
     			if ($item->NumCode=="978")  {
     				$eur = $item->Value;
     			}
-    			if ($item->NumCode=="036")  {
-    				$aud = $item->Value;
-                }
-    			if ($item->NumCode=="826")  {
-    				$gbp = $item->Value;
-    			}
+//    			if ($item->NumCode=="036")  {
+//    				$aud = $item->Value;
+//                }
+//    			if ($item->NumCode=="826")  {
+//    				$gbp = $item->Value;
+//    			}
     		}
     		// математика для ЦБРФ
 			$qwintry = 1.153;
-    		$usd = round($usd*$qwintry * 1.030, 2);
-    		$eur = round($eur*$qwintry * 1.013, 2);
-    		$aud = round($aud*$qwintry * 1.017, 2);
-    		$gbp = round($gbp*$qwintry * 1.017, 2);
+    		$usd = round($usd*GENERAL_COEFF * USD_COEFF, 2);
+    		$eur = round($eur*GENERAL_COEFF * EUR_COEFF, 2);
+//    		$aud = round($aud*$qwintry * 1.017, 2);
+//    		$gbp = round($gbp*$qwintry * 1.017, 2);
 		}
   	}
 
@@ -116,7 +129,7 @@ $message .= '">€<strong> ' .$eur.'</strong></span></p>';
 $from_date = date('m/d/Y', time()-1209600);
 $to_date = date('m/d/Y');
 
-echo $from_date.'<br>'.$to_date;
+//echo $from_date.'<br>'.$to_date;
 
 
 $message .='<p>
@@ -127,13 +140,24 @@ $message .='<p>
 
 
 $eur = $usd / $eur;
-$gbp = $usd / $gbp / 1.05;
-$aud = $usd / $aud;
 
-$usd = number_format($usd, 6, '.', '');
-$eur = number_format($eur, 6, '.', '');
-$gbp = number_format($gbp, 6, '.', '');
-$aud = number_format($aud, 6, '.', '');
+//$usd = number_format($usd, 3, '.', '');
+//$eur = number_format($eur, 3, '.', '');
+
+
+$prestaUsd = new Currency(Currency::getIdByIsoCode('RUB'));
+$prestaUsd->conversion_rate = $usd;
+$prestaUsd->save();
+
+$prestaEur = new Currency(Currency::getIdByIsoCode('EUR'));
+$prestaEur->conversion_rate = $eur;
+$prestaEur->save();
+
+
+//var_dump($usd);
+//var_dump($eur);
+//prettyDump(new Currency(Currency::getIdByIsoCode('USD')));
+//prettyDump(new Currency(Currency::getIdByIsoCode('EUR')));
 
 $message .='<p>Старые курсы:<br>$';
 $message .= $usd_old;
@@ -143,8 +167,7 @@ $message .='<br>£';
 $message .= round($usd_old / $gbp,2);
 $message .='</p>';
 
-
-/* блок записи в базу -- ДЛЯ ОТЛАДКИ ОТКЛЮЧАТЬ ЗДЕСЬ */
+/* блок записи в базу -- ДЛЯ ОТЛАДКИ ОТКЛЮЧАТЬ ЗДЕСЬ
 $link = mysql_connect('localhost', _DB_USER_, _DB_PASSWD_);
 if (!$link) {
 	$message .= mysql_error();
@@ -171,13 +194,12 @@ if ($usd !=0 and $eur !=0 and $gbp !=0 and $aud !=0)
 else $message .= ('<p><span style="background:#fdd">в значениях нули, в базу не пишем</span></p>');
 mysql_close($link);
 
+/* блок записи в базу */
+
 $message .= ('</body></html>');
-mail($to, $subject, $message, $headers);
+//mail($to, $subject, $message, $headers);
 
-/* блок записи в базу */ 
-
-
-echo $message;
+//echo $message;
 
 ?>
 
