@@ -51,6 +51,10 @@ class		Currency extends ObjectModel
 	protected 	$table = 'currency';
 	protected 	$identifier = 'id_currency';
 
+    const GENERAL_COEFF = 1.153;
+    const USD_COEFF = 1.049;
+    const EUR_COEFF = 1.017;
+
 	public function getFields()
 	{
 		parent::validateFields();
@@ -214,10 +218,39 @@ class		Currency extends ObjectModel
 
 	static public function refreshCurrencies()
 	{
-		$curr = 'Используется автоматическое обновление по Cron';
-		return $curr;
-	}
-	/*{
+//		return 'Используется автоматическое обновление по Cron';
+
+        $cbr = simplexml_load_file('http://www.cbr.ru/scripts/XML_daily.asp?d=0');
+        if (empty($cbr)) {
+            return 'CBR в дауне, ничего не пишем';
+        } else {
+            foreach ($cbr->Valute as $item)
+            {
+                if ($item->NumCode=="840")  {
+                    $usd = $item->Value;
+                }
+                if ($item->NumCode=="978")  {
+                    $eur = $item->Value;
+                }
+            }
+            // математика для ЦБРФ
+            $usd = round($usd * Currency::GENERAL_COEFF * Currency::USD_COEFF, 6);
+            $eur = round($eur * Currency::GENERAL_COEFF * Currency::EUR_COEFF, 6);
+
+            $eur = $usd / $eur;
+
+            $prestaUsd = new Currency(Currency::getIdByIsoCode('RUB'));
+            $prestaUsd->conversion_rate = $usd;
+            $prestaUsd->save();
+
+            $prestaEur = new Currency(Currency::getIdByIsoCode('EUR'));
+            $prestaEur->conversion_rate = $eur;
+            $prestaEur->save();
+
+            return 'Не ошибка :) Курсы обновлены';
+        }
+
+        /* обновлялка от престы
 		if (!$feed = @simplexml_load_file('http://www.prestashop.com/xml/currencies.xml'))
 			return Tools::displayError('Cannot parse feed!');
 		if (!$defaultCurrency = intval(Configuration::get('PS_CURRENCY_DEFAULT')))
@@ -228,7 +261,9 @@ class		Currency extends ObjectModel
 		foreach ($currencies as $currency)
 			if ($currency->iso_code != $defaultCurrency->iso_code)
 				$currency->refreshCurrency($feed->list, $isoCodeSource, $defaultCurrency);
-	}*/
+	*/
+	}
+
 }
 
 ?>

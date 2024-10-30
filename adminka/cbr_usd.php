@@ -6,12 +6,16 @@ include(dirname(__FILE__).'/../config/settings.inc.php');
 include(dirname(__FILE__).'/../config/config.inc.php');
 
 // внутри системы
-//Currency::refreshCurrencies();
-//die();
+Currency::refreshCurrencies();
+exit();
 
-const GENERAL_COEFF = 1.153;
-const USD_COEFF = 1.049;
-const EUR_COEFF = 1.017;
+
+
+
+
+
+
+
 
 //$curr = new Currency();
 //$cuurency['iso_code'] = 'code';
@@ -65,19 +69,10 @@ echo '<pre>';
     			if ($item->NumCode=="978")  {
     				$eur = $item->Value;
     			}
-//    			if ($item->NumCode=="036")  {
-//    				$aud = $item->Value;
-//                }
-//    			if ($item->NumCode=="826")  {
-//    				$gbp = $item->Value;
-//    			}
     		}
     		// математика для ЦБРФ
-			$qwintry = 1.153;
-    		$usd = round($usd*GENERAL_COEFF * USD_COEFF, 2);
-    		$eur = round($eur*GENERAL_COEFF * EUR_COEFF, 2);
-//    		$aud = round($aud*$qwintry * 1.017, 2);
-//    		$gbp = round($gbp*$qwintry * 1.017, 2);
+    		$usd = round($usd*Currency::GENERAL_COEFF * Currency::USD_COEFF, 6);
+    		$eur = round($eur*Currency::GENERAL_COEFF * Currency::EUR_COEFF, 6);
 		}
   	}
 
