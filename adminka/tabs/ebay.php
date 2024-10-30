@@ -4,20 +4,20 @@
 set_time_limit (180);
 include(dirname(__FILE__).'/../../config/config.inc.php');
 include(dirname(__FILE__).'/../../init.php'); 
-$cfgFile = dirname(__FILE__).'/../../config/settings.inc.php';
-require_once($cfgFile);
+require_once(dirname(__FILE__).'/../../config/settings.inc.php');
 
+prettyDump($_POST);
 
 // начало вывода файла
-$filename = "export.csv";
-			header('X-Accel-Buffering: yes');
-		    header('Content-Type: text/csv; charset=utf-8');
-		    header('Content-Disposition: attachment; filename="export.csv"');
-		    header('Pragma: no-cache');
-		    header('Expires: 0');
+if (isset($_POST['export'])) {
+	$filename = "export.csv";
+	header('X-Accel-Buffering: yes');
+	header('Content-Type: text/csv; charset=utf-8');
+	header('Content-Disposition: attachment; filename="export.csv"');
+	header('Pragma: no-cache');
+	header('Expires: 0');
+}
 
-
-if (empty($_POST['export'])) exit('empty($_POST[export])');
 
 $db = mysqli_connect(_DB_SERVER_, _DB_USER_, _DB_PASSWD_);
 if (!$db)
@@ -31,8 +31,8 @@ if (!$db_select) {
 
 
 // основные переменные
-$usd = Currency::getCurrency(3);
-$eur = Currency::getCurrency(1);
+$usd = Currency::getCurrency(Currency::getIdByIsoCode('USD'));
+$eur = Currency::getCurrency(Currency::getIdByIsoCode('EUR'));
 $usd = ($usd['conversion_rate']);
 $eur = ($usd / $eur['conversion_rate']);
 $request = $_POST['request'];
@@ -81,12 +81,12 @@ else
 	// если нет	
 	else
 	{
-    	$lots = Ebay_shopping::findItemsAdvanced($request, 0, 1);
+//    	$lots = Ebay_shopping::findItemsAdvanced($request, 0, 1); // оригинал
+    	$lots = [];
     }
 
-//echo '<pre>	';
-//print_r($lots);
-//die();
+prettyDump($lots);
+
 }
 
 $categories = "";

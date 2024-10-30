@@ -34,6 +34,10 @@
         }
 
 
+        public static function getEbayUrl() {
+            return (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? 'ebaysdk' : 'ebaysdk.motokofr.com');
+        }
+
         /**
          * Возвращает приемлемый процент позитивных отзывов
          * @return int
