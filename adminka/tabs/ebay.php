@@ -26,8 +26,6 @@ $service = new Services\FindingService([
 	'globalId'    => Constants\GlobalIds::MOTORS
 ]);
 
-prettyDump($service);
-
 
 
 // начало вывода файла
