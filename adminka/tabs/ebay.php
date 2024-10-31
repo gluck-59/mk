@@ -3,30 +3,12 @@
 //@ini_set('max_execution_time', 0);
 set_time_limit (180);
 
-
 error_reporting(E_ALL^E_WARNING^E_NOTICE);
 ini_set('display_errors','on');
-
-require __DIR__.'/../../ebay-sdk/vendor/autoload.php';
-$config = require __DIR__.'/../../ebay-sdk/configuration.php';
 
 include(dirname(__FILE__).'/../../config/config.inc.php');
 include(dirname(__FILE__).'/../../init.php');
 require_once(dirname(__FILE__).'/../../config/settings.inc.php');
-
-
-use \DTS\eBaySDK\Constants;
-use \DTS\eBaySDK\Finding\Services;
-use \DTS\eBaySDK\Finding\Types;
-use \DTS\eBaySDK\Finding\Enums;
-
-
-$service = new Services\FindingService([
-	'credentials' => $config['production']['credentials'],
-	'globalId'    => Constants\GlobalIds::MOTORS
-]);
-
-
 
 // начало вывода файла
 if (isset($_POST['export'])) {
@@ -70,20 +52,12 @@ $active = 0; if (!empty($_POST['active'])) $active=1; //включить/вык�
 $tags = $_POST['tags']; //мета-теги
 $desc_short = $_POST['desc_short']; //короткое описание
 $quantity = $_POST['quantity']; //колво товара
-
-
-prettyDump($_POST);
-
+$lots = [];
 
 
 
-
-
-
-echo '<hr>';
-die();
 // возьмем из базы цену доставки в зависимости от веса товара (почта россии, prority)
-$weight_price = Db::getInstance()->getValue('
+/*$weight_price = Db::getInstance()->getValue('
 SELECT `price` FROM `presta_delivery`
 where `id_carrier` = 55
 and `id_zone` = 1
@@ -93,50 +67,48 @@ where `id_carrier` = 55
 and `delimiter1` <= '.$weight.'
 and `delimiter2` >= '.$weight.')
 ');
-$weight_price = (float)$weight_price;
+$weight_price = (float)$weight_price;*/
 
 // если "ключевые слова" содержит номер лота
-if (preg_match('/^\d{12}$/', trim($request)))
-$lots = Ebay_shopping::getSingleItem(trim($request));
+if (preg_match('/^\d{12}$/', trim($request)) ) {
+	Ebay_shopping::getSingleItem(trim($request)); // @TODO заинклюдить файл
+die('нужно вызвать getSingleItem');
+} else {
+	include __DIR__.'/ebay_findItemsAdvanced.php'; // инклюдим соотв файл в каждом случае
 
-// если "ключевые слова" содержит слова
-else 
-{
 	// если store указан
-	if ($store != '')
-	{
-    	$lots = Ebay_shopping::findItemsIneBayStores($request, $store, $minprice, $maxprice, $site_id);
-    }
+//	if ($store != '')
+//	{
+//    	$lots = Ebay_shopping::findItemsIneBayStores($request, $store, $minprice, $maxprice, $site_id);
+//    }
 
 	// если нет	
-	else
-	{
+//	else
+//	{
 //    	$lots = Ebay_shopping::findItemsAdvanced($request, 0, 1); // оригинал
-    	$lots = [];
-    }
-
-prettyDump($lots);
-
+//    	$lots = [];
+//    }
 }
+//prettyDump($lots);
 
+
+
+/////// экспорт в CSV //////////
 $categories = "";
-for ($cat_id = 1;$cat_id<=100;$cat_id++)
-{
- if (!empty($_POST['category_'.$cat_id])) 
-  {
-  $categories.=$_POST['category_'.$cat_id]."|"; 
+for ($cat_id = 1;$cat_id<=100;$cat_id++) {
+ if (!empty($_POST['category_'.$cat_id])) {
+  	$categories.=$_POST['category_'.$cat_id]."|";
   }
 }
-
 // заголовки таблицы
 echo("skip;Активен;Название;Категории;Цена вкл налоги;Описание;;Цена закупки;Короткое описание;Артикул №;Артикул поставщика;EAN13;Марка;Произв;Вес;Кол-во;Метки;Meta keywords;Meta_description;URL изображений\r\n");
 
 // выводим массив в файл
-foreach ($lots as $lot)
-{
-
+echo '<br>'.sizeof($lots['item']).' шт.';
+foreach ($lots['item'] as $lot) {
+	prettyDump($lot);
 	// основное
-	if (strval($lot['type']) != "FixedPriceItem") continue; // пропускать если режим аукциона 
+	if (strval($lot['listingInfo']['listingType']) != "FixedPrice") continue; // пропускать если режим аукциона
 	//    if (!$lot['shipping']) continue; // пропускать если нет доставки
 
 	//  валюты, цены, округление
@@ -144,18 +116,14 @@ foreach ($lots as $lot)
 	if	($ebay_currency = "USD") $currency = 1;//$usd;
 	else $currency = $eur;
 	
-	$shipping = $lot['shipping'];
+	$shipping = $lot['shippingInfo']['shippingServiceCost']['value'];
   	$ebay_price = ($lot['price'] + $shipping);
 	$wholesale_price = round($ebay_price * $paypal * $currency);
 	$nacenka = $wholesale_price / 100 * (float)$nacenka_perc;
 	if ($nacenka < $min_prib) $nacenka = $min_prib;
 	if ($nacenka > $max_prib) $nacenka = $max_prib;
 	$price = round($wholesale_price + $nacenka - $weight_price);
-	
-    if (!$shipping) 
-    {
-    	$price = 'нет доставки';
-   	}
+    if (!$shipping) $price = 'нет доставки';
 
 	echo ";";						// --
 	echo $_POST['active'].";";		// Активен
