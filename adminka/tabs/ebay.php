@@ -2,11 +2,33 @@
 //echo('<pre>');
 //@ini_set('max_execution_time', 0);
 set_time_limit (180);
+
+
+error_reporting(E_ALL^E_WARNING^E_NOTICE);
+ini_set('display_errors','on');
+
+require __DIR__.'/../../ebay-sdk/vendor/autoload.php';
+$config = require __DIR__.'/../../ebay-sdk/configuration.php';
+
 include(dirname(__FILE__).'/../../config/config.inc.php');
-include(dirname(__FILE__).'/../../init.php'); 
+include(dirname(__FILE__).'/../../init.php');
 require_once(dirname(__FILE__).'/../../config/settings.inc.php');
 
-prettyDump($_POST);
+
+use \DTS\eBaySDK\Constants;
+use \DTS\eBaySDK\Finding\Services;
+use \DTS\eBaySDK\Finding\Types;
+use \DTS\eBaySDK\Finding\Enums;
+
+
+$service = new Services\FindingService([
+	'credentials' => $config['production']['credentials'],
+	'globalId'    => Constants\GlobalIds::MOTORS
+]);
+
+prettyDump($service);
+
+
 
 // начало вывода файла
 if (isset($_POST['export'])) {
@@ -18,8 +40,7 @@ if (isset($_POST['export'])) {
 	header('Expires: 0');
 }
 
-
-$db = mysqli_connect(_DB_SERVER_, _DB_USER_, _DB_PASSWD_);
+/*$db = mysqli_connect(_DB_SERVER_, _DB_USER_, _DB_PASSWD_);
 if (!$db)
 {
     die('No connection to database');
@@ -27,7 +48,7 @@ if (!$db)
 $db_select = mysqli_select_db($db, "motokofr");
 if (!$db_select) {
 	die("Database selection failed: " . mysqli_connect_error());
-}
+}*/
 
 
 // основные переменные
@@ -52,6 +73,17 @@ $tags = $_POST['tags']; //мета-теги
 $desc_short = $_POST['desc_short']; //короткое описание
 $quantity = $_POST['quantity']; //колво товара
 
+
+prettyDump($_POST);
+
+
+
+
+
+
+
+echo '<hr>';
+die();
 // возьмем из базы цену доставки в зависимости от веса товара (почта россии, prority)
 $weight_price = Db::getInstance()->getValue('
 SELECT `price` FROM `presta_delivery`

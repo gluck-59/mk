@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+error_reporting(E_ERROR);
 $track_id = $_GET['track_id'];
 $country_id = $_GET['country_id'];
 $order_id = $_GET['order_id'];

@@ -2,6 +2,8 @@
 /* Improve PHP configuration to prevent issues */
 @error_reporting(E_ERROR );
 @ini_set('display_errors', (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? 'on' : 'off'));
+//@ini_set('display_errors', E_ERROR);
+
 
 //var_dump(error_reporting());
 
