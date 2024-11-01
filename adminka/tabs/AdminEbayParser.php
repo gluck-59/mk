@@ -4,8 +4,6 @@ error_reporting(0);
 //получаем курсы
 $usd = Currency::getCurrency(3);
 $eur = Currency::getCurrency(1);
-$usd = ($usd['conversion_rate']);
-$eur = ($usd / $eur['conversion_rate']);
 
 //Если нет сабмита формы (см. атрибут name у кнопки submit, показываем форму и выходим, иначе обрабатываем поля
 if (empty($_POST['export'])) {
@@ -124,7 +122,7 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 	<dt>Активный товар?</dt>
 	<dd><input name="active" type="checkbox" checked value="1"></dd>
 	';
-		if ($usd == 0 or $eur == 0)
+		if ($usd['conversion_rate'] == 0 or $usd['conversion_rate'] / $eur['conversion_rate'] == 0)
 		{
 			echo '<dt>Курс $</dt>
 			<dd><input type="text" style="width: 40px;" required name="usd"></dd>
@@ -137,8 +135,8 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 			echo '<div style="background-color: #DEF;float: right;padding: 3px;border-radius: 5px;position: absolute;margin: -187px 276px">
 			<img src="http://motokofr.com/img/vtb24_logo.png">
 			<div style="margin: 12px 0px 0px 10px; font-weight: bold;font-size: 9;line-height: 17px";>
-			<span style=" color: #fc1921; ">$</span> <span style=" color: #0a2973; ">'.round($usd, 2).'</span><br>
-			<span style=" color: #fc1921; ">&euro;</span> <span style=" color: #0a2973; ">'.round($eur, 2).'</span>
+			<span style=" color: #fc1921; ">$</span> <span style=" color: #0a2973; ">'.round($usd['conversion_rate'], 2).'</span><br>
+			<span style=" color: #fc1921; ">&euro;</span> <span style=" color: #0a2973; ">'.round($usd['conversion_rate'] / $eur['conversion_rate'], 2).'</span>
 			</div>
 			</div>';
 		}

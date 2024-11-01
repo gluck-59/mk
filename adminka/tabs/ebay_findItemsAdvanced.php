@@ -3,7 +3,6 @@ error_reporting(E_ALL^E_WARNING^E_NOTICE);
 ini_set('display_errors','on');
 prettyDump($_POST);
 
-
 require __DIR__.'/../../ebay-sdk/vendor/autoload.php';
 $config = require __DIR__.'/../../ebay-sdk/configuration.php';
 
@@ -67,8 +66,15 @@ $request->itemFilter[] = $itemFilter;
 // что возвращать
 $request->outputSelector = [
     'SellerInfo',
-    'PictureURLSuperSize'
+    'PictureURLSuperSize',
+    'ShippingCosts',
+    'Compatibility',
+    'Details',
+    'ItemSpecifics'
 ];
+
+
+//prettyDump($request->toRequestXml(), 1);
 $request->sortOrder = 'PricePlusShippingLowest';
 
 $response = $service->findItemsAdvanced($request);

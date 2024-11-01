@@ -3,6 +3,7 @@
 //@ini_set('max_execution_time', 0);
 set_time_limit (180);
 
+
 error_reporting(E_ALL^E_WARNING^E_NOTICE);
 ini_set('display_errors','on');
 
@@ -34,8 +35,8 @@ if (!$db_select) {
 // основные переменные
 $usd = Currency::getCurrency(Currency::getIdByIsoCode('USD'));
 $eur = Currency::getCurrency(Currency::getIdByIsoCode('EUR'));
-$usd = ($usd['conversion_rate']);
-$eur = ($usd / $eur['conversion_rate']);
+//$usd = ($usd['conversion_rate']);
+//$eur = ($usd / $eur['conversion_rate']);
 $request = $_POST['request'];
 $store = $_POST['store'];
 $site_id = $_POST['site_id'];
@@ -106,7 +107,7 @@ echo("skip;Активен;Название;Категории;Цена вкл н
 // выводим массив в файл
 echo '<br>'.sizeof($lots['item']).' шт.';
 foreach ($lots['item'] as $lot) {
-	prettyDump($lot);
+prettyDump($lot);
 	// основное
 	if (strval($lot['listingInfo']['listingType']) != "FixedPrice") continue; // пропускать если режим аукциона
 	//    if (!$lot['shipping']) continue; // пропускать если нет доставки
@@ -114,20 +115,31 @@ foreach ($lots['item'] as $lot) {
 	//  валюты, цены, округление
 	$ebay_currency = $lot['currency'];
 	if	($ebay_currency = "USD") $currency = 1;//$usd;
-	else $currency = $eur;
+	else $currency = $usd / $eur['conversion_rate'];
 	
 	$shipping = $lot['shippingInfo']['shippingServiceCost']['value'];
+
+	switch ($shipping = $lot['shippingInfo']['shippingServiceCost']['currencyId']) {
+		case 'USD': $shipping = $lot['shippingInfo']['shippingServiceCost']['value']; break;
+		case 'EUR':
+			$eur = Currency::getIdByIsoCode('EUR');
+			$shipping = $lot['shippingInfo']['shippingServiceCost']['value'] / $eur['conversion_rate'];
+			break;
+
+		default: $shipping = false;
+	}
+
   	$ebay_price = ($lot['price'] + $shipping);
 	$wholesale_price = round($ebay_price * $paypal * $currency);
 	$nacenka = $wholesale_price / 100 * (float)$nacenka_perc;
 	if ($nacenka < $min_prib) $nacenka = $min_prib;
 	if ($nacenka > $max_prib) $nacenka = $max_prib;
 	$price = round($wholesale_price + $nacenka - $weight_price);
-    if (!$shipping) $price = 'нет доставки';
+    if ($shipping === false) $price = 'нет доставки';
 
 	echo ";";						// --
 	echo $_POST['active'].";";		// Активен
-	echo $lot['name'].";";			// Название
+	echo $lot['title'].";";			// Название
 	echo $categories.";";			// Категории
 	echo $price.";";				// Цена вкл налоги
 	echo $lot['description'].";";	// Описание
