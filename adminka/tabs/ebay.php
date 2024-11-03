@@ -69,13 +69,15 @@ and `delimiter1` <= '.$weight.'
 and `delimiter2` >= '.$weight.')
 ');
 $weight_price = (float)$weight_price;*/
-
+prettyDump($request);
 // если "ключевые слова" содержит номер лота
 if (preg_match('/^\d{12}$/', trim($request)) ) {
 	Ebay_shopping::getSingleItem(trim($request)); // @TODO заинклюдить файл
 die('нужно вызвать getSingleItem');
 } else {
-	include __DIR__.'/ebay_findItemsAdvanced.php'; // инклюдим соотв файл в каждом случае
+//	include __DIR__.'/ebay_findItemsAdvanced.php'; // инклюдим соотв файл в каждом случае
+	$lots = Ebay_shopping::findItemsAdvanced($request, 0, 1);
+
 
 	// если store указан
 //	if ($store != '')
@@ -90,6 +92,7 @@ die('нужно вызвать getSingleItem');
 //    	$lots = [];
 //    }
 }
+//echo sizeof($lots). ' шт';
 //prettyDump($lots);
 
 

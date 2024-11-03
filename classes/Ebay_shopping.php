@@ -34,10 +34,6 @@
         }
 
 
-        public static function getEbayUrl() {
-            return (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? 'ebaysdk' : 'ebaysdk.motokofr.com');
-        }
-
         /**
          * Возвращает приемлемый процент позитивных отзывов
          * @return int
@@ -63,10 +59,11 @@
          * @param int $ajax
          * @return array|bool
          */
+//        public static function getSingleItem($request, $skip_no_spipping = 1, $ajax = 0)
         public static function getSingleItem($request, $skip_no_spipping = 1, $ajax = 0)
         {
-//            echo '<br>==================запрос getSingleItem, $request = ';
-//prettyDump($request);
+//echo '<br>==================запрос getSingleItem, $request = ';
+//prettyDump($request, 1);
             $auth = self::getAuthorization();
             $ebaySettings = parse_ini_file(_PS_ROOT_DIR_."/config/ebay_config.php", true);
             if (empty($auth['access_token'])) return false;
@@ -107,11 +104,13 @@
                 // подготовим мультикурл для GetSingleItem
                 $chs[] = ( $ch = curl_init() );
 
-                $xmlRequest  = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
-                $xmlRequest .= '<GetSingleItemRequest xmlns="urn:ebay:apis:eBLBaseComponents"><ItemID>'.$url.'</ItemID>';
-//                $xmlRequest .= '<IncludeSelector>ShippingCosts,Compatibility,Details,ItemSpecifics</IncludeSelector>';
-                $xmlRequest .= '<IncludeSelector>ShippingCosts,Details,ItemSpecifics</IncludeSelector>';
-                $xmlRequest .= '</GetSingleItemRequest>​';
+$xmlRequest  = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+//$xmlRequest .= '<GetSingleItemRequest xmlns="urn:ebay:apis:eBLBaseComponents"><ItemID>'.$url.'</ItemID>';
+$xmlRequest .= '<GetSingleItemRequest xmlns="urn:ebay:apis:eBLBaseComponents"><ItemID>124932420271</ItemID>';
+                $xmlRequest .= '<IncludeSelector>ShippingCosts,Compatibility,Details,ItemSpecifics</IncludeSelector>';
+//                $xmlRequest .= '<IncludeSelector>Compatibility</IncludeSelector>';
+                $xmlRequest .= '</GetSingleItemRequest>';
+//prettyDump($xmlRequest);
                 curl_setopt($ch, CURLOPT_URL, $endpoint );
                 curl_setopt($ch, CURLOPT_POST, true);              // POST request type
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $xmlRequest); // set the body of the POST
@@ -169,11 +168,15 @@
 
 
 // дебаг
-//$curlURL = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-//prettyDump($curlURL);
+//$fp = fopen(dirname(__FILE__).'/curlLog.txt', 'w');
+//curl_setopt($ch, CURLOPT_VERBOSE, 1);
+//curl_setopt($ch, CURLOPT_STDERR, $fp);
 
-//prettyDump('getSingleItem '.__LINE__);
-//prettyDump($responseXML);
+
+//prettyDump(curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
+
+prettyDump('getSingleItem '.__LINE__);
+prettyDump($responseXML, 1);
 
                 // если лот не BIN
                 // почему-то вседа выполняется continue независимо от 	ListingType
@@ -439,7 +442,8 @@ xml;
          */
         public static function findItemsAdvanced($request, $findpair = 0, $csv = 0) {
             $auth = self::getAuthorization();
-            if (empty($auth['access_token'])) return false;
+var_dump($auth);
+            if (empty($auth['access_token'])) return 'не авторизован';
             $ebaySettings = parse_ini_file(_PS_ROOT_DIR_."/config/ebay_config.php", true);
             $endpoint = 'https://svcs.ebay.com/services/search/FindingService/v1?';
 
@@ -483,8 +487,8 @@ $xmlRequest = "<?xml version='1.0' encoding='UTF-8'?>
             curl_close($session);
             $responseXML = simplexml_load_string($responseXML);
 
-//        prettyDump('findItemsAdvanced');
-        prettyDump($responseXML);
+//prettyDump('findItemsAdvanced');
+//prettyDump($responseXML, 1);
 
             if (!isset($responseXML->searchResult->item)) {
                 echo "<script>toastr.error('Не найдено ни одного лота для $request', 'Ответ findItemsAdvanced:');</script>";
@@ -513,10 +517,14 @@ $xmlRequest = "<?xml version='1.0' encoding='UTF-8'?>
                     continue;
                 }
 
-
                 $items[] = $item;
                 $itemslots[] = strval($item->itemId);
-            }
+            } // foreach
+
+//prettyDump('findItemsAdvanced '.sizeof($items).' шт');
+prettyDump($itemslots);
+//prettyDump($items, 1);
+
             // и тут нужно снова вызвать getSingleItem для получения полной инфы по лоту
             echo "<script>toastr.info('$item->itemId', 'Повторный getSingleItem:');</script>";
 
@@ -526,7 +534,10 @@ $xmlRequest = "<?xml version='1.0' encoding='UTF-8'?>
             if (sizeof($itemslots) > 1) $itemslot[] = $itemslots[1];
             else $itemslot[] = $itemslots[0];
 
+//            $results = (self::getSingleItem($itemslot, 1)); // ориг
             $results = (self::getSingleItem($itemslot, 1));
+prettyDump('getSingleItem '.sizeof($results).' шт');
+prettyDump($results, 1);
 
             // если ищется одиночный товар
             if ($findpair == 0)

@@ -27,8 +27,12 @@ header('Content-Type: text/html; charset=utf-8');
 }*/
 
     spl_autoload_register(function($className) {
-//        include 'classes/' . $class . '.class.php';
-        require_once(dirname(__FILE__).'/../classes/'.$className.'.php');
+//        var_dump($className); echo '<br>';
+        if (strpos($className, '\\') ) {
+            // учитывается только одно вложение
+            $arr = explode('\\', $className);
+            require_once(dirname(__FILE__).'/../classes/'.$arr[0].'/'.$arr[1].'.php');
+        } else require_once(dirname(__FILE__).'/../classes/'.$className.'.php');
     });
 
 
