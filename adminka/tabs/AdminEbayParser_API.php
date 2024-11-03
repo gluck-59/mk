@@ -1,24 +1,12 @@
 <?php
-error_reporting(E_ALL^E_WARNING^E_NOTICE);
-ini_set('display_errors','on');
-//include(dirname(__FILE__).'/../../config/config.inc.php');
-//include(dirname(__FILE__).'/../../init.php');
-//require_once(dirname(__FILE__).'/../../config/settings.inc.php');
 
-
+error_reporting(0);
 //получаем курсы
 $usd = Currency::getCurrency(3);
 $eur = Currency::getCurrency(1);
 
-$ebay = new EbayParser();
-$par = $ebay->parse('cobra 06-4160');
-
-prettyDump($par);
-
-die();
-
-
-
+//Если нет сабмита формы (см. атрибут name у кнопки submit, показываем форму и выходим, иначе обрабатываем поля
+if (empty($_POST['export'])) {
 
 // форма
 echo '
@@ -42,7 +30,7 @@ opacity: 0.4;
 position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350px;overflow-y: auto;height: 800px;opacity: 1;"
 }
 </style>
-  	<form  style="width:45%" action="ebay/EbayParser.php" method="post">
+  	<form  style="width:45%" action="./tabs/ebay.php" method="post">
 	<fieldset style="border-radius: 6px;"><legend>Ebay Parser</legend>
 	<dd style="margin: 10px 0 0 0;width: 93%;">
 	<!--input required style="width: 100%;"autofocus name="ebay" placeholder="Адрес RSS-фида продавца на Ebay" type="url"-->
@@ -50,7 +38,7 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 	<dl>
 	<dt>
 	
-	<select disabled style="width: 147px;" name="site_id" id="site_id" >
+	<select style="width: 147px;" name="site_id" id="site_id" >
 	<option value="EBAY-MOTOR" selected>eBay Motors</option>
 	<option value="EBAY-US">eBay USA</option>
 	<option value="EBAY-GB">eBay UK</option>
@@ -61,7 +49,7 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 	</select>
 	
 	</dt>
-	<dd><input disabled style="width: 168px;" name="store" placeholder="Ebay Store, необязательно" type="text"></dd>
+	<dd><input style="width: 168px;" name="store" placeholder="Ebay Store, необязательно" type="text"></dd>
 	<br>
 	<p align="center">дороже&nbsp;<input size="2" name="minprice" placeholder="" value="0" type="text">
 	<input size="3" name="maxprice" placeholder="" value="9999" type="text">&nbsp;дешевле</p>
@@ -155,12 +143,12 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 
 	echo '
 		<dt>Экспорт в csv</dt>
-		<dd><input name="export" type="checkbox" 1checked value="csv"></dd>
+		<dd><input name="export" type="checkbox" checked value="csv"></dd>
 	</dl>
 	
 	<input style="margin: 20px 0 0 165px" value="Выполнить" type="submit" />
 	</fieldset>
 </form>';
-
+}
 
 ?>
