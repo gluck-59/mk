@@ -21,8 +21,9 @@ class EbayParser extends AdminTab
     _sacat=6000 и _osacat=6000 —  motors
      LH_ItemCondition=3 - новый
      &rt=nc&LH_BIN - BIN
+     &_sop=15 - сортировка Price + Shipping:lowers first
      */
-    const EBAY_MOTOR_LIST_URL = 'https://www.ebay.com/sch/i.html?_stpos=03000&_fcid=186&LH_ItemCondition=3&rt=nc&LH_BIN=1&_stpos=03000&_fcid=186&_osacat=6000&_sacat=6000&_nkw=';
+    const EBAY_MOTOR_LIST_URL = 'https://www.ebay.com/sch/i.html?_stpos=03000&_fcid=186&LH_ItemCondition=3&rt=nc&LH_BIN=1&_stpos=03000&_fcid=186&_osacat=6000&_sacat=6000&_sop=15&_nkw=';
     const EBAY_ITEM_URL = 'https://www.ebay.com/itm/';
 
 
@@ -32,7 +33,12 @@ class EbayParser extends AdminTab
 //    }
 
     function parse($request, $findpair = 0, $csv = 0) {
-//prettyDump(empty($this->banlist));
+//$sum = '$1,234.5';
+//$sum = str_replace(' ', '', $sum);
+//$numberFormat = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
+//var_dump($numberFormat->parseCurrency($sum, $currency));
+//echo '<br>';
+//var_dump($currency);
 //die();
 
         $curl = self::request($request, 1);
@@ -41,7 +47,7 @@ class EbayParser extends AdminTab
         }
 
 //prettyDump($curlAnswer, 1);
-
+        $numberFormat = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
         $document = new Document($curl['response']);
         // https://github.com/Imangazaliev/DiDOM/blob/master/README-RU.md
         $arr = $document->find('.s-item__wrapper'); //s-item__link
@@ -71,9 +77,24 @@ class EbayParser extends AdminTab
             // сбока массива с данными о лоте
             $lot['itemNo'] = $itemNo[0];
             $lot['itemName'] = $item->first('.s-item__title span')->text();
-            $lot['price'] = preg_replace('/[a-zA-Z$ ]/ ', '', $item->find('.s-item__price')[0]->text());
-            $lot['shipping'] = preg_replace('/[a-zA-Z+\$]/', '', $item->find('.s-item__shipping')[0]->text());
-            $lot['ebayPrice'] = $lot['price'] + $lot['shipping']; // просто сумма price + shipping
+
+            $price = $item->find('.s-item__price')[0]->text();
+            $price = str_replace(' ', '', $price);
+            $price = $numberFormat->parseCurrency($price, $currency);
+
+            $shipping = preg_replace('/[a-zA-Z+]/', '', $item->find('.s-item__shipping')[0]->text());
+            $shipping = $numberFormat->parseCurrency($shipping, $currency);
+            //$lot['price'] = preg_replace('/[a-zA-Z$ ]/ ', '', $item->find('.s-item__price')[0]->text());
+            //$lot['shipping'] = preg_replace('/[a-zA-Z+\$]/', '', $item->find('.s-item__shipping')[0]->text());
+            // обработаем пока только USD
+            if ($currency == 'USD' && $shipping) {
+                $lot['price'] = $price;
+                $lot['shipping'] = $shipping;
+                $lot['ebayPrice'] = $lot['price'] + $lot['shipping']; // просто сумма price + shipping
+            } else {
+                $lot['price'] = ($currency == 'USD' ? $price : '---- цена в ' . $currency);
+//                continue;
+            }
             $lot['imgPath'] = $imgPath['dirname'].'/s-l1600.'.$imgPath['extension'];
 
 
@@ -85,10 +106,11 @@ class EbayParser extends AdminTab
             $lots[] = $lot;
         }
 
-prettyDump($lots);
-        usort($lots, function($a,$b){
-            return ($a['ebayPrice']-$b['ebayPrice']);
-        });
+
+// в выдаче много мусора, сортировать нельзя
+//        usort($lots, function($a,$b){
+//            return ($a['ebayPrice']-$b['ebayPrice']);
+//        });
 prettyDump($lots);
 
 //        return ['response' => $lots, 'debug' => $curl];
