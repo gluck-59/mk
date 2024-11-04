@@ -154,8 +154,8 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 
 if ($_POST) {
 	$ebay = new EbayParser();
-	$par = $ebay->parse($_POST);
-//prettyDump($par);
+	$parsed = $ebay->parse($_POST);
+//prettyDump($parsed);
 }
 
 ?>

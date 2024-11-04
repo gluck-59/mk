@@ -10,16 +10,21 @@ use DiDom\Document;
 class EbayParser extends AdminTab
 {
     private $banlist = array();
+    private $sellerMinPositive = 97;
+    private $sellerMinFeedback = 1000;
 
 
     /**
      пробелы в запросе заменить на +
-    _fcid=186 = испания
-    _stpos=03000  аликанте
+    _fcid=186 — испания
+    _stpos=03000 — аликанте
+    _sacat=6000 и _osacat=6000 —  motors
      LH_ItemCondition=3 - новый
      &rt=nc&LH_BIN - BIN
      */
-    CONST EBAY_US_URL = 'https://www.ebay.com/sch/i.html?_stpos=03000&_fcid=186&LH_ItemCondition=3&rt=nc&LH_BIN=1&_stpos=03000&_fcid=186&_nkw=';
+    const EBAY_MOTOR_LIST_URL = 'https://www.ebay.com/sch/i.html?_stpos=03000&_fcid=186&LH_ItemCondition=3&rt=nc&LH_BIN=1&_stpos=03000&_fcid=186&_osacat=6000&_sacat=6000&_nkw=';
+    const EBAY_ITEM_URL = 'https://www.ebay.com/itm/';
+
 
 //    public function __construct()
 //    {
@@ -29,29 +34,16 @@ class EbayParser extends AdminTab
     function parse($request, $findpair = 0, $csv = 0) {
 //prettyDump(empty($this->banlist));
 //die();
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-//            CURLOPT_URL => 'https://motokofr.com',
-            CURLOPT_URL => self::EBAY_US_URL.str_ireplace(' ', '+', $request['request']),
-            CURLOPT_RETURNTRANSFER => true,
-//            CURLOPT_HEADER =>true, // заголовки ответа
 
-            CURLOPT_NOBODY => false, // сама страница, для отладки
-            CURLOPT_FAILONERROR => true,
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_USERAGENT => self::getRandomUseragent(),
-            CURLOPT_HTTPHEADER, 'Accept-Language: en-US;q=0.6,en;q=0.4',
-            CURLOPT_VERBOSE => true
+        $curl = self::request($request, 1);
+        if (!empty($curl['errors'])) {
+            return $curl;
+        }
 
-        ));
+//prettyDump($curlAnswer, 1);
 
-        $debug[] = curl_getinfo($curl, CURLINFO_EFFECTIVE_URL, '');
-        $response = curl_exec($curl);
-        $errors = curl_error($curl);
-        curl_close($curl);
-
+        $document = new Document($curl['response']);
         // https://github.com/Imangazaliev/DiDOM/blob/master/README-RU.md
-        $document = new Document($response);
         $arr = $document->find('.s-item__wrapper'); //s-item__link
 
         $lots = [];
@@ -65,23 +57,28 @@ class EbayParser extends AdminTab
             // если селлер не соответсвует нашим критериям — пропускаем
             $sellerBlock = $item->first('.s-item__seller-info-text');
             $sellerArray = explode(' ', $sellerBlock->text());
-            if (intval($sellerArray[2]) < 97) continue;
-            if (preg_replace('/\D/', '', $sellerArray[1]) < 1000) continue;
+            if (intval($sellerArray[2]) < $this->sellerMinPositive) continue;
+            if (preg_replace('/\D/', '', $sellerArray[1]) < $this->sellerMinFeedback) continue;
             if (!empty($this->banlist) && in_array($sellerArray[0], $this->banlist)) continue;
 
             // картинки
             $imgElem = $item->first('.image-treatment img');
             $imgPath = pathinfo($imgElem->getAttribute('src'));
 
-
+//prettyDump($item->first('.s-item__title span')->text());
 
 
             // сбока массива с данными о лоте
             $lot['itemNo'] = $itemNo[0];
+            $lot['itemName'] = $item->first('.s-item__title span')->text();
             $lot['price'] = preg_replace('/[a-zA-Z$ ]/ ', '', $item->find('.s-item__price')[0]->text());
             $lot['shipping'] = preg_replace('/[a-zA-Z+\$]/', '', $item->find('.s-item__shipping')[0]->text());
             $lot['ebayPrice'] = $lot['price'] + $lot['shipping']; // просто сумма price + shipping
             $lot['imgPath'] = $imgPath['dirname'].'/s-l1600.'.$imgPath['extension'];
+
+
+//$lot['compatibility'] = self::getCompatibility($itemNo[0]);
+
             $lot['sellerName'] = $sellerArray[0];
 //            prettyDump($lot);
 
@@ -89,13 +86,82 @@ class EbayParser extends AdminTab
         }
 
 prettyDump($lots);
-prettyDump($arr);
+        usort($lots, function($a,$b){
+            return ($a['ebayPrice']-$b['ebayPrice']);
+        });
+prettyDump($lots);
 
-
-//        return ['error' => $errors, 'response' => $out, 'debug' => $debug];
+//        return ['response' => $lots, 'debug' => $curl];
     }
 
 
+
+
+    /**
+     * ходит на ебей курлом
+     * принимает запрос: а) массив б) инт
+     * возвращает массив данных
+     *
+     * @param string $request
+     * @return array
+     */
+    private function request($request, $type) {
+//prettyDump($request, 1);
+
+        switch ($type) {
+            case 1: $url = self::EBAY_MOTOR_LIST_URL.str_ireplace(' ', '+', $request['request']); break;  // запрос всех лотов
+            case 2: $url = self::EBAY_ITEM_URL.$request['request']; break;                                              // запрос одного лота
+        }
+
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+//            CURLOPT_URL => 'https://motokofr.com',
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+//            CURLOPT_HEADER =>true, // заголовки ответа
+
+            CURLOPT_NOBODY => false, // сама страница, для отладки
+            CURLOPT_FAILONERROR => true,
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_USERAGENT => self::getRandomUseragent(),
+            CURLOPT_HTTPHEADER, 'Accept-Language: en-US;q=0.6,en;q=0.4',
+            CURLOPT_VERBOSE => true
+
+        ));
+
+        $debug[] = curl_getinfo($curl, CURLINFO_EFFECTIVE_URL);
+        $response = curl_exec($curl);
+        $errors = curl_error($curl);
+        curl_close($curl);
+
+        return ['errors' => $errors, 'response' => $response, 'debug' => $debug];
+    }
+
+
+
+
+
+    /**
+     *
+     * возвращает список совместимых марок-моделей
+     *
+     * @param int $itemNo
+     * @return array
+     */
+    private function getCompatibility($itemNo) {
+        $compatibility = self::request(['request' => $itemNo], 2);
+prettyDump($compatibility, 1);
+
+    }
+
+
+
+    /**
+     * возвращает рандомный UserAgent
+     *
+     * @return string
+     */
     private static function getRandomUseragent() {
         $useragents = [
             "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16",
