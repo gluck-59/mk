@@ -442,9 +442,13 @@ class		Product extends ObjectModel
 	public function updateCategories($categories, $keepingCurrentPos = false)
 	{
 		$positions = array();
+		// если не указаны категории товаров при импорте
+		$in = 0;
+		if (!empty($categories)) $in = implode(',', array_map('intval', $categories));
+
 		$result = Db::getInstance()->ExecuteS('SELECT IFNULL(MAX(`position`), 0) + 1 AS max, `id_category`
 				FROM `'._DB_PREFIX_.'category_product`
-				WHERE `id_category` IN('.implode(',', array_map('intval', $categories)).')
+				WHERE `id_category` IN('.$in.')
 				GROUP BY `id_category`
 			');
 		if (!is_array($result))
@@ -466,9 +470,11 @@ class		Product extends ObjectModel
 		foreach ($categories AS $k => $productCategory)
 			$productCats[] = '('.$productCategory.','.$this->id.','.(isset($positions[$productCategory]) ? $positions[$productCategory]['max'] : 0).')';
 
-		$result = Db::getInstance()->Execute('
-		INSERT INTO `'._DB_PREFIX_.'category_product` (`id_category`, `id_product`, `position`)
-		VALUES '.implode(',', $productCats));
+		if (!empty($productCats)) {
+			$result = Db::getInstance()->Execute('
+		INSERT INTO `' . _DB_PREFIX_ . 'category_product` (`id_category`, `id_product`, `position`)
+		VALUES ' . implode(',', $productCats));
+		}
 
 		return ($result);
 	}

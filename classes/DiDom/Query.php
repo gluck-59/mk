@@ -460,7 +460,8 @@ class Query
         $pregMatchResult = preg_match(self::getSelectorRegex(), $selector, $segments);
 
         if ($pregMatchResult === false || $pregMatchResult === 0 || $segments[0] === '') {
-            throw new InvalidSelectorException(sprintf('Invalid selector "%s".', $selector));
+//            throw new InvalidSelectorException(sprintf('Invalid selector "%s".', $selector)); // ориг
+            prettyDump('Invalid selector '. $selector);
         }
 
         $result = ['selector' => $segments[0]];

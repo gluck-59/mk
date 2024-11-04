@@ -1,13 +1,25 @@
 <?php
 error_reporting(E_ALL^E_WARNING^E_NOTICE);
 ini_set('display_errors','on');
-//include(dirname(__FILE__).'/../../config/config.inc.php');
-//include(dirname(__FILE__).'/../../init.php');
-//require_once(dirname(__FILE__).'/../../config/settings.inc.php');
+
+//$i = 1;
+//$arr = [0,1,2,3];
+//prettyDump(sizeof($arr));
+//$size = sizeof($arr);
+//foreach ($arr as $elem) {
+//	prettyDump($elem);
+//	if ($i % $size ==0) echo 'yes<br>';
+//	$i++;
+//}
+//die();
 
 //получаем курсы
 $usd = Currency::getCurrency(3);
 $eur = Currency::getCurrency(1);
+
+//$storeUrl = parse_url('https://www.ebay.com/sch/i.html?_ssn=oemcycles&store_name=oemcycleshop&_oac=1&_trksid=p4429486.m3561.l161210');
+//$params = parse_str($storeUrl['query'], $store);
+//prettyDump($store['store_name'], 1);
 
 // форма
 echo '
@@ -35,7 +47,7 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 	<fieldset style="border-radius: 6px;"><legend>Ebay Parser</legend>
 	<dd style="margin: 10px 0 0 0;width: 93%;">
 	<!--input required style="width: 100%;"autofocus name="ebay" placeholder="Адрес RSS-фида продавца на Ebay" type="url"-->
-	<input style="width: 100%;" name="request" placeholder="Ключевые слова, + / - или один номер лота" type="text">
+	<input style="width: 100%;" name="request" value="'.$_POST['request'].'" placeholder="Ключевые слова, + / - или один номер лота" type="text">
 	<dl>
 	<dt>
 	
@@ -52,8 +64,8 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 	</dt>
 	<dd><input disabled style="width: 168px;" name="store" placeholder="Ebay Store, необязательно" type="text"></dd>
 	<br>
-	<p align="center">дороже&nbsp;<input size="2" name="minprice" placeholder="" value="0" type="text">
-	<input size="3" name="maxprice" placeholder="" value="9999" type="text">&nbsp;дешевле</p>
+	<p align="center">дороже&nbsp;<input size="2" name="minprice" placeholder="" value="" type="text">
+	<input size="3" name="maxprice" placeholder="" value="" type="text">&nbsp;дешевле</p>
 	
 	
 	<div style="margin: 27px 0 0 162px; text-align: center;position: absolute;">
@@ -79,7 +91,7 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 					recurseCategory($categories, $categories[$id_category][$key], $key, $id_selected);
 		}
 
-	$categories = Category::getCategories(3, false, $order = id_parent);
+	$categories = Category::getCategories(3, false, $order = 'id_parent');
 	recurseCategory($categories, $categories[0][1]);
 	echo'</div></span></div><br><br>
 	
@@ -109,7 +121,7 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 	}
 	echo '</select>
 	<dt>% наценки</dt>
-	<dd><input style="width: 40px;" name="nacenka_perc" value="15" type="number"></dd>
+	<dd><input style="width: 40px;" name="nacenka_percent" value="15" type="number"></dd>
 	<dt>Вес товара</dt>
 	<dd><input  style="width: 40px;" name="weight" value="2" type="number"></dd>
 	<dt>Количество товара</dt>
@@ -144,7 +156,7 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 
 	echo '
 		<dt>Экспорт в csv</dt>
-		<dd><input name="export" type="checkbox" 1checked value="csv"></dd>
+		<dd><input name="export" type="checkbox" '.($_POST['export'] ? 'checked':'').' value="csv"></dd>
 	</dl>
 	
 	<input style="margin: 20px 0 0 165px" value="Выполнить" type="submit" />
@@ -153,9 +165,10 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 
 
 if ($_POST) {
+//prettyDump($_POST);
 	$ebay = new EbayParser();
 	$parsed = $ebay->parse($_POST);
-//prettyDump($parsed);
+prettyDump($parsed);
 }
 
 ?>

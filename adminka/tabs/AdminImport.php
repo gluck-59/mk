@@ -27,7 +27,7 @@ define('MAX_COLUMNS', 6);
 class AdminImport extends AdminTab
 {
 	public static $column_mask;
-	
+
 	public $entities = array();
 	
 	public $available_fields = array();
@@ -130,31 +130,32 @@ class AdminImport extends AdminTab
 				'category' => $this->l('Categories (x,y,z...)'),					
 				'price_tex' => $this->l('Price tax excl.'),
 				'price_tin' => $this->l('Price tax incl.'),
-				'tax_rate' => $this->l('Tax rate'),					
-				'wholesale_price' => $this->l('Wholesale price'),				
-				'on_sale' => $this->l('On sale (0/1)'),
+			'description' => $this->l('Description'),
+			'wholesale_price' => $this->l('Wholesale price'),
+			'description_short' => $this->l('Short description'),
+			'reference' => $this->l('Reference #'),
+			'supplier_reference' => $this->l('Supplier reference #'),
+			'ean13' => $this->l('EAN13'),
+			'supplier' => $this->l('Supplier'),
+			'manufacturer' => $this->l('Manufacturer'),
+			'weight' => $this->l('Weight'),
+			'quantity' => $this->l('Quantity'),
+			'tags' => $this->l('Tags (x,y,z...)'),
+			'meta_keywords' => $this->l('Meta-keywords'),
+			'meta_description' => $this->l('Meta-description'),
+			'image' => $this->l('Image URLs (x,y,z...)'),
 				'reduction_price' => $this->l('Reduction amount'),
 				'reduction_percent' => $this->l('Reduction per cent'),
 				'reduction_from' => $this->l('Reduction from (yyyy-mm-dd)'),
-				'reduction_to' => $this->l('Reduction to (yyyy-mm-dd)'),											
-				'reference' => $this->l('Reference #'),
-				'supplier_reference' => $this->l('Supplier reference #'),
-				'supplier' => $this->l('Supplier'),
-				'manufacturer' => $this->l('Manufacturer'),
-				'ean13' => $this->l('EAN13'),
+				'reduction_to' => $this->l('Reduction to (yyyy-mm-dd)'),
 				'ecotax' => $this->l('Ecotax'),
-				'weight' => $this->l('Weight'),
-				'quantity' => $this->l('Quantity'),
-				'description_short' => $this->l('Short description'),
-				'description' => $this->l('Description'),
-				'tags' => $this->l('Tags (x,y,z...)'),
+
+			'tax_rate' => $this->l('Tax rate'),
+			'on_sale' => $this->l('On sale (0/1)'),
 				'meta_title' => $this->l('Meta-title'),
-                'meta_keywords' => $this->l('Meta-keywords'),
-                'meta_description' => $this->l('Meta-description'),
 				'available_now' => $this->l('Text when in-stock'),
 				'available_later' => $this->l('Text if back-order allowed'),
-				'image' => $this->l('Image URLs (x,y,z...)'),
-				'feature' => $this->l('Feature'),								        
+				'feature' => $this->l('Feature'),
 				);
 				
 				self::$default_values = array(
@@ -458,7 +459,7 @@ class AdminImport extends AdminTab
 					else
 					{
 						$this->_errors[] = $categoryToCreate->name[$defaultLanguageId].(isset($categoryToCreate->id) ? ' ('.$categoryToCreate->id.')' : '').' '.Tools::displayError('cannot be saved');
-						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 					}
 				}
 			}
@@ -501,7 +502,7 @@ class AdminImport extends AdminTab
 			if (!$res)
 			{
 				$this->_errors[] = $info['name'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
-				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 			}
 		}
 		$this->closeCsvFile($handle);
@@ -549,7 +550,7 @@ class AdminImport extends AdminTab
 				else
 				{
 					$this->_errors[] = 'TAX '.$tax->name[$defaultLanguageId].' '.Tools::displayError('cannot be saved');
-					$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+					$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 				}
 			}
 			
@@ -568,7 +569,7 @@ class AdminImport extends AdminTab
 					else
 					{
 						$this->_errors[] = $manufacturer->name.(isset($manufacturer->id) ? ' ('.$manufacturer->id.')' : '').' '.Tools::displayError('cannot be saved');
-						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 					}
 				}
 			}
@@ -588,7 +589,7 @@ class AdminImport extends AdminTab
 					else
 					{
 						$this->_errors[] = $supplier->name.(isset($supplier->id) ? ' ('.$supplier->id.')' : '').' '.Tools::displayError('cannot be saved');
-						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 					}
 				}
 			}
@@ -627,7 +628,7 @@ class AdminImport extends AdminTab
 							else
 							{
 								$this->_errors[] = $categoryToCreate->name[$defaultLanguageId].(isset($categoryToCreate->id) ? ' ('.$categoryToCreate->id.')' : '').' '.Tools::displayError('cannot be saved');
-								$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+								$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 							}
 						}	
 					}
@@ -649,7 +650,7 @@ class AdminImport extends AdminTab
 							else
 							{
 								$this->_errors[] = $categoryToCreate->name[$defaultLanguageId].(isset($categoryToCreate->id) ? ' ('.$categoryToCreate->id.')' : '').' '.Tools::displayError('cannot be saved');
-								$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+								$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 							}
 						}
 					}
@@ -685,21 +686,22 @@ class AdminImport extends AdminTab
 				if (!$res)
 				{
 					$res = $product->add();
-                    echo $product->id.' добавлен<br>';
-//echo '<script>toastr.info('.$product->id.');</script>';						
+					if ($res) {
+//						echo $product->id.' добавлен<br>';
+						echo '<a href="/adminka/index.php?tab=AdminCatalog&id_product='.$product->id.'&updateproduct&token='.$this->token.'">добавлен товар ССЫЛКА</a> с ID '.$product->id;
+					}
+//echo '<script>toastr.info('.$product->id.');</script>';
                     
 				}
 			}
 			// If both failed, mysql error
 			if (!$res)
 			{
+echo '(!$res)';
+prettyDump($product);
 
-echo '<pre>';
-print_r($product->id);
-echo '</pre>';
-    			
 				$this->_errors[] = $info['name'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
-				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 			}
 			else
 			{
@@ -727,7 +729,7 @@ echo '</pre>';
 							else
 							{
 								$this->_warnings[] = $image->legend[$defaultLanguageId].(isset($image->id_product) ? ' ('.$image->id_product.')' : '').' '.Tools::displayError('cannot be saved');
-								$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+								$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 							}
 						}
 				}
@@ -837,7 +839,7 @@ echo '</pre>';
 			if (!$res)
 			{
 				$this->_errors[] = $info['email'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
-				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 			}
 		}
 		$this->closeCsvFile($handle);
@@ -879,7 +881,7 @@ echo '</pre>';
 					else
 					{
 						$this->_errors[] = $country->name[$defaultLanguageId].' '.Tools::displayError('cannot be saved');
-						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 					}
 				}
 			}
@@ -907,7 +909,7 @@ echo '</pre>';
 					else
 					{
 						$this->_errors[] = $state->name.' '.Tools::displayError('cannot be saved');
-						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+						$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 					}
 				}
 			}
@@ -918,7 +920,7 @@ echo '</pre>';
 				if ($customer)
 					$address->id_customer = intval($customer);
 				else
-					$this->_errors[] = mysql_error().' '.$address->customer_email.' '.Tools::displayError('does not exist in base').' '.(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
+					$this->_errors[] = mysqli_error().' '.$address->customer_email.' '.Tools::displayError('does not exist in base').' '.(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
 			}
 
 			if (isset($address->manufacturer) AND is_numeric($address->manufacturer) AND Manufacturer::manufacturerExists(intval($address->manufacturer)))
@@ -931,8 +933,8 @@ echo '</pre>';
 					$address->id_manufacturer = intval($manufacturer->id);
 				else
 				{
-					$this->_errors[] = mysql_error().' '.$manufacturer->name.(isset($manufacturer->id) ? ' ('.$manufacturer->id.')' : '').' '.Tools::displayError('cannot be saved');
-					$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+					$this->_errors[] = mysqli_error().' '.$manufacturer->name.(isset($manufacturer->id) ? ' ('.$manufacturer->id.')' : '').' '.Tools::displayError('cannot be saved');
+					$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 				}
 			}
 			
@@ -946,8 +948,8 @@ echo '</pre>';
 					$address->id_supplier = intval($supplier->id);
 				else
 				{
-					$this->_errors[] = mysql_error().' '.$supplier->name.(isset($supplier->id) ? ' ('.$supplier->id.')' : '').' '.Tools::displayError('cannot be saved');
-					$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+					$this->_errors[] = mysqli_error().' '.$supplier->name.(isset($supplier->id) ? ' ('.$supplier->id.')' : '').' '.Tools::displayError('cannot be saved');
+					$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 				}
 			}
 
@@ -962,7 +964,7 @@ echo '</pre>';
 			if (!$res)
 			{
 				$this->_errors[] = $info['alias'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
-				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 			}
 		}
 		$this->closeCsvFile($handle);
@@ -992,8 +994,8 @@ echo '</pre>';
 			}
 			if (!$res)
 			{
-				$this->_errors[] = mysql_error().' '.$info['name'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
-				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysql_error();
+				$this->_errors[] = mysqli_error().' '.$info['name'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
+				$this->_errors[] = ($fieldError !== true ? $fieldError : '').($langFieldError !== true ? $langFieldError : '').mysqli_error();
 			}
 		}
 		$this->closeCsvFile($handle);
@@ -1021,7 +1023,7 @@ echo '</pre>';
 				if (!$res)
 					$res = $supplier->add();	
 				if (!$res)
-					$this->_errors[] = mysql_error().' '.$info['name'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
+					$this->_errors[] = mysqli_error().' '.$info['name'].(isset($info['id']) ? ' (ID '.$info['id'].')' : '').' '.Tools::displayError('cannot be saved');
 			}
 			else
 			{
