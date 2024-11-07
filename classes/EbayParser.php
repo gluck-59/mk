@@ -18,15 +18,15 @@ class EbayParser extends AdminTab
 
 
     /**
-     пробелы в запросе заменить на +
-    _fcid=186 — испания
-    _stpos=03000 — аликанте
-    _sacat=6000 и _osacat=6000 —  motors
-     LH_ItemCondition=3 - новый
-     &rt=nc&LH_BIN - BIN
-     &_sop=15 - сортировка Price + Shipping:lowers first
-     &_udlo= мин цена
-     &_udhi= макс цена
+     * пробелы в запросе заменить на +
+     * _fcid=186 — испания
+     * _stpos=03000 — аликанте
+     * _sacat=6000 и _osacat=6000 —  motors
+     * LH_ItemCondition=3 - новый
+     * &rt=nc&LH_BIN - BIN
+     * &_sop=15 - сортировка Price + Shipping:lowers first
+     * &_udlo= мин цена
+     * &_udhi= макс цена
      */
     const EBAY_MOTOR_LIST_URL = 'https://www.ebay.com/sch/i.html?_stpos=03000&_fcid=186&LH_ItemCondition=3&rt=nc&LH_BIN=1&_stpos=03000&_fcid=186&_osacat=6000&_sacat=6000&_sop=15&_nkw=';
     const EBAY_ITEM_URL = 'https://www.ebay.com/itm/';
@@ -37,7 +37,8 @@ class EbayParser extends AdminTab
 //        parent::__construct();
 //    }
 
-    function parse($request, $findpair = 0) {
+    function parse($request, $findpair = 0)
+    {
         $curl = self::request($request, 1);
         if (!empty($curl['errors'])) {
             return $curl;
@@ -89,8 +90,6 @@ class EbayParser extends AdminTab
     }
 
 
-
-
     /**
      * ходит на ебей курлом
      * принимает запрос: а) массив б) инт
@@ -99,13 +98,18 @@ class EbayParser extends AdminTab
      * @param string $request
      * @return array
      */
-    private function request($request, $type) {
+    private function request($request, $type)
+    {
         switch ($type) {
-            case 1: $url = self::EBAY_MOTOR_LIST_URL.str_ireplace(' ', '+', $request['request']); break;  // запрос списка лотов
-            case 2: $url = self::EBAY_ITEM_URL.$request['request']; break;                                              // запрос одного лота
+            case 1:
+                $url = self::EBAY_MOTOR_LIST_URL . str_ireplace(' ', '+', $request['request']);
+                break;  // запрос списка лотов
+            case 2:
+                $url = self::EBAY_ITEM_URL . $request['request'];
+                break;                                              // запрос одного лота
         }
-        if ($type == 1 && $_POST['minprice']) $url = $url.'&_udlo='.$_POST['minprice'];
-        if ($type == 1 && $_POST['maxprice']) $url = $url.'&_udhi='.$_POST['maxprice'];
+        if ($type == 1 && $_POST['minprice']) $url = $url . '&_udlo=' . $_POST['minprice'];
+        if ($type == 1 && $_POST['maxprice']) $url = $url . '&_udhi=' . $_POST['maxprice'];
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -129,9 +133,6 @@ class EbayParser extends AdminTab
     }
 
 
-
-
-
     /**
      *
      * возвращает список совместимых марок-моделей
@@ -139,11 +140,12 @@ class EbayParser extends AdminTab
      * @param int $itemNo
      * @return array
      */
-    private function getitemDetails($lot) {
+    private function getitemDetails($lot)
+    {
         $itemDetails = self::request(['request' => $lot['itemNo']], 2);
         //$itemDetails = self::request(['request' => 204619231974], 2);
 
-        $numberFormat = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
+        $numberFormat = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $document = new Document($itemDetails['response']);
 
         /** сборка массива с данными о лоте */
@@ -157,7 +159,7 @@ class EbayParser extends AdminTab
 
         // товар
         $lot['title'] = preg_replace('/[|"\'`]/', '', $document->first('.x-item-title__mainTitle span')->text());
-        $images = explode('|',  self::getEbayImages($document));
+        $images = explode('|', self::getEbayImages($document));
 //        $lot['image'] = '';
 //        $lot['cover'] = $images[0];
         if (sizeof($images) > 1) {
@@ -182,7 +184,7 @@ class EbayParser extends AdminTab
                 $lot['manufacturer'] = $manufacturerWrapper->text();
             }
             if ($partNumberWrapper = $document->first('//*[@id="viTabs_0_is"]/div/div[2]/div/div[2]/div[2]/dl/dd/div/div/span', \DiDom\Query::TYPE_XPATH)) {
-                $lot['ean13'] = $lot['manufacturer'].' '.$partNumberWrapper->text();
+                $lot['ean13'] = $lot['manufacturer'] . ' ' . $partNumberWrapper->text();
             }
             if ($epidWrapper = $document->first('//*[@id="s0-1-26-7-17-1-93[1]-2-3-tabpanel-0"]/div/div/div/div[4]/div/div[2]/div[2]/div[2]/div[1]/div/div[2]/div/div/span', \DiDom\Query::TYPE_XPATH)) {
                 $lot['epid'] = $epidWrapper->text();
@@ -208,7 +210,6 @@ class EbayParser extends AdminTab
     }
 
 
-
     /**
      * обрабатывает картинки в переданном объекте $document
      * отбрасывает первую картинку (она уже есть в cover), возвращает пути для остальных
@@ -216,15 +217,16 @@ class EbayParser extends AdminTab
      * @param $document
      * @return string
      */
-    private function getEbayImages($document) {
+    private function getEbayImages($document)
+    {
         $imagesPath = [];
         $imgElem = $document->find('.ux-image-grid-container.filmstrip img');
-        if (sizeof($imgElem) > 0 ) {
+        if (sizeof($imgElem) > 0) {
             for ($i = 0; $i <= sizeof($imgElem); $i++) {
                 if (!is_null($imgElem[$i])) {
                     $imgPath = pathinfo($imgElem[$i]->getAttribute('src'));
                     if ($imgPath['basename']) {
-                        $imagesPath[] = $imgPath['dirname'].'/s-l1600.'.$imgPath['extension'];
+                        $imagesPath[] = $imgPath['dirname'] . '/s-l1600.' . $imgPath['extension'];
                     }
                 }
             }
@@ -233,13 +235,13 @@ class EbayParser extends AdminTab
     }
 
 
-
     /**
      * возвращает рандомный UserAgent
      *
      * @return string
      */
-    private static function getRandomUseragent() {
+    private static function getRandomUseragent()
+    {
         $useragents = [
             "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0",
@@ -250,15 +252,16 @@ class EbayParser extends AdminTab
             "Mozilla/5.0 (iPad; CPU OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1",
             "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.36"
         ];
-        return rand(0, sizeof($useragents)-1);
+        return rand(0, sizeof($useragents) - 1);
     }
 
 
-    private static function getCategories() {
+    private static function getCategories()
+    {
         $categories = "";
-        for ($cat_id = 1;$cat_id<=100;$cat_id++) {
-            if (!empty($_POST['category_'.$cat_id])) {
-                $categories.=$_POST['category_'.$cat_id]."|";
+        for ($cat_id = 1; $cat_id <= 100; $cat_id++) {
+            if (!empty($_POST['category_' . $cat_id])) {
+                $categories .= $_POST['category_' . $cat_id] . "|";
             }
         }
         return $categories;
