@@ -66,7 +66,7 @@
 {literal}
 <script type="text/javascript">
 var re = document.referrer;
-if (re == 'http://motokofr.com/authentication.php?back=my-account.php')
+if (re == '/authentication.php?back=my-account.php')
 {
 	setTimeout("document.getElementById('hello').style.opacity = '1'", 200);
 	setTimeout("document.getElementById('hello').style.opacity = '0'", 3000);

@@ -298,7 +298,7 @@
 		<br>
 		<img src="{$base_dir}img/loader.gif">
 		<p>Сейчас я все вспомню...</p>
-	</div>			
+	</div>
 
 
 {literal}
@@ -314,53 +314,13 @@ countries = new Array();
 		{/foreach}
 	{/if}
 {/foreach}
-
-
 //]]>
-</script>
-{/literal}
 
 
-<script type="text/javascript">
-    function mailru_checker()
-{literal}{{/literal}
-
-	var input = document.getElementById('email').value;
-	
-	if (input.indexOf('mail.ru') + 1)
-	{literal}{{/literal}
-		document.getElementById('email_field').innerHTML = '<sup>&bull;</sup>&nbsp;&nbsp;Письма на MAIL.RU часто не доходят';
-		document.getElementById('email_field').style.color = '#f00';
-		document.getElementById('email_field').style.fontWeight = 'bold';
-	{literal}}{/literal}
-	
-	else
-	{literal}{{/literal}
-		document.getElementById('email_field').innerHTML = '<sup>&bull;</sup>&nbsp;&nbsp;E-mail';
-		document.getElementById('email_field').style.color = '';
-		document.getElementById('email_field').style.fontWeight = 'normal';
-	{literal}}{/literal}
-
-{literal}}{/literal}
-</script>
-
-{literal}
-<script>
-
-function getpp(text)
-{
+function getpp(text) {
 	document.getElementById('welcome').innerHTML = text;
 	document.getElementById('getpp').style.height = '100%';
     document.getElementById('getpp').style.top = '0px';
-	
 }
 </script>
-
-<script>
-    $(window).load(function(){
-    mailru_checker()
-      })
-        
-</script>    
-
 {/literal}
