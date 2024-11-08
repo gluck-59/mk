@@ -277,7 +277,7 @@ echo '</select>
 	else 
 	{
 		echo '<div style="background-color: #DEF;float: right;padding: 3px;border-radius: 5px;position: absolute;margin: -187px 276px">
-		<img src="http://motokofr.com/img/vtb24_logo.png">
+		<img src="/img/vtb24_logo.png">
 		<div style="margin: 12px 0px 0px 10px; font-weight: bold;font-size: 9;line-height: 17px";>
 		<span style=" color: #fc1921; ">$</span> <span style=" color: #0a2973; ">'.round($usd, 2).'</span><br>
 		<span style=" color: #fc1921; ">&euro;</span> <span style=" color: #0a2973; ">'.round($eur, 2).'</span>

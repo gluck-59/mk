@@ -688,7 +688,9 @@ class AdminImport extends AdminTab
 					$res = $product->add();
 					if ($res) {
 //						echo $product->id.' добавлен<br>';
-						echo '<a href="/adminka/index.php?tab=AdminCatalog&id_product='.$product->id.'&updateproduct&token='.$this->token.'">добавлен товар ССЫЛКА</a> с ID '.$product->id;
+						$cookie = new Cookie('psAdmin');
+						$token = Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee));
+						echo '<a href="/adminka/index.php?tab=AdminCatalog&id_product='.$product->id.'&updateproduct&token='.$token.'">добавлен товар ССЫЛКА</a> с ID '.$product->id;
 					}
 //echo '<script>toastr.info('.$product->id.');</script>';
                     

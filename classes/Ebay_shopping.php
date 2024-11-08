@@ -175,8 +175,8 @@ $xmlRequest .= '<GetSingleItemRequest xmlns="urn:ebay:apis:eBLBaseComponents"><I
 
 //prettyDump(curl_getinfo($ch, CURLINFO_EFFECTIVE_URL));
 
-prettyDump('getSingleItem '.__LINE__);
-prettyDump($responseXML, 1);
+//prettyDump('getSingleItem '.__LINE__);
+//prettyDump($responseXML, 1);
 
                 // если лот не BIN
                 // почему-то вседа выполняется continue независимо от 	ListingType

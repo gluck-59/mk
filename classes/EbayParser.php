@@ -13,14 +13,15 @@ class EbayParser extends AdminTab
     private $sellerMinPositive = 97;
     private $sellerMinFeedback = 1000;
     private $misha_prib = 100;
-    private $min_prib = 100;
-    private $max_prib = 1000;
-
+    private $min_prib = 10;
+    private $max_prib = 10000;
+    private $nacenka_percent = 15;
+    public $debug;
 
     /**
      * пробелы в запросе заменить на +
      * _fcid=186 — испания
-     * _stpos=03000 — аликанте
+     * _stpos=03560 — El Campello (Alicante) 03560 Ausias March, 30, 1C
      * _sacat=6000 и _osacat=6000 —  motors
      * LH_ItemCondition=3 - новый
      * &rt=nc&LH_BIN - BIN
@@ -28,7 +29,7 @@ class EbayParser extends AdminTab
      * &_udlo= мин цена
      * &_udhi= макс цена
      */
-    const EBAY_MOTOR_LIST_URL = 'https://www.ebay.com/sch/i.html?_stpos=03000&_fcid=186&LH_ItemCondition=3&rt=nc&LH_BIN=1&_stpos=03000&_fcid=186&_osacat=6000&_sacat=6000&_sop=15&_nkw=';
+    const EBAY_MOTOR_LIST_URL = 'https://www.ebay.com/sch/i.html?_stpos=03560&_fcid=186&LH_ItemCondition=3&rt=nc&LH_BIN=1&_stpos=03000&_fcid=186&_osacat=6000&_sacat=6000&_sop=15&_nkw=';
     const EBAY_ITEM_URL = 'https://www.ebay.com/itm/';
 
 
@@ -40,7 +41,7 @@ class EbayParser extends AdminTab
     function parse($request, $findpair = 0)
     {
         $curl = self::request($request, 1);
-        if (!empty($curl['errors'])) {
+        if (!empty($this->debug['errors'])) {
             return $curl;
         }
 
@@ -77,59 +78,17 @@ class EbayParser extends AdminTab
         // берем второй элемент из массива $lots[1] и обрабатываем его
         // второй элемент — чтобы случайно не попал левый лот с другим товаром, который будет самым дешевым
         if (sizeof($lots) > 1) {
-            $lotDetailInfo = self::getitemDetails($lots[1]);
+            $lotDetailInfo = self::getitemDetails($lots[1]['itemNo']);
         } elseif (sizeof($lots) == 1) {
-            $lotDetailInfo = self::getitemDetails($lots[0]);
+            $lotDetailInfo = self::getitemDetails($lots[0]['itemNo']);
         } else die('массив $lots пуст ');
 
 //prettyDump($lotDetailInfo);
 
         if ($_POST['export']) {
             self::export($lotDetailInfo, $_POST['export']);
-        } else return ['response' => $lotDetailInfo, 'debug' => '$curl'];
-    }
-
-
-    /**
-     * ходит на ебей курлом
-     * принимает запрос: а) массив б) инт
-     * возвращает массив данных
-     *
-     * @param string $request
-     * @return array
-     */
-    private function request($request, $type)
-    {
-        switch ($type) {
-            case 1:
-                $url = self::EBAY_MOTOR_LIST_URL . str_ireplace(' ', '+', $request['request']);
-                break;  // запрос списка лотов
-            case 2:
-                $url = self::EBAY_ITEM_URL . $request['request'];
-                break;                                              // запрос одного лота
-        }
-        if ($type == 1 && $_POST['minprice']) $url = $url . '&_udlo=' . $_POST['minprice'];
-        if ($type == 1 && $_POST['maxprice']) $url = $url . '&_udhi=' . $_POST['maxprice'];
-
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-//            CURLOPT_URL => 'https://motokofr.com', // дебаг
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-//            CURLOPT_HEADER =>true, // заголовки ответа
-            CURLOPT_NOBODY => false, // сама страница, для отладки
-            CURLOPT_FAILONERROR => true,
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_USERAGENT => self::getRandomUseragent(),
-            CURLOPT_HTTPHEADER, 'Accept-Language: en-US;q=0.6,en;q=0.4',
-            CURLOPT_VERBOSE => true
-        ));
-        $debug['curl_effective_url'] = curl_getinfo($curl, CURLINFO_EFFECTIVE_URL);
-        $response = curl_exec($curl);
-        $errors = curl_error($curl);
-        curl_close($curl);
-
-        return ['errors' => $errors, 'debug' => $debug, 'response' => $response];
+            return;
+        } else return ['response' => $lotDetailInfo, 'debug' => $this->debug];
     }
 
 
@@ -140,9 +99,8 @@ class EbayParser extends AdminTab
      * @param int $itemNo
      * @return array
      */
-    private function getitemDetails($lot)
-    {
-        $itemDetails = self::request(['request' => $lot['itemNo']], 2);
+    public function getitemDetails($itemNo) {
+        $itemDetails = self::request(['request' => $itemNo], 2);
         //$itemDetails = self::request(['request' => 204619231974], 2);
 
         $numberFormat = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
@@ -268,6 +226,69 @@ class EbayParser extends AdminTab
     }
 
 
+
+
+    /**
+     * ходит на ебей курлом
+     * принимает запрос: а) массив б) инт
+     * возвращает массив данных
+     *
+     * @param string $request
+     * @return array
+     */
+    private function request($request, $type)
+    {
+        switch ($type) {
+            case 1:
+                $url = self::EBAY_MOTOR_LIST_URL . str_ireplace(' ', '+', $request['request']);
+                break;  // запрос списка лотов
+            case 2:
+                $url = self::EBAY_ITEM_URL . $request['request'];
+                break;                                              // запрос одного лота
+        }
+        if ($type == 1 && $_POST['minprice']) $url = $url . '&_udlo=' . $_POST['minprice'];
+        if ($type == 1 && $_POST['maxprice']) $url = $url . '&_udhi=' . $_POST['maxprice'];
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+//            CURLOPT_URL => 'https://motokofr.com', // дебаг
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+//            CURLOPT_HEADER =>true, // заголовки ответа
+            CURLOPT_NOBODY => false, // сама страница, для отладки
+            CURLOPT_FAILONERROR => true,
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_USERAGENT => self::getRandomUseragent(),
+            CURLOPT_HTTPHEADER, 'Accept-Language: en-US;q=0.6,en;q=0.4',
+            CURLOPT_VERBOSE => true
+        ));
+        $this->debug['curl_effective_url'] = curl_getinfo($curl, CURLINFO_EFFECTIVE_URL);
+        $response = curl_exec($curl);
+        $this->debug['errors'] = curl_error($curl);
+        curl_close($curl);
+
+        return ['debug' => $this->debug, 'response' => $response];
+    }
+
+
+
+    /**
+     * принимет общую цену в $ (лот+доставка)
+     * считает прибыль, возвращает цену товара в $
+     *
+     * @param float $ebayPrice
+     * @return int
+     */
+    public function calculateProfit($ebayPrice) {
+        $nacenka_percent = ($_POST['nacenka_percent'] ? (float) $_POST['nacenka_percent'] : $this->nacenka_percent);
+        $nacenka = (ceil($ebayPrice) / 100 * $nacenka_percent + $this->misha_prib);
+        if ($nacenka < $this->min_prib) $nacenka = $this->min_prib;
+        if ($nacenka > $this->max_prib) $nacenka = $this->max_prib;
+        return ceil($ebayPrice + $nacenka /*- $weight_price*/);
+    }
+
+
+
     private function export($lot, $format) {
 //file_put_contents('jopa', $lot['compatibility']);
 //die();
@@ -279,10 +300,7 @@ class EbayParser extends AdminTab
             }
         }
 
-        $nacenka = ($lot['ebayPrice'] / 100 * (float) $_POST['nacenka_percent']) + $this->misha_prib;
-//            if ($nacenka < $this->min_prib) $nacenka = $this->min_prib;
-//            if ($nacenka > $this->max_prib) $nacenka = $this->max_prib;
-        $price = round($lot['ebayPrice'] + $nacenka /*- $weight_price*/);
+        $price = self::calculateProfit($lot['ebayPrice']);
 
         // заголовки таблицы
         $tableHeaders = ['skip', 'Активен','Название','Категории','Цена вкл налоги','Описание','Цена закупки','Короткое описание','Артикул №','Артикул поставщика','EAN13','Марка','Произв','Вес','Кол-во','Метки','Meta keywords','Meta_description','URL изображений'];

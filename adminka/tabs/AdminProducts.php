@@ -1433,7 +1433,7 @@ echo "<script>toastr.error('".$error."');</script>";
                 	<tr>
 						<td class="col-left"><a target="_blank" href="http://'.$this->getFieldValue($obj, 'location').'/'.htmlentities($this->getFieldValue($obj, 'supplier_reference'), ENT_COMPAT, 'UTF-8').'"><b>'.$this->l('Supplier Reference:').'</a></b></td>
 						<td style="padding-bottom:5px;">лот
-							<input type="text" name="supplier_reference" value="'.htmlentities($this->getFieldValue($obj, 'supplier_reference'), ENT_COMPAT, 'UTF-8').'" style="width: 89%;; margin-right: 14px;" /><br>'.$this->l('Location:').
+							<input type="text" name="supplier_reference" id="supplier_reference" value="'.htmlentities($this->getFieldValue($obj, 'supplier_reference'), ENT_COMPAT, 'UTF-8').'" style="width: 89%;; margin-right: 14px;" /><br>'.$this->l('Location:').
 							
 							'<!--select style=" margin-left: 5px; ">
 <option value="http://completed.shop.ebay.com/i.html?_nkw=">Ebay</option>
@@ -1454,7 +1454,7 @@ echo "<script>toastr.error('".$error."');</script>";
 		<tr>		
 
 		<td><input type="hidden" value="'.$obj->id.'" id="product_id"></td>
-		<td><a class="ebutton green" id="ajaxProductUpdate" href="#" >Обновить с Ебея</a></td></td>
+		<td><a class="ebutton green" id="ajaxProductUpdate" href="#" style="width: unset">Обновить цену с Ебея</a></td></td>
 
 		</tr>
 					<tr><td colspan="2"><hr style="width:730px;"></td></tr>';
@@ -2791,32 +2791,34 @@ $(document).ready(function () {
 
 
     // обновление товара в админке по номеру лота 
-    $('#ajaxProductUpdate').click(function(e)
-    {
+    $('#ajaxProductUpdate').click(function(e) {
         e.preventDefault();
-        var item = $('[name=supplier_reference]').val();
-        if (item.length != 12) 
-        {
+        var itemNo = $('[name=supplier_reference]').val();
+        if (itemNo.length != 12) {
             toastr.warning('Запрос не выполнен','Нет номера лота');
             return;
         }
-        
-        $('body').css('opacity','0.3');
+
+        $('body').css('opacity','0.6');
         toastr.remove();
         var data = new FormData();
-        data.append("lot", item);
+        data.append("itemNo", itemNo);
         data.append("id_product", $('#product_id').val());
-        
+
         var xhr = new XMLHttpRequest();
         xhr.withCredentials = true;
-        
+
         xhr.addEventListener("readystatechange", function () {
-          if (this.readyState === 4) {
-            parseResponse(this.responseText, item)
+          if (this.readyState == 4) {
+            // parseResponse(this.responseText, item)
+              let response = JSON.parse(this.responseText);
+              if (response.result == 1) {
+                location.reload();
+              }
           }
-          //else toastr.error(this.readyState, 'readyState');
+          // else toastr.error(this.readyState, 'readyState');
         });
-        
+
         // xhr.open("POST", "//motokofr.com/adminka/ajaxProductUpdate.php");
         xhr.open("POST", "/adminka/ajaxProductUpdate.php");
         xhr.setRequestHeader("cache-control", "no-cache");
@@ -2824,67 +2826,44 @@ $(document).ready(function () {
     })
 
 
-
-    function parseResponse(responseText, item)
-    {
+/*
+    function parseResponse(responseText, item) {
         try {
             response = JSON.parse(responseText);
         }
-        catch (e)
-        {
+        catch (e) {
             console.log('parseResponse', typeof(e), e);
             return;
         }
-        
-        
-        if (response.error)
-        {
+console.log('parseResponse', response)
+        if (response.error) {
             toastr.error(response.error,'Ошибка');
             $('body').css('opacity','1');
             return;
         }
-        
-        
-        
         set(responseText, item)
     }
     
     
-    function set(responseText, item)
-    {
+    function set(responseText, item) {
         $('body').css('opacity','1');
         
         response = response[item];
         console.log('response', response );
 
-        // установим цены и все такое
-        $('[name=wholesale_price]').val(parseInt(response.ebay_price));
-        $('#priceTE').val(parseInt(response.priceTE));
-        $('[name=quantity]').val(4);
-        
-        $('[name=reference]').val(response.seller.replace("&#39;", "\'"));
-        $('#meta_description_3').val(response.name);
-        $('[name=supplier_reference]').val(item); // номер лота установим когда товар новый
-        $('[name=location]').val('ebay.com/itm/');
-        
-        if ($('[name=ean13]').val() == "")
-            $('[name=ean13]').val(response.ean13);
-        
-        calcPriceTI(); // обновление поля "цена с налогом"
-        
         if (response.type != 'FixedPriceItem')  toastr.error(response.type,'Тип лота не BIN');
         
-        if ($('#name_3').val() == "")
-            getCover(response); // вызывать только если лот новый
+        // if ($('#name_3').val() == "")
+        //     getCover(response); // вызывать только если лот новый
         
     }
     
-    function getCover(lot)
-    {
-        var coverUrl = lot.image.split('|', 1);
-        window.open(coverUrl, '_blank');
-    }
-        
+    // function getCover(lot)
+    // {
+    //     var coverUrl = lot.image.split('|', 1);
+    //     window.open(coverUrl, '_blank');
+    // }
+        */
 
 
 });

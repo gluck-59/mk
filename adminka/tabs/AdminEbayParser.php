@@ -145,9 +145,8 @@ position: absolute;top: -330px;left: 380px;background-color: #fffff0;width: 350p
 
 		else
 		{
-			echo '<div style="background-color: #DEF;float: right;padding: 3px;border-radius: 5px;position: absolute;margin: -187px 276px">
-			<img src="http://motokofr.com/img/vtb24_logo.png">
-			<div style="margin: 12px 0px 0px 10px; font-weight: bold;font-size: 9;line-height: 17px";>
+			echo '<div style="background-color: #DEF;float: right;padding: 3px;border-radius: 5px;position: absolute;margin: -187px 276px; padding: 10px">
+			<div style="font-weight: bold;line-height: 27px";>
 			<span style=" color: #fc1921; ">$</span> <span style=" color: #0a2973; ">'.round($usd['conversion_rate'], 2).'</span><br>
 			<span style=" color: #fc1921; ">&euro;</span> <span style=" color: #0a2973; ">'.round($usd['conversion_rate'] / $eur['conversion_rate'], 2).'</span>
 			</div>
