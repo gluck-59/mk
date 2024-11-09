@@ -25,10 +25,10 @@
 {if $tips}
 	<p class="tips">
 		{foreach from=$tips item=tip name=tips}
-			{if $full_ajax}		
+			{if $full_ajax}
 			&nbsp;<a class="tips" rel="{$tip|trim}" onclick="javascript:blockAdvanceSearch_{$duliq_id}.advcLoadUrl('{$oAdvaceSearch->getUrlWithMultipleSelect('filter',$tip , $SelectMulti[$tip])}')">{$tip|trim}</a>&nbsp;
 			{else}
-			&nbsp;<a class="tips" rel="{$tip|trim}" onclick="setAttr('filter',getAttr('filter')+'{$tip|trim}')">{$tip|trim}</a>&nbsp;
+			&nbsp;<a class="tips" rel="{$tip|trim}" onclick="blockAdvanceSearch_3.setAttr('filter',blockAdvanceSearch_3.getAttr('filter')+'{$tip|trim}')">{$tip|trim}</a>&nbsp;
 			{/if}
 			
 		{/foreach }
@@ -72,73 +72,9 @@ blockAdvanceSearch_{$duliq_id}.isSearchPage = true;
 
 
 {literal}
-<script language="JavaScript">
-    
-///////////////// лишний &amp генерится где-то здесь    
-	jQuery(document).ready(function()
-	{   
-		$("#filter").keypress(function(e)
-		{
-			if(e.keyCode==13)
-			{
-			{/literal}
-			{if $full_ajax}
-			{literal}
-			  blockAdvanceSearch_{/literal}{$duliq_id}{literal}.advcLoadUrl('{/literal}{$oAdvaceSearch->getUrlWithMultipleSelect('filter', '' , $SelectMulti[$tip])}{literal}'+this.value);
-			{/literal}
-			{else}
-			{literal}
-				setAttr('filter',getAttr('filter')+this.value);
-			{/literal}
-			{/if}	
-			{literal}
-			}
-		});
+<script>
+	jQuery(document).ready(function() {
+
 	});
-
-
-function getAttr(prmName) 
-{ 
-   //var $_GET = {}; 
-   var d = window.location.search.substring(1).split("&"); 
-   for(var i=0; i< d.length; i++) { 
-      var getVar = d[i].split("="); 
-      if (getVar[0]==prmName)
-      {
-        //return typeof(getVar[1])=="undefined" ? "" : getVar[1]
-        return getVar[1]+'|';
-      }
-      //$_GET[getVar[0]] = typeof(getVar[1])=="undefined" ? "" : getVar[1]; 
-   } 
-   return '';
-   //return $_GET; 
-} 
-
-function setAttr(prmName,val)
-{
-    var res = '';
-	var d = location.href.split("#")[0].split("?");  
-	var base = d[0];
-	var query = d[1];
-	if(query) {
-		var params = query.split("&");  
-		for(var i = 0; i < params.length; i++) {  
-			var keyval = params[i].split("=");  
-			if(keyval[0] != prmName) {  
-				res += params[i] + '&';
-			}
-		}
-	}
-	
-	if (val != '') 	
-	{	
-		var val = val.replace(/ /g, '|')
-		res += prmName + '=' + val;
-		window.location.href = base + '?' + res; // перезагружает страницу, не дает работать AJAX
-		return false;
-	}
-}
-
-	
 </script>
 {/literal}
