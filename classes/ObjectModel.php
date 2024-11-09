@@ -94,7 +94,8 @@ abstract class ObjectModel
 			if (!$result) return false;
 			$this->id = intval($id);
 			foreach ($result AS $key => $value)
-				if (key_exists($key, $this))
+//				if (key_exists($key, $this)) // ориг
+				if (key_exists($key, (array) $this))
 					$this->{$key} = stripslashes($value);
 
 			/* Join multilingual tables */
@@ -106,7 +107,8 @@ abstract class ObjectModel
 				if ($result)
 					foreach ($result as $row)
 						foreach ($row AS $key => $value)
-							if (key_exists($key, $this) AND $key != $this->identifier)
+//							if (key_exists($key, $this) AND $key != $this->identifier) // ориг
+							if (key_exists($key, (array)$this) AND $key != $this->identifier)
 								$this->{$key}[$row['id_lang']] = stripslashes($value);
 			}
 		}

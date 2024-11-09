@@ -3,16 +3,18 @@
 require_once(_PS_SMARTY_DIR_.'Smarty.class.php');
 $smarty = new Smarty();
 $smarty->template_dir 	= _PS_THEME_DIR_.'tpl';
-$smarty->compile_dir 	= _PS_SMARTY_DIR_.'compile';
+$smarty->compile_dir 	= _PS_SMARTY_DIR_.'compile'; // ориг
 $smarty->cache_dir 		= _PS_SMARTY_DIR_.'cache';
 $smarty->config_dir 	= _PS_SMARTY_DIR_.'configs';
-$smarty_caching 	= false;//(in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? false : true);
-$smarty_force_compile 	= true;//(in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? true : false);
-//$smarty->debugging		= true;
+$smarty->caching 		= (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? false : true);
+$smarty->force_compile 	= (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? true : false);
+$smarty->compile_check 	= true; // https://www.smarty.net/docsv2/en/variable.compile.check.tpl
+$smarty->debugging		= false;
 $smarty->debug_tpl		= _PS_ALL_THEMES_DIR_ . 'debug.tpl';
 //$smarty->load_filter('output','trimwhitespace'); // не включать, перестает работать JS 
 //$smarty->load_filter('output','obfuscator'); // сжатие ВСЕГО - не работает
 
+//prettyDump($smarty, 1);
 
 function smartyTranslate($params, &$smarty)
 {

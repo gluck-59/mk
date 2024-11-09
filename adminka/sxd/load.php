@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 if(!empty($_SERVER['QUERY_STRING']) && preg_match("/^(\w+)(\.v\d+)?(pro)?\.(lng\.js|js|css|gif|png|ico)$/", $_SERVER['QUERY_STRING'], $m)){
 	$compress = true;
 	$skin = '';

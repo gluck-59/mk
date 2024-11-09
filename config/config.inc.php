@@ -1,8 +1,9 @@
 <?php
 /* Improve PHP configuration to prevent issues */
 @error_reporting(E_ERROR );
-@ini_set('display_errors', (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? 'on' : 'off'));
-//@ini_set('display_errors', E_ERROR);
+//@ini_set('display_errors', (in_array($_SERVER['SERVER_ADDR'], ['127.0.0.1', '::1', '0.0.0.0', 'localhost']) ? 'on' : 'off'));
+@ini_set('display_errors', 'on');
+
 
 
 //var_dump(error_reporting());
@@ -130,7 +131,7 @@ define('_PS_JS_DIR_',               __PS_BASE_URI__.'js/'); // оригинал
 //define('_PS_JS_DIR_',               'http://cdn.motokofr.com/js/');
 
 /* settings php */
-define('_PS_MAGIC_QUOTES_GPC_',         get_magic_quotes_gpc());
+define('_PS_MAGIC_QUOTES_GPC_',         false); //get_magic_quotes_gpc());
 define('_PS_MYSQL_REAL_ESCAPE_STRING_', function_exists('mysql_real_escape_string'));
 define('_PS_TRANS_PATTERN_',            '(.*[^\\\\])');
 define('_PS_MIN_TIME_GENERATE_PASSWD_', '360');

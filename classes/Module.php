@@ -83,8 +83,10 @@ abstract class Module
 			$this->active = true;
 			$this->id = self::$modulesCache[$this->name]['id_module'];
 			foreach (self::$modulesCache[$this->name] AS $key => $value)
-				if (key_exists($key, $this))
-					$this->{$key} = $value;
+//				if (key_exists($key, $this)) // orig
+				if (property_exists($this, $key))
+//					$this->{$key} = $value; // orig
+					$this->$key = $value;
 			$this->_path = __PS_BASE_URI__.'modules/'.$this->name.'/';
 		}
 	}

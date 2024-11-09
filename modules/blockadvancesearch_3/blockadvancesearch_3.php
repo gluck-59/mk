@@ -826,7 +826,7 @@ if ($_GET ['category'])
 	{
 		case ($cat->id_category == 5) : $placeholder = ""; break;
 		case ($cat->id_category == 8) : $placeholder = ""; break;	
-//		default: $placeholder = "универсальн кожа пластик";
+		default: $placeholder = "";
 	}
 }
 

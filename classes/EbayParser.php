@@ -3,9 +3,7 @@ set_time_limit (180);
 error_reporting(E_ALL^E_WARNING^E_NOTICE^E_DEPRECATED);
 ini_set('display_errors','on');
 
-
 use DiDom\Document;
-
 
 class EbayParser extends AdminTab
 {

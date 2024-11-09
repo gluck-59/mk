@@ -5,10 +5,10 @@ ini_set('display_errors','On');
 //header('X-Accel-Buffering: no');
 //ob_get_flush();
 
-//$prib = 1.20;					// % прибыль
-//$min_prib = 15;					// в долларах
-//$max_prib = 200;					// в долларах
-//$paypal_rate = 1;				// комиссия Paypal считается при чекауте
+$prib = 1.20;					// % прибыль
+$min_prib = 15;					// в долларах
+$max_prib = 200;					// в долларах
+$paypal_rate = 1;				// комиссия Paypal считается при чекауте
 
 $euCountries = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','EU'];
 $ukCountries = ['UK','IE'];

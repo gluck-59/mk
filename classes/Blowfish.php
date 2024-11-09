@@ -355,7 +355,7 @@ class Crypt_Blowfish
             $data = 0;
             for ($j = 4; $j > 0; $j--)
 			{
-				$data = $data << 8 | ord($key{$k});
+				$data = $data << 8 | ord($key[$k]);
 				$k = ($k + 1) % $len;
             }
             $this->_P[$i] ^= $data;
@@ -423,7 +423,7 @@ class Blowfish extends Crypt_Blowfish
 	
 	function maxi_pad($plaintext)
 	{
-		//$str_len = sizeof($plaintext); // оригинал
+		//$str_len = sizeof($plaintext); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		$str_len = strlen($plaintext);
 		$pad_len = $str_len % 8;
 		for($x = 0; $x < $pad_len; $x++)

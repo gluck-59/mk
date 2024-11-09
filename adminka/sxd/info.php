@@ -1,7 +1,7 @@
 <?php
 // Sypex Dumper Lite 2
 header("Content-Type: text/html; charset=utf-8");
-error_reporting(0);
+//error_reporting(0);
 set_error_handler("sxd_error");
 if(!empty($_POST['ajax']['job']) && preg_match("/^[\w-]+$/", $_POST['ajax']['job'])){
 	$d = date("'Y.m.d H:i:s'");

@@ -112,7 +112,7 @@ class Smarty
      *
      * @var boolean
      */
-    var $error_reporting  =  null;
+    var $error_reporting  =  0;
 
     /**
      * This is the path to the debug console template. If not set,
@@ -983,6 +983,7 @@ class Smarty
      */
     function is_cached($tpl_file, $cache_id = null, $compile_id = null)
     {
+
         if (!$this->caching)
             return false;
 
@@ -1173,7 +1174,7 @@ class Smarty
                 'results' => null
             );
             require_once(SMARTY_CORE_DIR . 'core.read_cache_file.php');
-            if (smarty_core_read_cache_file($_params, $this)) {
+            if (smarty_core_read_cache_file($_params, $this)) { // вернет false при $smarty->force_compile 	= true
                 $_smarty_results = $_params['results'];
                 if (!empty($this->_cache_info['insert_tags'])) {
                     $_params = array('plugins' => $this->_cache_info['insert_tags']);
@@ -1230,6 +1231,7 @@ class Smarty
                     return $_smarty_results;
                 }
             } else {
+
                 $this->_cache_info['template'][$resource_name] = true;
                 if ($this->cache_modified_check && $display) {
                     header('Last-Modified: '.gmdate('D, d M Y H:i:s', time()).' GMT');
@@ -1422,7 +1424,7 @@ class Smarty
         $_source_content = $_params['source_content'];
         $_cache_include    = substr($compile_path, 0, -4).'.inc';
 
-        if ($this->_compile_source($resource_name, $_source_content, $_compiled_content, $_cache_include)) {
+        if ($this->_compile_source($resource_name, $_source_content, $_compiled_content, $_cache_include)) { // $smarty->force_compile 	= true
             // if a _cache_serial was set, we also have to write an include-file:
             if ($this->_cache_include_info) {
                 require_once(SMARTY_CORE_DIR . 'core.write_compiled_include.php');
