@@ -66,6 +66,8 @@ class BlockAdvancesearch_3 extends Module {
 	);
 	private $advcCritStyle;
 	function __construct() {
+error_reporting(E_ALL^E_NOTICE);
+ini_set("display_errors", 1);
 		$this->name = 'blockadvancesearch_'.$this->dupliq_id;
 		$this->tab = 'Products';
 		$this->version = 3.4;
@@ -761,21 +763,22 @@ echo '</pre>';
 //добавим везде "supplier"
 				$id_supplier = (isset($_GET ['supplier']) && $_GET ['supplier'] ? $_GET ['supplier'] : (isset($_GET ['id_supplier']) ? intval(Tools::getValue('id_supplier')) : false));
 //ali
-$filter_name = (isset($_GET ['filter']) && $_GET ['filter'] ? $_GET ['filter'] : false);				
+$filter_name = (isset($_GET ['filter']) && $_GET ['filter'] ? $_GET ['filter'] : false);
+
 			}else {
 				$id_category = (isset($_GET ['category']) && $_GET ['category'] ? $_GET ['category'] : false);
 				$id_manufacturer = (isset($_GET ['manufacturer']) && $_GET ['manufacturer'] ? $_GET ['manufacturer'] : false);
 				$id_supplier = (isset($_GET ['supplier']) && $_GET ['supplier'] ? $_GET ['supplier'] : false);
 //ali
 $filter_name = (isset($_GET ['filter']) && $_GET ['filter'] ? $_GET ['filter'] : false);
-				
+
 			}
 			/*$is_new = ($_SERVER['SCRIPT_NAME'] == __PS_BASE_URI__.'new-products.php'?true:false);
 			$is_promo = ($_SERVER['SCRIPT_NAME'] == __PS_BASE_URI__.'prices-drop.php'?true:false);*/
 			$is_new = false;
 			$is_promo = false;
+$filter_name = Search::sanitize(strip_tags($filter_name), $cookie->id_lang);
 
-$filter_name = Search::sanitize(strip_tags($filter_name), $id_lang);
 $filter_alias = '';
 foreach (explode(' ',$filter_name) as $cfilter)
 		  	   {
@@ -791,10 +794,8 @@ foreach (explode(' ',$filter_name) as $cfilter)
 			
 			$products = $this->search(intval($cookie->id_lang), intval($p), intval($n), $orderBy, $orderWay, false, true, (count($ids_feature) ? $ids_feature : false), (count($ids_attribute) ? $ids_attribute : false), $gtPrice, $ltPrice, $id_category, $id_manufacturer, $id_supplier, $is_new, $is_promo,$on_stock,Configuration::get('ADVC_COMB_IMG_'.$this->dupliq_id),trim($filter_alias));
 
-// выводится во фронт-офис!
-//echo '<!---super---';
-//print_r($products);
-//echo '--->'; 
+// выводится во фронт!
+//prettyDump($products);
 
 
 $rand_product = array(

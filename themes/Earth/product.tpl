@@ -721,7 +721,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				$('body,html').animate({
 					scrollTop: 340
 				}, 10);
-				setTimeout("document.getElementById('product_raise').style.backgroundColor = '#fff'", 1500);
+				// setTimeout("document.getElementById('product_raise').style.backgroundColor = '#fff'", 1500);
 	</script>		
 	{/literal}						
 {/if}						

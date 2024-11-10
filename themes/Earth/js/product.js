@@ -385,7 +385,7 @@ $(document).ready(function()
 		updateColorSelect(0);
 	});
 
-	setTimeout("document.getElementById('product_raise').style.backgroundColor = '#fff'", 1500);
+	// setTimeout("document.getElementById('product_raise').style.backgroundColor = '#fff'", 1500);
 });
 
 function saveCustomization()

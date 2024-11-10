@@ -65,7 +65,7 @@
 			$('body,html').animate({
 				scrollTop: 320
 			}, 40);
-			setTimeout("document.getElementById('product_raise').style.backgroundColor = '#fff'", 500);
+			// setTimeout("document.getElementById('product_raise').style.backgroundColor = '#fff'", 500);
 		});
 	</script>
 	{/literal}
