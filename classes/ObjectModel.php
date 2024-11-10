@@ -135,10 +135,15 @@ abstract class ObjectModel
 			die(Tools::displayError());
 
 		/* Automatically fill dates */
-		if ($autodate AND array_key_exists('date_add', $this))
+//		if ($autodate AND array_key_exists('date_add', $this)) // ориг
+		if ($autodate AND isset($this->date_add)) {
 			$this->date_add = date('Y-m-d H:i:s');
-		if ($autodate AND array_key_exists('date_upd', $this))
+		}
+
+		//		if ($autodate AND array_key_exists('date_upd', $this)) // ориг
+		if ($autodate AND isset($this->date_upd)) {
 			$this->date_upd = date('Y-m-d H:i:s');
+		}
 
 		/* Database insertion */
 		if ($nullValues)
@@ -314,8 +319,9 @@ abstract class ObjectModel
 		foreach ($this->fieldsRequired as $field)
 			if (Tools::isEmpty($this->{$field}) AND (!is_numeric($this->{$field})))
 			{
-				if ($die) die (Tools::displayError().' ('.get_class($this).' -> '.$field.' is empty)');
-				return false;
+//				if ($die) die
+				(Tools::displayError().' ('.get_class($this).' -> '.$field.' is empty)');
+//				return false;
 			}
 		foreach ($this->fieldsSize as $field => $size)
 			if (isset($this->{$field}) AND Tools::strlen($this->{$field}) > $size)
