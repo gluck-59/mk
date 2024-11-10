@@ -274,8 +274,11 @@ ini_set("display_errors", 1);
 	public function verifIndex() {
 		foreach($this->indexToVerif as $table_name=>$columns) {
 			foreach($columns as $column_name) {
-				if (! mysqli_num_rows(mysqli_query( 'SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"')))
+//				if (! mysqli_num_rows(mysqli_query( 'SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"'))) // ориг
+				$indexes = Db::getInstance()->ExecuteS('SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"');
+				if (empty(sizeof($indexes))) {
 					return false;
+				}
 			}
 		}
 		return true;
@@ -283,9 +286,16 @@ ini_set("display_errors", 1);
 	public function createIndex() {
 		foreach($this->indexToVerif as $table_name=>$columns) {
 			foreach($columns as $column_name) {
-				if (! mysqli_num_rows(mysqli_query('SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"')))
-					if (! Db::getInstance()->Execute('ALTER TABLE `'._DB_PREFIX_.$table_name.'` ADD INDEX ( `'.$column_name.'`  )'))
+				// ориг
+//				if (! mysqli_num_rows(mysqli_query('SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"'))) {
+//					if (!Db::getInstance()->Execute('ALTER TABLE `' . _DB_PREFIX_ . $table_name . '` ADD INDEX ( `' . $column_name . '`  )'))
+//						return false;
+//				}
+				$indexes = Db::getInstance()->ExecuteS('SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"');
+				if (empty(sizeof($indexes))) {
+					if (!Db::getInstance()->Execute('ALTER TABLE `' . _DB_PREFIX_ . $table_name . '` ADD INDEX ( `' . $column_name . '`  )'))
 						return false;
+				}
 			}
 		}
 		return true;
