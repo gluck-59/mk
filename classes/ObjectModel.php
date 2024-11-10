@@ -135,9 +135,9 @@ abstract class ObjectModel
 			die(Tools::displayError());
 
 		/* Automatically fill dates */
-		if ($autodate AND key_exists('date_add', $this))
+		if ($autodate AND array_key_exists('date_add', $this))
 			$this->date_add = date('Y-m-d H:i:s');
-		if ($autodate AND key_exists('date_upd', $this))
+		if ($autodate AND array_key_exists('date_upd', $this))
 			$this->date_upd = date('Y-m-d H:i:s');
 
 		/* Database insertion */

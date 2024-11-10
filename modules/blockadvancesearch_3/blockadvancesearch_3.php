@@ -68,7 +68,9 @@ class BlockAdvancesearch_3 extends Module {
 	function __construct() {
 error_reporting(E_ALL^E_NOTICE);
 ini_set("display_errors", 1);
+
 		$this->name = 'blockadvancesearch_'.$this->dupliq_id;
+
 		$this->tab = 'Products';
 		$this->version = 3.4;
 
@@ -272,7 +274,7 @@ ini_set("display_errors", 1);
 	public function verifIndex() {
 		foreach($this->indexToVerif as $table_name=>$columns) {
 			foreach($columns as $column_name) {
-				if (! mysql_num_rows(mysql_query('SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"')))
+				if (! mysqli_num_rows(mysqli_query( 'SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"')))
 					return false;
 			}
 		}
@@ -281,7 +283,7 @@ ini_set("display_errors", 1);
 	public function createIndex() {
 		foreach($this->indexToVerif as $table_name=>$columns) {
 			foreach($columns as $column_name) {
-				if (! mysql_num_rows(mysql_query('SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"')))
+				if (! mysqli_num_rows(mysqli_query('SHOW INDEX FROM `'._DB_PREFIX_.$table_name.'` WHERE `column_name` = "'.$column_name.'"')))
 					if (! Db::getInstance()->Execute('ALTER TABLE `'._DB_PREFIX_.$table_name.'` ADD INDEX ( `'.$column_name.'`  )'))
 						return false;
 			}

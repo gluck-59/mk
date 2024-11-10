@@ -266,7 +266,7 @@ class Smarty_Compiler extends Smarty {
 
 
 /* replace special blocks by "{php}" */
-// оригинал
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /*
         $source_content = preg_replace($search.'e', "'"
                                . $this->_quote_replace($this->left_delimiter) . 'php'
@@ -576,12 +576,12 @@ class Smarty_Compiler extends Smarty {
 
             case 'php':
                 /* handle folded tags replaced by {php} */
-//                list(, $block) = each($this->_folded_blocks); // ориг
+//                list(, $block) = each($this->_folded_blocks);
                 if (is_array(current(current($this->_folded_blocks)))) list(, $block) = current($this->_folded_blocks);
                 $this->_current_line_no += substr_count($block[0], "\n");
                 /* the number of matched elements in the regexp in _compile_file()
                    determins the type of folded tag that was found */
-
+//prettyDump(count($block));
                 switch (count($block)) {
                     case 2: /* comment */
                         return '';
