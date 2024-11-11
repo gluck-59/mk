@@ -154,7 +154,7 @@ prettyDump('стало $cookie->id_currency'.$cookie->id_currency);
 		if ($cookie->id_currency) {
 			$currency = new Currency(intval($cookie->id_currency));
 			if (is_object($currency) AND $currency->id AND intval($currency->deleted) != 1) {
-prettyDump('is_object($currency) AND $currency->id AND intval($currency->deleted) != 1');
+prettyDump(__LINE__.' return = '.$currency->id);
 				return $currency;
 			}
 		} else {
