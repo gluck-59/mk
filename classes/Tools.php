@@ -140,25 +140,32 @@ class Tools
 	static public function setCurrency()
 	{
 		global $cookie;
-
-		if (self::isSubmit('SubmitCurrency'))
-			if (isset($_POST['id_currency']) AND is_numeric($_POST['id_currency']))
-			{
+prettyDump('было $cookie->id_currency'.$cookie->id_currency);
+		if (self::isSubmit('SubmitCurrency')) {
+prettyDump('SubmitCurrency');
+			if (isset($_POST['id_currency']) and is_numeric($_POST['id_currency'])) {
 				$currency = new Currency(intval($_POST['id_currency']));
-				if (is_object($currency) AND $currency->id AND !$currency->deleted)
+				if (is_object($currency) and $currency->id and !$currency->deleted) {
 					$cookie->id_currency = intval($currency->id);
+prettyDump('стало $cookie->id_currency'.$cookie->id_currency);
+				}
 			}
-
-		if ($cookie->id_currency)
-		{
-			$currency = new Currency(intval($cookie->id_currency));
-			if (is_object($currency) AND $currency->id AND intval($currency->deleted) != 1)
-				return $currency;
 		}
-		$currency = new Currency(intval(Configuration::get('PS_CURRENCY_DEFAULT')));
-		if (is_object($currency) AND $currency->id)
-			$cookie->id_currency = intval($currency->id);
-		return $currency;
+		if ($cookie->id_currency) {
+			$currency = new Currency(intval($cookie->id_currency));
+			if (is_object($currency) AND $currency->id AND intval($currency->deleted) != 1) {
+prettyDump('is_object($currency) AND $currency->id AND intval($currency->deleted) != 1');
+				return $currency;
+			}
+		} else {
+			$currency = new Currency(intval(Configuration::get('PS_CURRENCY_DEFAULT')));
+			if (is_object($currency) and $currency->id) {
+prettyDump('PS_CURRENCY_DEFAULT '.$currency->id);
+				$cookie->id_currency = intval($currency->id);
+			}
+prettyDump('return в итоге $currency->id = '.$currency->id);
+			return $currency;
+		}
 	}
 
 	/**

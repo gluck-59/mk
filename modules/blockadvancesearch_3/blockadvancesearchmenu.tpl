@@ -30,9 +30,9 @@
 <script type="text/javascript">
 $(document).ready(function() {ldelim}
 $('#advcCurSelection_{$duliq_id}').html('');
-$('#advcCurSelection_{$duliq_id}').append('<span style="display:none" class="selected"><b>{l s='Ma sélection' mod='blockadvancesearch_3' js=1}</b></span>');
+$('#advcCurSelection_{$duliq_id}').append('<span style="display:none1" class="selected"><b>{l s='Ma sélection' mod='blockadvancesearch_3' js=1}</b></span>');
 	{foreach from=$selection item=item name=advancesearchselection}
-	{assign var='curUrl' value=$oAdvaceSearch->getUrlWithMultipleSelect($item.3,$item.0,$SelectMulti[$item.3])}
+		{assign var='curUrl' value=$oAdvaceSearch->getUrlWithMultipleSelect($item.3,$item.0,$SelectMulti[$item.3])}
 		$('#advcCurSelection_{$duliq_id}').append('<span class="userselected">{if '#^attr_#'|preg_match:$item.3}{$item.2 js=1} : {/if}{$item.1 js=1}<a href="{$curUrl}">&nbsp;</a></span>');
 	{/foreach}
 		{if $full_ajax}
