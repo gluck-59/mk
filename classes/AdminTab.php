@@ -1203,7 +1203,7 @@ echo '<script>toastr.success(\''.$this->_conf[intval($conf)].'\');</script>';
 						echo Category::countNbProductAndSub($tr['id_category'], $cookie->id_lang);
 					elseif (isset($tr[$key]))
 					{
-						$echo = ($key == 'price' ? round($tr[$key], 2) : isset($params['maxlength']) ? Tools::substr($tr[$key], 0, $params['maxlength']).'...' : $tr[$key]);
+						$echo = ($key == 'price' ? round($tr[$key], 2) : (isset($params['maxlength']) ? Tools::substr($tr[$key], 0, $params['maxlength']) . '...' : $tr[$key]));
 						echo isset($params['callback']) ? call_user_func_array(array($this->className, $params['callback']), array($echo, $tr)) : $echo;
 					}
 					else

@@ -1852,7 +1852,7 @@ if($filter_name)
 	function hookTop($params) {
 		return $this->getSearchBlock();
 	}
-	function hookUpdateProduct($params) {
+	function hookUpdateProduct($params = false) {
 		return $this->clearAdvcCache();
 	}
 	function hookAddProduct($params) {

@@ -2799,8 +2799,9 @@ $(document).ready(function () {
             return;
         }
 
-        $('body').css('opacity','0.6');
         toastr.remove();
+        $('body').css('opacity',0.3);
+
         var data = new FormData();
         data.append("itemNo", itemNo);
         data.append("id_product", $('#product_id').val());
@@ -2813,10 +2814,13 @@ $(document).ready(function () {
             // parseResponse(this.responseText, item)
               let response = JSON.parse(this.responseText);
               if (response.result == 1) {
+                toastr.success('Сохранено');
                 location.reload();
+              } else if (response.errors) {
+                toastr.error(response.errors, response.curl_effective_url)
               }
           }
-          // else toastr.error(this.readyState, 'readyState');
+        $('body').css('opacity',1);
         });
 
         // xhr.open("POST", "//motokofr.com/adminka/ajaxProductUpdate.php");

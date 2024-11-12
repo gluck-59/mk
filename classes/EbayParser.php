@@ -92,7 +92,7 @@ class EbayParser extends AdminTab
 
     /**
      *
-     * возвращает список совместимых марок-моделей
+     * возвращает данные о лоте
      *
      * @param int $itemNo
      * @return array
@@ -100,6 +100,11 @@ class EbayParser extends AdminTab
     public function getitemDetails($itemNo) {
         $itemDetails = self::request(['request' => $itemNo], 2);
         //$itemDetails = self::request(['request' => 204619231974], 2);
+
+        // лот протух
+        if($itemDetails['debug']) {
+            return $itemDetails['debug'];
+        }
 
         $numberFormat = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $document = new Document($itemDetails['response']);

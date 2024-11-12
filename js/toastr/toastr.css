@@ -129,8 +129,8 @@ body#php #toast-container {
 }
 
 body#adminka #toast-container > div {
-width: 235px;
-margin-right: -5px;
+width: auto;
+/*margin-right: -5px;*/
 }
 #toast-container > :hover {
   -moz-box-shadow: 0 0 20px #555;
